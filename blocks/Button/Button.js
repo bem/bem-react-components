@@ -1,13 +1,14 @@
 import {decl} from 'bem-react-core';
 import React from 'react';
+import ReactDom from 'react-dom';
 import ButtonText from 'e:Text';
 
 export default decl({
     willInit({ focused }) {
         this.state = {
-            focused,
-            hovered: false,
-            pressed: false
+            focused : focused? 'hard' : false,
+            hovered : false,
+            pressed : false
         };
 
         this._isMousePressed = false;
@@ -21,11 +22,26 @@ export default decl({
         this._onMouseUp = this._onMouseUp.bind(this);
     },
 
-    willReceiveProps({ disabled }) {
-        disabled && this.setState({
-            hovered : false,
-            pressed : false
-        });
+    willReceiveProps({ focused, disabled }) {
+        const newState = {};
+
+        disabled && (newState.hovered = newState.pressed = false);
+
+        typeof focused !== 'undefined' && (newState.focused = focused? 'hard' : false);
+
+        this.setState(newState);
+    },
+
+    didMount() {
+        this.state.focused?
+            this._focus() :
+            this._blur();
+    },
+
+    didUpdate() {
+        this.state.focused?
+            this._focus() :
+            this._blur();
     },
 
     block : 'Button',
@@ -52,7 +68,7 @@ export default decl({
             title
         };
 
-        if (!disabled) {
+        if(!disabled) {
             res = {
                 ...res,
                 onFocus : this._onFocus,
@@ -76,8 +92,10 @@ export default decl({
     },
 
     _onFocus() {
-        this.setState({ focused : this._isMousePressed ? true : 'hard' });
-        this.props.onFocus && this.props.onFocus();
+        if(!this.state.focused) {
+            this.setState({ focused : this._isMousePressed? true : 'hard' });
+            this.props.onFocus && this.props.onFocus();
+        }
     },
 
     _onBlur() {
@@ -86,24 +104,37 @@ export default decl({
     },
 
     _onMouseEnter() {
-        this.setState({ hovered: true });
+        this.setState({ hovered : true });
     },
 
     _onMouseLeave() {
         this.setState({
-            hovered: false,
-            pressed: false
+            hovered : false,
+            pressed : false
         });
     },
 
     _onMouseDown(e) {
         this._isMousePressed = true;
-        e.button === 0 && this.setState({ pressed: true });
+        e.button === 0 && this.setState({ pressed : true });
     },
 
     _onMouseUp() {
         this._isMousePressed = false;
-        this.setState({ pressed: false });
+        this.setState({
+            pressed : false,
+            focused : this.state.focused || true
+        });
+    },
+
+    _focus() {
+        const domNode = ReactDom.findDOMNode(this);
+        document.activeElement !== domNode && domNode.focus();
+    },
+
+    _blur() {
+        const domNode = ReactDom.findDOMNode(this);
+        document.activeElement === domNode && domNode.blur();
     }
 }, {
     propTypes : {

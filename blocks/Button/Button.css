@@ -1,4 +1,15 @@
 .Button
 {
+    border: 1px solid black;
+    -moz-user-focus: ignore;
+}
+
+.Button_focused
+{
+    border: 1px solid yellow;
+}
+
+.Button_focused_hard
+{
     border: 1px solid red;
 }

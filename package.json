@@ -15,7 +15,8 @@
   "dependencies": {
     "bem-react-core": "git://github.com/bem/bem-react-core.git",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "warning": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",

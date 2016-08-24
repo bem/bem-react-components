@@ -6,13 +6,13 @@ import ButtonText from 'e:Text';
 
 export default decl({
     willInit({ focused, disabled }) {
+        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+
         this.state = {
             focused : focused? 'hard' : false,
             hovered : false,
             pressed : false
         };
-
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
 
         this._isMousePressed = false;
 
@@ -21,7 +21,6 @@ export default decl({
         this._onMouseEnter = this._onMouseEnter.bind(this);
         this._onMouseLeave = this._onMouseLeave.bind(this);
         this._onMouseDown = this._onMouseDown.bind(this);
-        this._onMouseUp = this._onMouseUp.bind(this);
         this._onMouseUp = this._onMouseUp.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
         this._onKeyUp = this._onKeyUp.bind(this);

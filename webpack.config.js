@@ -4,12 +4,12 @@ var jsLoaders = [bemLoader, 'babel'];
 
 module.exports = {
     entry : {
-        js : `${__dirname}/blocks/Button/Button.tests/simple.js`,
-        html : `${__dirname}/blocks/Button/Button.tests/simple.html`
+        js : `${__dirname}/blocks/Input/Input.tests/simple.js`,
+        html : `${__dirname}/blocks/Input/Input.tests/simple.html`
     },
     output : {
-        path : `${__dirname}/tests/Button/`,
-        publicPath : `/tests/Button/`,
+        path : `${__dirname}/tests/Input/`,
+        publicPath : `/tests/Input/`,
         filename : '_simple.js'
     },
     module : {

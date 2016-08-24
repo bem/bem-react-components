@@ -56,17 +56,18 @@ export default decl({
 
     tag : 'button',
 
-    mods({ disabled }) {
+    mods({ disabled, checked }) {
         const { focused, hovered, pressed } = this.state;
         return {
             disabled,
             focused,
             hovered,
-            pressed
+            pressed,
+            checked
         };
     },
 
-    attrs({ id, tabIndex, title, disabled }) {
+    attrs({ id, tabIndex, title, disabled, togglable, checked }) {
         let res = {
             role : 'button',
             'aria-disabled' : disabled,
@@ -96,6 +97,8 @@ export default decl({
             }
         }
 
+        togglable && (res['aria-pressed'] = String(!!checked));
+
         return res;
     },
 
@@ -111,13 +114,14 @@ export default decl({
         if(!this.state.focused) {
             this.setState(
                 { focused : this._isMousePressed? true : 'hard' },
-                this.props.onFocus && (() => this.props.onFocus()));
+                () => this.props.onFocusChange(true));
         }
     },
 
     _onBlur() {
-        this.setState({ focused : false });
-        this.props.onBlur && this.props.onBlur();
+        this.setState(
+            { focused : false },
+            () => this.props.onFocusChange(false));
     },
 
     _onMouseEnter() {
@@ -145,12 +149,19 @@ export default decl({
                     pressed : false,
                     focused : this.state.focused || true
                 },
-                () => this._onClick());
+                () => {
+                    this._onCheck();
+                    this._onClick();
+                });
         }
     },
 
     _onKeyDown(e) {
-        (e.key === ' ' || e.key === 'Enter') && this.setState({ pressed : true });
+        if(e.key === ' ' || e.key === 'Enter') {
+            this.setState(
+                { pressed : true },
+                () => this._onCheck());
+        }
     },
 
     _onKeyUp() {
@@ -161,8 +172,16 @@ export default decl({
         }
     },
 
+    _onCheck() {
+        this.props.togglable &&
+            (this.props.togglable === 'radio'?
+                this.props.checked || this.props.onCheckChange(true) :
+                this.props.onCheckChange(!this.props.checked));
+
+    },
+
     _onClick() {
-        this.props.onClick && this.props.onClick();
+        this.props.onClick();
     },
 
     _focus() {
@@ -178,7 +197,14 @@ export default decl({
     propTypes : {
         disabled : React.PropTypes.bool,
         focused : React.PropTypes.bool,
-        onFocus : React.PropTypes.func,
-        onBlur : React.PropTypes.func,
+        onClick : React.PropTypes.func,
+        onFocusChange : React.PropTypes.func,
+        onCheckChange : React.PropTypes.func
+    },
+
+    defaultProps : {
+        onClick() {},
+        onFocusChange() {},
+        onCheckChange() {}
     }
 });

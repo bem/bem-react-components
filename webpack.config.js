@@ -4,19 +4,21 @@ var jsLoaders = [bemLoader, 'babel'];
 
 module.exports = {
     entry : {
-        js : `${__dirname}/blocks/TextInput/TextInput.tests/simple.js`,
-        html : `${__dirname}/blocks/TextInput/TextInput.tests/simple.html`
+        'TextInput' : [
+            `${__dirname}/blocks/TextInput/TextInput.tests/simple.js`,
+            `${__dirname}/blocks/TextInput/TextInput.tests/simple.html`
+        ]
     },
     output : {
-        path : `${__dirname}/tests/TextInput/`,
-        publicPath : `/tests/TextInput/`,
-        filename : '_simple.js'
+        path : `${__dirname}/tests/`,
+        publicPath : `/tests`,
+        filename : '[name]',
     },
     module : {
         loaders : [
             {
                 test : /\.html$/,
-                loader : 'file?name=[name].[ext]',
+                loader : 'file?name=[1][name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html',
             },
             {
                 test : /\.js$/,

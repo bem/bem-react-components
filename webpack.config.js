@@ -1,14 +1,18 @@
-var bemLoader = require.resolve('bem-react-core/webpack/bem-loader');
+var path = require('path'),
+    glob = require('glob'),
+    bemLoader = require.resolve('bem-react-core/webpack/bem-loader');
 
 var jsLoaders = [bemLoader, 'babel'];
 
 module.exports = {
-    entry : {
-        'TextInput' : [
-            `${__dirname}/blocks/TextInput/TextInput.tests/simple.js`,
-            `${__dirname}/blocks/TextInput/TextInput.tests/simple.html`
-        ]
-    },
+    entry : glob.sync('blocks/**/*.tests/simple.html').reduce((res, file) => {
+        const entity = path.basename(path.dirname(file), '.tests');
+        res[`${entity}/simple.js`] = [
+            `${__dirname}/${file.replace(/\.html$/, '.js')}`,
+            `${__dirname}/${file}`
+        ];
+        return res;
+    }, {}),
     output : {
         path : `${__dirname}/tests/`,
         publicPath : `/tests`,
@@ -18,7 +22,7 @@ module.exports = {
         loaders : [
             {
                 test : /\.html$/,
-                loader : 'file?name=[1][name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html',
+                loader : 'file?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$',
             },
             {
                 test : /\.js$/,

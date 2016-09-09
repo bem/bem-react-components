@@ -2,8 +2,6 @@ var path = require('path'),
     glob = require('glob'),
     bemLoader = require.resolve('bem-react-core/webpack/bem-loader');
 
-var jsLoaders = [bemLoader, 'babel'];
-
 module.exports = {
     entry : glob.sync('blocks/**/*.tests/*.html').reduce((res, file) => {
         const basename = path.basename(file, '.html'),
@@ -27,13 +25,20 @@ module.exports = {
             },
             {
                 test : /\.js$/,
-                loaders : jsLoaders
+                exclude: /node_modules\/react(-dom)?/,
+                loaders : [bemLoader, 'babel']
             },
             {
                 test : /\.css$/,
                 loaders : ['style', 'css']
             }
         ]
+    },
+    resolve: {
+        alias: {
+            'react' : require.resolve('react/dist/react'),
+            'react-dom' : require.resolve('react-dom/dist/react-dom')
+        }
     },
     devtool : 'inline-source-map',
     bemLoader : {

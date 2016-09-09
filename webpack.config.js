@@ -1,6 +1,5 @@
 var path = require('path'),
-    glob = require('glob'),
-    bemLoader = require.resolve('bem-react-core/webpack/bem-loader');
+    glob = require('glob');
 
 module.exports = {
     entry : glob.sync('blocks/**/*.tests/*.html').reduce((res, file) => {
@@ -26,7 +25,7 @@ module.exports = {
             {
                 test : /\.js$/,
                 exclude: /node_modules\/react(-dom)?/,
-                loaders : [bemLoader, 'babel']
+                loaders : ['webpack-bem', 'babel']
             },
             {
                 test : /\.css$/,

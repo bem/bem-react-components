@@ -5,6 +5,8 @@ import warning from 'warning';
 import ButtonText from 'e:Text';
 
 export default decl({
+    block : 'Button',
+
     willInit({ focused, disabled }) {
         warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
 
@@ -51,10 +53,6 @@ export default decl({
             this._blur();
     },
 
-    block : 'Button',
-
-    tag : 'button',
-
     mods({ disabled, checked }) {
         const { focused, hovered, pressed } = this.state;
         return {
@@ -65,6 +63,8 @@ export default decl({
             checked
         };
     },
+
+    tag : 'button',
 
     attrs({ id, tabIndex, title, disabled, togglable, checked }) {
         let res = {
@@ -110,11 +110,9 @@ export default decl({
     },
 
     _onFocus() {
-        if(!this.state.focused) {
-            this.setState(
-                { focused : this._isMousePressed? true : 'hard' },
-                () => this.props.onFocusChange(true));
-        }
+        this.state.focused || this.setState(
+            { focused : this._isMousePressed? true : 'hard' },
+            () => this.props.onFocusChange(true));
     },
 
     _onBlur() {
@@ -129,10 +127,7 @@ export default decl({
 
     _onMouseLeave() {
         this._isMousePressed = false;
-        this.setState({
-            hovered : false,
-            pressed : false
-        });
+        this.setState({ hovered : false, pressed : false });
     },
 
     _onMouseDown(e) {

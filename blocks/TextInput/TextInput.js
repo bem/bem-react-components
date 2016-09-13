@@ -7,6 +7,8 @@ import 'e:Clear';
 const ALLOWED_TYPES = ['text', 'password', 'search'];
 
 export default decl({
+    block : 'TextInput',
+
     willInit({ type, focused, disabled }) {
         warning(ALLOWED_TYPES.indexOf(type) !== -1, `Type "${type}" is not supported.`);
 
@@ -21,8 +23,6 @@ export default decl({
     willReceiveProps({ focused }) {
         typeof focused !== 'undefined' && this.setState({ focused });
     },
-
-    block : 'TextInput',
 
     tag : 'span',
 

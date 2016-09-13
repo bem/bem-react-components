@@ -2,6 +2,10 @@ import {decl} from 'bem-react-core';
 import ReactDom from 'react-dom';
 
 export default decl({
+    block : 'TextInput',
+
+    elem : 'Control',
+
     willInit() {
         this._onChange = this._onChange.bind(this);
         this._onFocus = this._onFocus.bind(this);
@@ -19,10 +23,6 @@ export default decl({
             this._focus() :
             this._blur();
     },
-
-    block : 'TextInput',
-
-    elem : 'Control',
 
     tag : 'input',
 
@@ -42,9 +42,7 @@ export default decl({
 
         autoComplete === false && (res.autoComplete = 'off');
 
-        if(!disabled) {
-            res.onFocus = this._onFocus;
-        }
+        disabled || (res.onFocus = this._onFocus);
 
         return res;
     },

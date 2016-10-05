@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Link from 'b:Link';
+import Link from 'b:Link m:pseudo';
 
 class App extends React.Component {
     constructor() {
@@ -27,6 +27,10 @@ class App extends React.Component {
                 >link</Link>
                 <br/>
                 <Link disabled={this.state.linkDisabled} url="https://yandex.ru" target="_blank">link disabled</Link>
+                <br/>
+                <Link pseudo onClick={() => console.log('click!')}>
+                    pseudo link
+                </Link>
             </div>
         );
     }

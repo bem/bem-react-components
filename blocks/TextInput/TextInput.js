@@ -70,6 +70,7 @@ export default decl({
         id : React.PropTypes.string,
         name : React.PropTypes.string,
         value : React.PropTypes.any,
+        type : React.PropTypes.oneOf(['text', 'password', 'search']),
         maxLength : React.PropTypes.number,
         tabIndex : React.PropTypes.number,
         placeholder : React.PropTypes.string,

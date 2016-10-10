@@ -189,6 +189,7 @@ export default decl({
     }
 }, {
     propTypes : {
+        type : React.PropTypes.oneOf([undefined, 'link']),
         disabled : React.PropTypes.bool,
         focused : React.PropTypes.bool,
         onClick : React.PropTypes.func,

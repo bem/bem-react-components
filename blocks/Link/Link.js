@@ -1,6 +1,6 @@
 import {decl} from 'bem-react-core';
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, {PropTypes} from 'React';
+import Focusable from '../Focusable/Focusable';
 import warning from 'warning';
 
 export default decl({
@@ -28,18 +28,6 @@ export default decl({
         typeof focused !== 'undefined' && (newState.focused = focused);
 
         this.setState(newState);
-    },
-
-    didMount() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
-    },
-
-    didUpdate() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
     },
 
     mods({ disabled }) {
@@ -72,8 +60,6 @@ export default decl({
             res = {
                 ...res,
                 onClick : this._onClick,
-                onFocus : this._onFocus,
-                onBlur : this._onBlur,
                 onMouseEnter : this._onMouseEnter,
                 onMouseLeave : this._onMouseLeave
             };
@@ -82,6 +68,14 @@ export default decl({
         res.tabIndex = tabIndex;
 
         return res;
+    },
+
+    render() {
+        return (
+            <Focusable focused={!!this.state.focused} onFocus={this._onFocus} onBlur={this._onBlur}>
+                { this.__base.apply(this, arguments) }
+            </Focusable>
+        );
     },
 
     _onClick(e) {
@@ -106,23 +100,13 @@ export default decl({
 
     _onMouseLeave() {
         this.setState({ hovered : false });
-    },
-
-    _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
-    },
-
-    _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
     }
 }, {
     propTypes : {
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onClick : React.PropTypes.func,
-        onFocusChange : React.PropTypes.func
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onClick : PropTypes.func,
+        onFocusChange : PropTypes.func
     },
 
     defaultProps : {

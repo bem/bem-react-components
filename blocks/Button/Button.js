@@ -1,6 +1,6 @@
 import {decl} from 'bem-react-core';
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, {PropTypes} from 'React';
+import Focusable from '../Focusable/Focusable';
 import warning from 'warning';
 import ButtonText from 'e:Text';
 
@@ -41,18 +41,6 @@ export default decl({
         this.setState(newState);
     },
 
-    didMount() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
-    },
-
-    didUpdate() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
-    },
-
     mods({ disabled, checked }) {
         const { focused, hovered, pressed } = this.state;
         return {
@@ -79,8 +67,6 @@ export default decl({
         if(!disabled) {
             res = {
                 ...res,
-                onFocus : this._onFocus,
-                onBlur : this._onBlur,
                 onMouseEnter : this._onMouseEnter,
                 onMouseLeave : this._onMouseLeave,
                 onMouseDown : this._onMouseDown,
@@ -99,6 +85,14 @@ export default decl({
         togglable && (res['aria-pressed'] = String(!!checked));
 
         return res;
+    },
+
+    render() {
+        return (
+            <Focusable focused={!!this.state.focused} onFocus={this._onFocus} onBlur={this._onBlur}>
+                { this.__base.apply(this, arguments) }
+            </Focusable>
+        );
     },
 
     content({ children, icon, text }) {
@@ -176,25 +170,15 @@ export default decl({
 
     _onClick() {
         this.props.onClick();
-    },
-
-    _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
-    },
-
-    _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
     }
 }, {
     propTypes : {
-        type : React.PropTypes.oneOf([undefined, 'link']),
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onClick : React.PropTypes.func,
-        onFocusChange : React.PropTypes.func,
-        onCheckChange : React.PropTypes.func
+        type : PropTypes.oneOf([undefined, 'link']),
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onClick : PropTypes.func,
+        onFocusChange : PropTypes.func,
+        onCheckChange : PropTypes.func
     },
 
     defaultProps : {

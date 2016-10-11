@@ -21,9 +21,7 @@ class App extends React.Component {
                     onClick={() => console.log('click!')}
                 >link</Link>
                 <br/>
-                <Link
-                    onFocusChange={linkFocused => { this.setState({ linkFocused }); console.log('focusChange! ' + linkFocused); }}
-                    onClick={() => console.log('click!')}
+                <Link onClick={() => console.log('click!')}
                 >link</Link>
                 <br/>
                 <Link disabled={this.state.linkDisabled} url="https://yandex.ru" target="_blank">link disabled</Link>

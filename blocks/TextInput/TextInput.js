@@ -1,5 +1,5 @@
 import Bem, {decl} from 'bem-react-core';
-import React from 'react';
+import React, {PropTypes} from 'React';
 import warning from 'warning';
 import TextInputControl from 'e:Control';
 import 'e:Clear';
@@ -63,19 +63,19 @@ export default decl({
     }
 }, {
     propTypes : {
-        id : React.PropTypes.string,
-        name : React.PropTypes.string,
-        value : React.PropTypes.any,
-        type : React.PropTypes.oneOf(['text', 'password', 'search']),
-        maxLength : React.PropTypes.number,
-        tabIndex : React.PropTypes.number,
-        placeholder : React.PropTypes.string,
-        autoComplete : React.PropTypes.bool,
-        hasClear : React.PropTypes.bool,
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onFocusChange : React.PropTypes.func,
-        onChange : React.PropTypes.func
+        id : PropTypes.string,
+        name : PropTypes.string,
+        value : PropTypes.any,
+        type : PropTypes.oneOf(['text', 'password', 'search']),
+        maxLength : PropTypes.number,
+        tabIndex : PropTypes.number,
+        placeholder : PropTypes.string,
+        autoComplete : PropTypes.bool,
+        hasClear : PropTypes.bool,
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onFocusChange : PropTypes.func,
+        onChange : PropTypes.func
     },
 
     defaultProps : {

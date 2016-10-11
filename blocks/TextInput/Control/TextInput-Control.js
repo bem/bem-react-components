@@ -1,5 +1,6 @@
 import {decl} from 'bem-react-core';
-import ReactDom from 'react-dom';
+import React from 'React';
+import Focusable from '../../Focusable/Focusable';
 
 export default decl({
     block : 'TextInput',
@@ -10,18 +11,6 @@ export default decl({
         this._onChange = this._onChange.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onBlur = this._onBlur.bind(this);
-    },
-
-    didMount() {
-        this.props.focused?
-            this._focus() :
-            this._blur();
-    },
-
-    didUpdate() {
-        this.props.focused?
-            this._focus() :
-            this._blur();
     },
 
     tag : 'input',
@@ -36,15 +25,21 @@ export default decl({
             type,
             value,
             disabled,
-            onChange : this._onChange,
-            onBlur : this._onBlur
+            onChange : this._onChange
         };
 
         autoComplete === false && (res.autoComplete = 'off');
 
-        disabled || (res.onFocus = this._onFocus);
-
         return res;
+    },
+
+    render() {
+        const { focused, onFocus, onBlur } = this.props;
+        return (
+            <Focusable focused={!!focused} onFocus={this._onFocus} onBlur={this._onBlur}>
+                { this.__base.apply(this, arguments) }
+            </Focusable>
+        );
     },
 
     _onChange({ target }) {
@@ -57,15 +52,5 @@ export default decl({
 
     _onBlur() {
         this.props.onFocusChange(false);
-    },
-
-    _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
-    },
-
-    _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
     }
 });

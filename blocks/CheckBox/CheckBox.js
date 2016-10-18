@@ -6,7 +6,7 @@ import CheckBoxControl from 'e:Control';
 export default decl({
     block : 'CheckBox',
 
-    willInit({ type, focused, disabled }) {
+    willInit({ focused, disabled }) {
         warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
 
         this.state = { focused };

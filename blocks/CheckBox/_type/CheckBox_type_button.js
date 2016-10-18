@@ -19,11 +19,12 @@ export default declMod(({ type }) => type === 'button', {
         this.props.onChange(!this.props.checked);
     },
 
-    content({ checked, disabled, focused, name, value, title, text, icon }) {
+    content({ checked, disabled, name, value, title, text, icon }) {
         return [
             <Button
                 key="button"
                 togglable="check"
+                role="checkbox"
                 checked={checked}
                 disabled={disabled}
                 title={title}
@@ -32,10 +33,6 @@ export default declMod(({ type }) => type === 'button', {
                 focused={this.state.focused}
                 onFocusChange={this._onControlFocusChange}
                 onCheckChange={this._onCheckChange}
-                // TODO: support in Button
-                role="checkbox"
-                ariaPressed={undefined}
-                ariaChecked={String(!!checked)}
             />,
             <CheckBoxControl
                 key="control"

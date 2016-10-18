@@ -66,9 +66,9 @@ export default decl({
 
     tag : 'button',
 
-    attrs({ id, tabIndex, title, disabled, togglable, checked }) {
+    attrs({ id, tabIndex, title, disabled, togglable, checked, role }) {
         let res = {
-            role : 'button',
+            role,
             'aria-disabled' : disabled,
             disabled,
             tabIndex,
@@ -96,7 +96,7 @@ export default decl({
             }
         }
 
-        togglable && (res['aria-pressed'] = String(!!checked));
+        togglable && (res[`aria-${role === 'checkbox'? 'checked' : 'pressed'}`] = String(!!checked));
 
         return res;
     },
@@ -189,7 +189,8 @@ export default decl({
     }
 }, {
     propTypes : {
-        type : React.PropTypes.oneOf([undefined, 'link']),
+        type : React.PropTypes.oneOf(['link']),
+        role : React.PropTypes.oneOf(['button', 'checkbox']),
         disabled : React.PropTypes.bool,
         focused : React.PropTypes.bool,
         onClick : React.PropTypes.func,
@@ -198,6 +199,7 @@ export default decl({
     },
 
     defaultProps : {
+        role : 'button',
         onClick() {},
         onFocusChange() {},
         onCheckChange() {}

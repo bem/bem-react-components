@@ -137,12 +137,10 @@ export default decl({
 
     _onMouseUp() {
         if(this._isMousePressed) {
+            this._focus();
             this._isMousePressed = false;
             this.setState(
-                {
-                    pressed : false,
-                    focused : this.state.focused || true
-                },
+                { pressed : false },
                 () => {
                     this._onCheck();
                     this._onClick();

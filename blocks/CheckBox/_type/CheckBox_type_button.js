@@ -15,10 +15,6 @@ export default declMod(({ type }) => type === 'button', {
         return { ...this.__base.apply(this, arguments), type };
     },
 
-    _onCheckChange() {
-        this.props.onChange(!this.props.checked);
-    },
-
     content({ checked, disabled, name, value, title, text, icon }) {
         return [
             <Button
@@ -42,5 +38,19 @@ export default declMod(({ type }) => type === 'button', {
                 disabled={disabled}
             />
          ];
+    },
+
+    _onCheckChange() {
+        this.props.onChange(!this.props.checked);
+    },
+
+    /**
+     * @override
+     * The handler is invoked inside asynchronous callback of `setState()` of Button,
+     * so `onFocusChange` must be called synchronously
+     */
+    _onControlFocusChange(focused) {
+        this.setState({ focused });
+        this.props.onFocusChange(focused);
     }
 });

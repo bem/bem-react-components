@@ -1,0 +1,14 @@
+.Popup
+{
+    border: 1px solid red;
+    position: absolute;
+    display: none;
+
+    width: 100px;
+    height: 50px;
+}
+
+.Popup_visible
+{
+    display: block;
+}

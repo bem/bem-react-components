@@ -29,6 +29,12 @@ class App extends React.Component {
                 <Button disabled={this.state.buttonDisabled} type="link" text="button link" url="https://yandex.ru" target="_blank"/>
                 <br/>
                 <Button
+                    type="link"
+                    text="button link with default prevented"
+                    url="https://yandex.ru"
+                    onClick={ e => e.preventDefault() }/>
+                <br/>
+                <Button
                     checked={this.state.checkButtonChecked}
                     togglable="check"
                     onCheckChange={checkButtonChecked => { this.setState({ checkButtonChecked }); }}

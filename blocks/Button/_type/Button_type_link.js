@@ -24,9 +24,11 @@ export default declMod(({ type }) => type === 'link', {
         return res;
     },
 
-    _onClick() {
+    _onKeyUp(e) {
         this.__base.apply(this, arguments);
-
-        document.location = this.props.url;
+        if(this.state.pressed && e.key === ' ') {
+            this.props.onClick(e);
+            e.isDefaultPrevented() || (document.location = this.props.url);
+        }
     }
 });

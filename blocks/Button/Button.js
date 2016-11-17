@@ -24,6 +24,7 @@ export default decl({
         this._onMouseLeave = this._onMouseLeave.bind(this);
         this._onMouseDown = this._onMouseDown.bind(this);
         this._onMouseUp = this._onMouseUp.bind(this);
+        this._onMouseClick = this._onMouseClick.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
         this._onKeyUp = this._onKeyUp.bind(this);
     },
@@ -73,7 +74,8 @@ export default decl({
             disabled,
             tabIndex,
             id,
-            title
+            title,
+            onClick : this._onMouseClick
         };
 
         if(!disabled) {
@@ -103,6 +105,7 @@ export default decl({
 
     content({ children, icon, text }) {
         if(children) return children;
+
         const content = [];
         icon && content.push(React.cloneElement(icon, { key : 'icon' }));
         text && content.push(<ButtonText key="button">{text}</ButtonText>);
@@ -137,22 +140,26 @@ export default decl({
 
     _onMouseUp() {
         if(this._isMousePressed) {
-            this._focus();
             this._isMousePressed = false;
+            this._focus();
             this.setState(
                 { pressed : false },
-                () => {
-                    this._onCheck();
-                    this._onClick();
-                });
+                () => this._onCheck());
+        }
+    },
+
+    _onMouseClick(e) {
+        if(this.props.disabled) {
+            e.preventDefault();
+        }
+        else {
+            this._onClick(e);
         }
     },
 
     _onKeyDown(e) {
         if(e.key === ' ' || e.key === 'Enter') {
-            this.setState(
-                { pressed : true },
-                () => this._onCheck());
+            this.setState({ pressed : true });
         }
     },
 
@@ -160,7 +167,7 @@ export default decl({
         if(this.state.pressed) {
             this.setState(
                 { pressed : false },
-                () => this._onClick());
+                () => this._onCheck());
         }
     },
 
@@ -172,8 +179,8 @@ export default decl({
 
     },
 
-    _onClick() {
-        this.props.onClick();
+    _onClick(e) {
+        this.props.onClick(e);
     },
 
     _focus() {

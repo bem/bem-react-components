@@ -14,10 +14,19 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Link pseudo onClick={() => this.setState({ popupVisible: !this.state.popupVisible })}>Open popup</Link>
+                <Link
+                    pseudo
+                    onClick={() => this.setState({ popupVisible: !this.state.popupVisible })}
+                    ref="anchor"
+                >
+                    Open popup
+                </Link>
                 <Popup
                     autoclosable
+                    target="anchor"
+                    anchor={() => this.refs.anchor}
                     visible={this.state.popupVisible}
+                    // TODO: onVisibleChange -> onHide
                     onVisibleChange={visible => this.setState({ popupVisible: visible })}
                 >
                     Blah-blah

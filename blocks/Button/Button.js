@@ -17,16 +17,6 @@ export default decl({
         };
 
         this._isMousePressed = false;
-
-        this._onFocus = this._onFocus.bind(this);
-        this._onBlur = this._onBlur.bind(this);
-        this._onMouseEnter = this._onMouseEnter.bind(this);
-        this._onMouseLeave = this._onMouseLeave.bind(this);
-        this._onMouseDown = this._onMouseDown.bind(this);
-        this._onMouseUp = this._onMouseUp.bind(this);
-        this._onMouseClick = this._onMouseClick.bind(this);
-        this._onKeyDown = this._onKeyDown.bind(this);
-        this._onKeyUp = this._onKeyUp.bind(this);
     },
 
     willReceiveProps({ focused, disabled }) {
@@ -112,33 +102,33 @@ export default decl({
         return content;
     },
 
-    _onFocus() {
+    _onFocus : () => {
         this.state.focused || this.setState(
             { focused : this._isMousePressed? true : 'hard' },
             () => this.props.onFocusChange(true));
     },
 
-    _onBlur() {
+    _onBlur : () => {
         this.setState(
             { focused : false },
             () => this.props.onFocusChange(false));
     },
 
-    _onMouseEnter() {
+    _onMouseEnter : () => {
         this.setState({ hovered : true });
     },
 
-    _onMouseLeave() {
+    _onMouseLeave : () => {
         this._isMousePressed = false;
         this.setState({ hovered : false, pressed : false });
     },
 
-    _onMouseDown(e) {
+    _onMouseDown : (e) => {
         this._isMousePressed = true;
         e.button === 0 && this.setState({ pressed : true });
     },
 
-    _onMouseUp() {
+    _onMouseUp : () => {
         if(this._isMousePressed) {
             this._isMousePressed = false;
             this._focus();
@@ -148,7 +138,7 @@ export default decl({
         }
     },
 
-    _onMouseClick(e) {
+    _onMouseClick : (e) => {
         if(this.props.disabled) {
             e.preventDefault();
         }
@@ -157,13 +147,13 @@ export default decl({
         }
     },
 
-    _onKeyDown(e) {
+    _onKeyDown : (e) => {
         if(e.key === ' ' || e.key === 'Enter') {
             this.setState({ pressed : true });
         }
     },
 
-    _onKeyUp() {
+    _onKeyUp : () => {
         if(this.state.pressed) {
             this.setState(
                 { pressed : false },
@@ -171,7 +161,7 @@ export default decl({
         }
     },
 
-    _onCheck() {
+    _onCheck : () => {
         this.props.togglable &&
             (this.props.togglable === 'radio'?
                 this.props.checked || this.props.onCheckChange(true) :
@@ -179,7 +169,7 @@ export default decl({
 
     },
 
-    _onClick(e) {
+    _onClick : (e) => {
         this.props.onClick(e);
     },
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Link from 'b:Link m:pseudo';
-import Popup from 'b:Popup m:autoclosable';
+import Popup from 'b:Popup m:autoclosable m:target=anchor';
 
 class App extends React.Component {
     constructor() {

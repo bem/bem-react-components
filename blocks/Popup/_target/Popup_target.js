@@ -25,14 +25,14 @@ export default declMod(({ target }) => target, {
 
     didMount() {
         if(this.props.visible) {
-            // TODO: calc state
+            this._redraw();
         }
     },
 
     didUpdate(prevProps) {
         if(prevProps.visible !== this.props.visible) {
             if(this.props.visible) {
-                
+                this._redraw();
             }
         }
     },
@@ -41,7 +41,7 @@ export default declMod(({ target }) => target, {
         const { top, left, zIndex } = this.state;
         return {
             ...this.__base.apply(this, arguments),
-            style : { zIndex, top, left }
+            style : { top, left, zIndex }
         };
     },
 
@@ -53,14 +53,15 @@ export default declMod(({ target }) => target, {
     }
 
     _redraw() {
-        const bestDrawingParams = this._calcBestDrawingParams();
-        this.setState({ top, left, direction, zIndex});
+        const { top, left, direction } = this._calcBestDrawingParams();
+        this.setState({ top, left, direction });
+        console.log('!!!', top, left, direction);
     }
 
     _calcDrawingCss(drawingParams) {
         return {
-            left : drawingParams.left,
-            top : drawingParams.top
+            top : drawingParams.top,
+            left : drawingParams.left
         };
     },
 

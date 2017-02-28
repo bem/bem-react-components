@@ -1,5 +1,6 @@
 import {declMod} from 'bem-react-core';
 import React from 'react';
+import ReactDom from 'react-dom';
 
 const VIEWPORT_ACCURACY_FACTOR = 0.99,
     DEFAULT_DIRECTIONS = [
@@ -10,7 +11,7 @@ const VIEWPORT_ACCURACY_FACTOR = 0.99,
     ];
 
 export default declMod(({ target }) => target, {
-    block : 'Popup'
+    block : 'Popup',
 
     willInit() {
         this.__base.apply(this, arguments);
@@ -24,17 +25,12 @@ export default declMod(({ target }) => target, {
     },
 
     didMount() {
-        if(this.props.visible) {
-            this._redraw();
-        }
+        this.props.visible && this._redraw();
     },
 
     didUpdate(prevProps) {
-        if(prevProps.visible !== this.props.visible) {
-            if(this.props.visible) {
-                this._redraw();
-            }
-        }
+        prevProps.visible !== this.props.visible && this.props.visible &&
+            this._redraw();
     },
 
     attrs() {
@@ -50,13 +46,12 @@ export default declMod(({ target }) => target, {
             ...this.__base.apply(this, arguments),
             direction : this.state.direction
         };
-    }
+    },
 
     _redraw() {
         const { top, left, direction } = this._calcBestDrawingParams();
         this.setState({ top, left, direction });
-        console.log('!!!', top, left, direction);
-    }
+    },
 
     _calcDrawingCss(drawingParams) {
         return {
@@ -92,6 +87,8 @@ export default declMod(({ target }) => target, {
             if(bestViewportFactor > VIEWPORT_ACCURACY_FACTOR) break;
         }
 
+        console.log('+++', bestDirection);
+        
         return {
             direction : bestDirection,
             left : bestPos.left,
@@ -100,9 +97,8 @@ export default declMod(({ target }) => target, {
     },
 
     _calcPopupDimensions : function() {
-        const domNode = this.findDOMNode(this),
-            width = domNode.offsetWidth,
-            height = domNode.offsetHeight;
+        const width = this._domNode.offsetWidth,
+            height = this._domNode.offsetHeight;
 
         return { width, height, area : width * height };
     },

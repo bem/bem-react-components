@@ -6,13 +6,13 @@ export default declMod(({ target }) => target === 'anchor', {
     block : 'Popup',
 
     _getAnchorDomNode() {
-        if(!this.props.anchor) throw Error('Popup target=anchor: anchor prop is required.')
+        if(!this.props.anchor) throw Error('Popup target=anchor: anchor prop is required.');
 
         const anchor = this.props.anchor();
 
         return anchor instanceof Element?
             anchor :
-            ReactDOM.findDOMNode(anchor);
+            ReactDom.findDOMNode(anchor);
     },
 
     _calcTargetDimensions : function() {

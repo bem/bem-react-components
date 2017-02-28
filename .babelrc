@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-object-rest-spread", "transform-react-jsx"],
-  "presets": ["babel-preset-es2015-loose"]
+  "plugins": ["transform-object-rest-spread"],
+  "presets": ["es2015-loose", "react"]
 }

@@ -26,6 +26,7 @@ class App extends React.Component {
         this.onButton2Click = this.onButton2Click.bind(this);
         this.onButton3Click = this.onButton3Click.bind(this);
         this.onButton4Click = this.onButton4Click.bind(this);
+        this._refAll = this._refAll.bind(this);
     }
 
     onButton1Click() {
@@ -42,6 +43,10 @@ class App extends React.Component {
 
     onButton4Click() {
         this.setState({popup4Visible: !this.state.popup4Visible});
+    }
+
+    _refAll(all) {
+        this._all = all;
     }
 
     render() {
@@ -86,7 +91,7 @@ class App extends React.Component {
                         left: 50, top: 50
                     </Popup>
                 </div>
-                <div className='example example_autoclosable' ref={all => (console.log('!!!!', all), this._x = all)}>
+                <div className='example example_autoclosable'>
                     <Button
                         ref={b3 => this._b3 = b3}
                         onClick={this.onButton3Click}>
@@ -100,44 +105,21 @@ class App extends React.Component {
                         close on outside click
                     </Popup>
                 </div>
-                <div className='example example_directions' ref={all => (console.log('????', all), this._all = all)}>
+                <div className='example example_directions' ref={this._refAll}>
                     <Button
                         onClick={this.onButton4Click}>
                         toggle all
                     </Button>
-                    {(function() {
-                        {/*return [*/}
-                            {/*<Popup*/}
-                                {/*autoclosable*/}
-                                {/*directions={[directions[0]]}*/}
-                                {/*key={directions[0]}*/}
-                                {/*visible={this.state.popup4Visible}*/}
-                                {/*anchor={() => this._all}>*/}
-                                {/*close on outside click*/}
-                            {/*</Popup>,*/}
-                            {/*<Popup*/}
-                                {/*autoclosable*/}
-                                {/*directions={[directions[1]]}*/}
-                                {/*key={directions[1]}*/}
-                                {/*visible={this.state.popup4Visible}*/}
-                                {/*anchor={() => this._all}>*/}
-                                {/*close on outside click*/}
-                            {/*</Popup>*/}
-                        {/*];*/}
-                        return ['top-left'].map(function(direction) {
-                            return (<Popup
-                                directions={[direction]}
-                                key={direction}
-                                visible={this.state.popup4Visible}
-                                target="anchor"
-                                anchor={() => this._all}>
-                                {direction}
-                            </Popup>);
-                        }, this);
-
-                        }).call(this, directions)}
-
-
+                    {directions.map(function(direction) {
+                        return (<Popup
+                            directions={[direction]}
+                            key={direction}
+                            visible={this.state.popup4Visible}
+                            target="anchor"
+                            anchor={() => this._all}>
+                            {direction}
+                        </Popup>);
+                    }, this)}
                 </div>
             </div>
         );

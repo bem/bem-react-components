@@ -52,6 +52,7 @@ class App extends React.Component {
     render() {
         return (
             <div className='examples'>
+{/*
                 <div className='example'>
                     <Link
                         pseudo
@@ -105,12 +106,13 @@ class App extends React.Component {
                         close on outside click
                     </Popup>
                 </div>
-                <div className='example example_directions' ref={this._refAll}>
+*/}
+                <div className='example example_directions' ref={this._refAll} style={{ background: 'green' }}>
                     <Button
                         onClick={this.onButton4Click}>
                         toggle all
                     </Button>
-                    {directions.map(function(direction) {
+                    {['bottom-center'].map(function(direction) {
                         return (<Popup
                             directions={[direction]}
                             key={direction}

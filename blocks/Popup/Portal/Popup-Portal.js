@@ -31,6 +31,8 @@ export default decl({
     _renderPortal() {
         this._rootNode ||
             (this._rootNode = document.body.appendChild(document.createElement('div')));
-        ReactDom.unstable_renderSubtreeIntoContainer(this, this.props.children, this._rootNode)
+        
+        console.log('Portal', this.props.children.props);
+        ReactDom.unstable_renderSubtreeIntoContainer(this, this.props.children, this._rootNode);
     }
 });

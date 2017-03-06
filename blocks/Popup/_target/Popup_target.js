@@ -28,7 +28,10 @@ export default declMod(({ target }) => target, {
         this.props.visible && this._redraw();
     },
 
+    render() { console.log('render, this.props.visible: ', this.props.visible); return this.__base() },
+
     didUpdate(prevProps) {
+        console.log('&&&&&', (document.getElementById('bla') || {}).className, 'this.props.visible: ', this.props.visible);
         prevProps.visible !== this.props.visible && this.props.visible &&
             this._redraw();
     },
@@ -44,7 +47,7 @@ export default declMod(({ target }) => target, {
     mods() {
         return {
             ...this.__base.apply(this, arguments),
-            direction : this.state.direction
+            direction : this.state.direction || false
         };
     },
 
@@ -87,8 +90,6 @@ export default declMod(({ target }) => target, {
             if(bestViewportFactor > VIEWPORT_ACCURACY_FACTOR) break;
         }
 
-        console.log('+++', bestDirection);
-        
         return {
             direction : bestDirection,
             left : bestPos.left,

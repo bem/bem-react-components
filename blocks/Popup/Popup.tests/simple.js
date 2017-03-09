@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Popup from 'b:Popup m:autoclosable m:target=anchor';
+import Popup from 'b:Popup m:autoclosable m:target=anchor|position';
 import Link from 'b:Link m:pseudo';
 import Button from 'b:Button';
 
@@ -52,7 +52,6 @@ class App extends React.Component {
     render() {
         return (
             <div className='examples'>
-{/*
                 <div className='example'>
                     <Link
                         pseudo
@@ -106,13 +105,12 @@ class App extends React.Component {
                         close on outside click
                     </Popup>
                 </div>
-*/}
-                <div className='example example_directions' ref={this._refAll} style={{ background: 'green' }}>
+                <div className='example example_directions' ref={this._refAll}>
                     <Button
                         onClick={this.onButton4Click}>
                         toggle all
                     </Button>
-                    {['bottom-center'].map(function(direction) {
+                    {directions.map(function(direction) {
                         return (<Popup
                             directions={[direction]}
                             key={direction}

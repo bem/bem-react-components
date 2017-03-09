@@ -6,9 +6,10 @@ export default declMod(({ target }) => target === 'position', {
     block : 'Popup',
 
     _calcTargetDimensions : function() {
+        const { position } = this.props;
         return {
-            left : 0,
-            top : 0,
+            left : position.left,
+            top : position.top,
             width : 0,
             height : 0
         };

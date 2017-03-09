@@ -28,10 +28,7 @@ export default declMod(({ target }) => target, {
         this.props.visible && this._redraw();
     },
 
-    render() { console.log('render, this.props.visible: ', this.props.visible); return this.__base() },
-
     didUpdate(prevProps) {
-        console.log('&&&&&', (document.getElementById('bla') || {}).className, 'this.props.visible: ', this.props.visible);
         prevProps.visible !== this.props.visible && this.props.visible &&
             this._redraw();
     },

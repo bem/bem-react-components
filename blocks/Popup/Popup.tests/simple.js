@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import Bem from 'bem-react-core';
+import './simple.css';
 import Popup from 'b:Popup m:autoclosable m:target=anchor|position';
 import Link from 'b:Link m:pseudo';
 import Button from 'b:Button';
@@ -51,8 +53,8 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className='examples'>
-                <div className='example'>
+            <Bem block="Examples">
+                <Bem block="Example">
                     <Link
                         pseudo
                         onClick={() => this.setState({ popupVisible: !this.state.popupVisible })}
@@ -65,8 +67,8 @@ class App extends React.Component {
                         visible={this.state.popupVisible}>
                         popup content
                     </Popup>
-                </div>
-                <div className='example'>
+                </Bem>
+                <Bem block="Example">
                     <Button
                         ref={b1 => this._b1 = b1}
                         onClick={this.onButton1Click}>
@@ -78,8 +80,8 @@ class App extends React.Component {
                         anchor={() => this._b1}>
                         popup content
                     </Popup>
-                </div>
-                <div className='example example_has-tail'>
+                </Bem>
+                <Bem block="Example" mods={{'has-tail' : true }}>
                     <Button
                         onClick={this.onButton2Click}>
                         left: 50, top: 50
@@ -90,8 +92,8 @@ class App extends React.Component {
                         position={{ left: 50, top: 50 }}>
                         left: 50, top: 50
                     </Popup>
-                </div>
-                <div className='example example_autoclosable'>
+                </Bem>
+                <Bem block="Example" mods={{ autoclosable : true }}>
                     <Button
                         ref={b3 => this._b3 = b3}
                         onClick={this.onButton3Click}>
@@ -100,12 +102,14 @@ class App extends React.Component {
                     <Popup
                         autoclosable
                         directions={['right-center']}
+                        target="anchor"
                         visible={this.state.popup3Visible}
                         anchor={() => this._b3}>
                         close on outside click
                     </Popup>
-                </div>
-                <div className='example example_directions' ref={this._refAll}>
+                </Bem>
+                {/* TODO after bem-react-core/issues/71 */}
+                <div className="Example Example_directions" ref={this._refAll}>
                     <Button
                         onClick={this.onButton4Click}>
                         toggle all
@@ -121,7 +125,7 @@ class App extends React.Component {
                         </Popup>);
                     }, this)}
                 </div>
-            </div>
+            </Bem>
         );
     }
 

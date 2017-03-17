@@ -9,6 +9,13 @@ export default decl({
     willInit() {
         this._wasVisible = false;
         this._onDomNodeRef = this._onDomNodeRef.bind(this);
+        this.isVisible = this.isVisible.bind(this);
+    },
+
+    getChildContext() {
+        return {
+            isParentLayerVisible: this.isVisible
+        };
     },
 
     mods({ visible }) {
@@ -38,6 +45,19 @@ export default decl({
         }
     },
 
+    didUpdate() {
+        const { isParentLayerVisible } = this.context;
+
+        this.isVisible() &&
+            typeof isParentLayerVisible === 'function' &&
+            isParentLayerVisible() === false &&
+            this.props.requestHide();
+    },
+
+    isVisible() {
+        return this.props.visible;
+    },
+
     _onDomNodeRef(ref) {
         this._domNode = ref;
     }
@@ -45,6 +65,15 @@ export default decl({
     propTypes : {
         visible : React.PropTypes.bool,
         onVisibleChange : React.PropTypes.func,
+        requestHide: React.PropTypes.func
+    },
+
+    childContextTypes: {
+        isParentLayerVisible: React.PropTypes.func
+    },
+
+    contextTypes: {
+        isParentLayerVisible: React.PropTypes.func
     },
 
     defaultProps : {

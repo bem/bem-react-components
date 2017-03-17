@@ -14,7 +14,7 @@ export default declMod(({ target }) => target, {
     block : 'Popup',
 
     willInit() {
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
         this.state = {
             ...this.state,
             top : null,
@@ -29,6 +29,7 @@ export default declMod(({ target }) => target, {
     },
 
     didUpdate(prevProps) {
+        this.__base(...arguments);
         prevProps.visible !== this.props.visible && this.props.visible &&
             this._redraw();
     },
@@ -36,14 +37,14 @@ export default declMod(({ target }) => target, {
     attrs() {
         const { top, left, zIndex } = this.state;
         return {
-            ...this.__base.apply(this, arguments),
+            ...this.__base(...arguments),
             style : { top, left, zIndex }
         };
     },
 
     mods() {
         return {
-            ...this.__base.apply(this, arguments),
+            ...this.__base(...arguments),
             direction : this.state.direction || false
         };
     },

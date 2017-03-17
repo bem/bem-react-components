@@ -29,6 +29,10 @@ class App extends React.Component {
         this.onButton3Click = this.onButton3Click.bind(this);
         this.onButton4Click = this.onButton4Click.bind(this);
         this._refAll = this._refAll.bind(this);
+
+        this.requestPopup1Hide = this.requestPopup1Hide.bind(this);
+        this.requestPopup2Hide = this.requestPopup2Hide.bind(this);
+        this.requestPopup3Hide = this.requestPopup3Hide.bind(this);
     }
 
     onButton1Click() {
@@ -51,6 +55,18 @@ class App extends React.Component {
         this._all = all;
     }
 
+    requestPopup1Hide() {
+        this.setState({popup1Visible: false});
+    }
+
+    requestPopup2Hide() {
+        this.setState({popup2Visible: false});
+    }
+
+    requestPopup3Hide() {
+        this.setState({popup3Visible: false});
+    }
+
     render() {
         return (
             <Bem block="Examples">
@@ -63,6 +79,7 @@ class App extends React.Component {
                     <Popup
                         target="anchor"
                         visible={this.state.popup1Visible}
+                        requestHide={this.requestPopup1Hide}
                         directions={['bottom-right']}
                         anchor={() => this._b1}>
                         <Button
@@ -73,6 +90,7 @@ class App extends React.Component {
                         <Popup
                             target="anchor"
                             visible={this.state.popup2Visible}
+                            requestHide={this.requestPopup2Hide}
                             directions={['bottom-right']}
                             anchor={() => this._b2}>
                             <Button
@@ -83,6 +101,7 @@ class App extends React.Component {
                             <Popup
                                 target="anchor"
                                 visible={this.state.popup3Visible}
+                                requestHide={this.requestPopup3Hide}
                                 directions={['bottom-right']}
                                 anchor={() => this._b3}>
                                 3

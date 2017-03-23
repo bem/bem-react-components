@@ -7,8 +7,9 @@ import './z-index-group.css';
 
 class Example extends React.Component { // TODO: ZIndexGroup mixin
     getChildContext() {
+        console.log('Example getChildContext zIndexGroup', this.props.zIndexGroup);
         return {
-            zIndexGroupLevel: this.props.zIndexGroupLevel
+            zIndexGroup: this.props.zIndexGroup
         };
     }
 
@@ -18,7 +19,7 @@ class Example extends React.Component { // TODO: ZIndexGroup mixin
 }
 
 Example.childContextTypes = {
-    zIndexGroupLevel: React.PropTypes.number,
+    zIndexGroup: React.PropTypes.number,
 };
 
 class App extends React.Component {

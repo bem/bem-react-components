@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Portal from 'e:Portal';
 
-const visibleLayersZIndexes = {};
+const ZINDEX_FACTOR = 1000,
+    visibleLayersZIndexes = {};
 
 export default decl({
     block : 'Popup',
@@ -12,12 +13,13 @@ export default decl({
         this._wasVisible = false;
         this._onDomNodeRef = this._onDomNodeRef.bind(this);
         this.isVisible = this.isVisible.bind(this);
+        this.state = { zIndex : null };
     },
 
     getChildContext() {
         return {
             isParentLayerVisible: this.isVisible,
-            zIndexGroupLevel: this.props.zIndexGroupLevel
+            zIndexGroup: this.props.zIndexGroup
         };
     },
 
@@ -26,7 +28,10 @@ export default decl({
     },
 
     attrs({ visible }) {
-        const attrs = { ref: this._onDomNodeRef };
+        const attrs = {
+            ref : this._onDomNodeRef,
+            style : { zIndex : this.state.zIndex }
+        };
 
         visible || (attrs['aria-hidden'] = 'true');
 
@@ -43,6 +48,7 @@ export default decl({
     },
 
     didUpdate() {
+        console.log('didUpdate');
         const { isParentLayerVisible } = this.context;
 
         if(this.isVisible()) {
@@ -65,32 +71,32 @@ export default decl({
         this._domNode = ref;
     },
 
-    _calcZIndexGroupLevel() {
-        let res = this.props.zIndexGroupLevel;
-        this.context.zIndexGroupLevel && (res += this.context.zIndexGroupLevel);
-        return res;
+    _calcZIndexGroup() {
+        console.log('_calcZIndexGroup', this.props.zIndexGroup, this.context.zIndexGroup);
+        if(this._zIndexGroup) return this._zIndexGroup;
+
+        let res = this.props.zIndexGroup || 0;
+        this.context.zIndexGroup && (res += this.context.zIndexGroup);
+        return this._zIndexGroup = res;
     },
 
     _captureZIndex() {
-        const level = this._zIndexGroupLevel === null?
-                this._zIndexGroupLevel = this._calcZIndexGroupLevel() :
-                this._zIndexGroupLevel,
-            zIndexes = visibleLayersZIndexes[level] ||
-                (visiblePopupsZIndexes[level] = [(level + 1) * ZINDEX_FACTOR]),
-            prevZIndex = this._zIndex;
-        this._zIndex = zIndexes[zIndexes.push(zIndexes[zIndexes.length - 1] + 1) - 1];
-        if (this._zIndex !== prevZIndex) {
-            this.props.onOrderChange(this._zIndex, this.props);
-        }
+        console.log('_captureZIndex');
+        const level = this._calcZIndexGroup(),
+            zIndexes = visibleLayersZIndexes[(console.log('level', level), level)] ||
+                (visibleLayersZIndexes[level] = [(level + 1) * ZINDEX_FACTOR]),
+            prevZIndex = this.state.zIndex,
+            zIndex = zIndexes[zIndexes.push(zIndexes[zIndexes.length - 1] + 1) - 1];
+
+        console.log('zIndex', zIndex, prevZIndex, zIndexes);
+        zIndex === prevZIndex || this.setState({ zIndex });
     },
 
     _releaseZIndex() {
-        const level = this.context.zIndexGroupLevel || this.props.zIndexGroupLevel;
-        const zIndexes = visibleLayersZIndexes[level];
-        const idx = zIndexes.indexOf(this.zIndex);
-        if (idx > -1) {
-            zIndexes.splice(idx, 1);
-        }
+        console.log('_releaseZIndex', visibleLayersZIndexes, this._zIndexGroup, this.zIndex);
+        const zIndexes = visibleLayersZIndexes[this._calcZIndexGroup()],
+            idx = zIndexes.indexOf(this.state.zIndex);
+        idx > -1 && zIndexes.splice(idx, 1);
     }
 }, {
     propTypes : {
@@ -101,12 +107,12 @@ export default decl({
 
     childContextTypes: {
         isParentLayerVisible: React.PropTypes.func,
-        zIndexGroupLevel: React.PropTypes.number
+        zIndexGroup: React.PropTypes.number
     },
 
     contextTypes: {
         isParentLayerVisible: React.PropTypes.func,
-        zIndexGroupLevel: React.PropTypes.number
+        zIndexGroup: React.PropTypes.number
     },
 
     defaultProps : {

@@ -19,8 +19,7 @@ export default declMod(({ target }) => target, {
             ...this.state,
             top : null,
             left : null,
-            direction : null,
-            zIndex : null
+            direction : null
         };
     },
 
@@ -35,10 +34,11 @@ export default declMod(({ target }) => target, {
     },
 
     attrs() {
-        const { top, left, zIndex } = this.state;
-        return {
-            ...this.__base(...arguments),
-            style : { top, left, zIndex }
+        const { top, left } = this.state,
+            base = this.__base(...arguments);
+        return { // TODO: https://github.com/bem/bem-react-core/issues/75
+            ...base,
+            style : Object.assign({}, base.style, { top, left })
         };
     },
 

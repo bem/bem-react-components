@@ -48,7 +48,6 @@ export default decl({
     },
 
     didUpdate() {
-        console.log('didUpdate');
         const { isParentLayerVisible } = this.context;
 
         if(this.isVisible()) {
@@ -71,32 +70,32 @@ export default decl({
         this._domNode = ref;
     },
 
-    _calcZIndexGroup() {
-        console.log('_calcZIndexGroup', this.props.zIndexGroup, this.context.zIndexGroup);
-        if(this._zIndexGroup) return this._zIndexGroup;
-
-        let res = this.props.zIndexGroup || 0;
-        this.context.zIndexGroup && (res += this.context.zIndexGroup);
-        return this._zIndexGroup = res;
+    _getZIndexes() {
+        let level = this._zIndexGroup;
+        if(!level) {
+            level = this.props.zIndexGroup || 0;
+            this.context.zIndexGroup && (level += this.context.zIndexGroup);
+        }
+        console.log('_getZIndexes', level);
+        return visibleLayersZIndexes[level] ||
+            (visibleLayersZIndexes[level] = [(level || 1) * ZINDEX_FACTOR]);
     },
 
     _captureZIndex() {
-        console.log('_captureZIndex');
-        const level = this._calcZIndexGroup(),
-            zIndexes = visibleLayersZIndexes[(console.log('level', level), level)] ||
-                (visibleLayersZIndexes[level] = [(level + 1) * ZINDEX_FACTOR]),
-            prevZIndex = this.state.zIndex,
+        if(this.state.zIndex) return;
+        const zIndexes = this._getZIndexes(),
             zIndex = zIndexes[zIndexes.push(zIndexes[zIndexes.length - 1] + 1) - 1];
-
-        console.log('zIndex', zIndex, prevZIndex, zIndexes);
-        zIndex === prevZIndex || this.setState({ zIndex });
+        this.setState({ zIndex });
     },
 
     _releaseZIndex() {
-        console.log('_releaseZIndex', visibleLayersZIndexes, this._zIndexGroup, this.zIndex);
-        const zIndexes = visibleLayersZIndexes[this._calcZIndexGroup()],
+        if(!this.state.zIndex) return;
+        const zIndexes = this._getZIndexes(),
             idx = zIndexes.indexOf(this.state.zIndex);
-        idx > -1 && zIndexes.splice(idx, 1);
+        if(idx > -1) {
+            zIndexes.splice(idx, 1);
+            this.setState({ zIndex : null });
+        }
     }
 }, {
     propTypes : {

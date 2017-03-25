@@ -2,7 +2,8 @@ module.exports = {
     root : true,
     levels : {
         blocks : {
-            //scheme : 'react',
+            scheme : 'nested',
+            naming : 'react',
             default : true
         }
     },
@@ -12,9 +13,9 @@ module.exports = {
                 create : {
                     techs : ['js', 'spec.js', 'css', 'tests' ],
                     templates : {
-                        js : '../../../.bem/templates/js.js',
-                        'spec.js' : '../../../.bem/templates/spec.js.js',
-                        'tests' : '../../../.bem/templates/tests.js',
+                        js : '.bem/templates/js.js',
+                        'spec.js' : '.bem/templates/spec.js.js',
+                        'tests' : '.bem/templates/tests.js',
                     }
                 }
             }

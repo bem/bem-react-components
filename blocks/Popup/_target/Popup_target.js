@@ -30,7 +30,7 @@ export default declMod(({ target }) => target, {
     didUpdate(prevProps) {
         this.__base(...arguments);
         prevProps.visible !== this.props.visible && this.props.visible &&
-            this._redraw();
+            this._redraw();     
     },
 
     attrs() {

@@ -76,7 +76,6 @@ export default decl({
             level = this.props.zIndexGroup || 0;
             this.context.zIndexGroup && (level += this.context.zIndexGroup);
         }
-        console.log('_getZIndexes', level);
         return visibleLayersZIndexes[level] ||
             (visibleLayersZIndexes[level] = [(level || 1) * ZINDEX_FACTOR]);
     },

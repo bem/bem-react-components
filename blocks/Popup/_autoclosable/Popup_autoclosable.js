@@ -1,7 +1,7 @@
 import {declMod} from 'bem-react-core';
 import React from 'react';
 
-export default declMod(({ autoclosable }) => autoclosable, {
+export default declMod({ autoclosable: true }, {
     block : 'Popup',
 
     willInit() {

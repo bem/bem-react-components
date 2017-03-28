@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Bem from 'bem-react-core';
 import './anchor-visibility.css';
-import Popup from 'b:Popup m:autoclosable m:target=anchor';
+import Popup from 'b:Popup m:autovisible m:target=anchor';
 import Button from 'b:Button';
 
 class App extends React.Component {
@@ -42,6 +42,7 @@ class App extends React.Component {
                         <Popup
                             target="anchor"
                             visible={this.state.popup1Visible}
+                            autovisible
                             requestHide={this.requestPopup1Hide}
                             requestShow={this.requestPopup1Show}
                             directions={['bottom-left']}

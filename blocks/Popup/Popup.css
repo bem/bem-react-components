@@ -2,7 +2,10 @@
 {
     border: 1px solid red;
     position: absolute;
-    display: none;
+    /*display: none;*/
+
+    visibility: hidden;
+    margin: -9999px 0 0 -9999px;
 
     width: 100px;
     height: 50px;
@@ -10,5 +13,6 @@
 
 .Popup_visible
 {
-    display: block;
+    visibility: visible;
+    margin: 0;
 }

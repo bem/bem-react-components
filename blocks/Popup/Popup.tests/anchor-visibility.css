@@ -1,0 +1,11 @@
+.Example_scroll {
+    overflow: scroll;
+    width: 300px; 
+    height: 300px; 
+    border: 1px solid #000;
+}
+
+.Example_scroll .Example-Wrapper {
+    width: 600px;
+    height: 600px;
+}

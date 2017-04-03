@@ -43,8 +43,8 @@ class App extends React.Component {
                             target="anchor"
                             visible={this.state.popup1Visible}
                             autovisible
-                            requestHide={this.requestPopup1Hide}
-                            requestShow={this.requestPopup1Show}
+                            onHide={this.requestPopup1Hide}
+                            onShow={this.requestPopup1Show}
                             directions={['bottom-left']}
                             anchor={() => this._b1}>
                             popup content

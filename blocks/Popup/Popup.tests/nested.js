@@ -79,7 +79,7 @@ class App extends React.Component {
                     <Popup
                         target="anchor"
                         visible={this.state.popup1Visible}
-                        requestHide={this.requestPopup1Hide}
+                        onHide={this.requestPopup1Hide}
                         directions={['bottom-right']}
                         anchor={() => this._b1}>
                         <Button
@@ -90,7 +90,7 @@ class App extends React.Component {
                         <Popup
                             target="anchor"
                             visible={this.state.popup2Visible}
-                            requestHide={this.requestPopup2Hide}
+                            onHide={this.requestPopup2Hide}
                             directions={['bottom-right']}
                             anchor={() => this._b2}>
                             <Button
@@ -101,7 +101,7 @@ class App extends React.Component {
                             <Popup
                                 target="anchor"
                                 visible={this.state.popup3Visible}
-                                requestHide={this.requestPopup3Hide}
+                                onHide={this.requestPopup3Hide}
                                 directions={['bottom-right']}
                                 anchor={() => this._b3}>
                                 3

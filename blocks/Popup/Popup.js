@@ -53,7 +53,7 @@ export default decl({
         if(this.isVisible()) {
             if(typeof isParentLayerVisible === 'function' && isParentLayerVisible() === false) {
                 this._releaseZIndex();
-                this.props.requestHide();
+                this.props.onHide();
             } else {
                 this._captureZIndex();
             }
@@ -100,7 +100,7 @@ export default decl({
     propTypes : {
         visible : React.PropTypes.bool,
         onVisibleChange : React.PropTypes.func,
-        requestHide: React.PropTypes.func
+        onHide: React.PropTypes.func
     },
 
     childContextTypes: {

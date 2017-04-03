@@ -26,7 +26,7 @@ export default declMod({ autovisible: true }, {
             this._bindToScroll();
             window.addEventListener('resize', this.onViewportResize);
         } else {
-            !this.props.requestShow && this._unbindFromScroll();
+            !this.props.onShow && this._unbindFromScroll();
             window.removeEventListener('resize', this.onViewportResize);
         }
     },
@@ -46,13 +46,13 @@ export default declMod({ autovisible: true }, {
         if (anchorIsVisible) {
             if (this.state.hideRequestedByScroll) {
                 this.setState({ hideRequestedByScroll: false });
-                this.props.requestShow && this.props.requestShow();
+                this.props.onShow && this.props.onShow();
             }
 
             popupIsVisible && this._redraw();
         } else {
             popupIsVisible && this.setState({ hideRequestedByScroll: true });
-            this.props.requestHide && this.props.requestHide();
+            this.props.onHide && this.props.onHide();
         }
     },
 
@@ -71,8 +71,6 @@ export default declMod({ autovisible: true }, {
             );
 
         return !this.scrollParents.some(parent => {
-            console.log('parent', parent);
-
             if (parent === window) {
                 return false;
             }

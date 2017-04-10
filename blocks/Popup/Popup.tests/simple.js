@@ -108,8 +108,7 @@ class App extends React.Component {
                         close on outside click
                     </Popup>
                 </Bem>
-                {/* TODO after bem-react-core/issues/71 */}
-                <div className="Example Example_directions" ref={this._refAll}>
+                <Bem block="Example" mods={{ directions : true }} attrs={{ ref: this._refAll }}>
                     <Button
                         onClick={this.onButton4Click}>
                         toggle all
@@ -124,7 +123,7 @@ class App extends React.Component {
                             {direction}
                         </Popup>);
                     }, this)}
-                </div>
+                </Bem>
             </Bem>
         );
     }

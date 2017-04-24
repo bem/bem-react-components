@@ -8,9 +8,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            progressValue: 0
-        };
+        this.state = { progressValue : 0 };
 
         this.onClick = this.onClick.bind(this);
         this.onClickLinear = this.onClickLinear.bind(this);
@@ -18,21 +16,21 @@ class App extends React.Component {
     }
 
     onClick() {
-        this.setState({progressValue: 0.1, progressTiming: 'custom'});
+        this.setState({ progressValue : 0.1, progressTiming : 'custom' });
     }
 
     onClickLinear() {
-        this.setState({progressValue: 0.5, progressTiming: 'linear'});
+        this.setState({ progressValue : 0.5, progressTiming : 'linear' });
     }
 
     onClickFull() {
-        this.setState({progressValue: 1, progressTiming: undefined});
+        this.setState({ progressValue : 1, progressTiming : undefined });
     }
 
     render() {
         return (
             <div>
-                <ProgressBar value={this.state.progressValue} timing={this.state.progressTiming} />
+                <ProgressBar value={this.state.progressValue} timing={this.state.progressTiming}/>
                 <Button onClick={this.onClick}>Update 0.1, custom</Button>
                 <Button onClick={this.onClickLinear}>Update 0.5, linear</Button>
                 <Button onClick={this.onClickFull}>Update 1</Button>

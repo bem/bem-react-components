@@ -1,22 +1,17 @@
-import {PropTypes} from 'react';
-import {decl} from 'bem-react-core';
+import { PropTypes } from 'react';
+import { decl } from 'bem-react-core';
 
 export default decl({
-    block: 'Image',
-    tag: 'img',
-    attrs({url, alt, width, height}) {
-        return {
-            alt,
-            width,
-            height,
-            src: url
-        };
+    block : 'Image',
+    tag : 'img',
+    attrs({ url, alt, width, height }) {
+        return { alt, width, height, src : url };
     }
 }, {
-    propTypes: {
-        url: PropTypes.string,
-        alt: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.number
+    propTypes : {
+        url : PropTypes.string,
+        alt : PropTypes.string,
+        width : PropTypes.number,
+        height : PropTypes.number
     }
 });

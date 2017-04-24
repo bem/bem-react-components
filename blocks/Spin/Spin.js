@@ -1,13 +1,13 @@
-import {PropTypes} from 'react';
-import {decl} from 'bem-react-core';
+import { PropTypes } from 'react';
+import { decl } from 'bem-react-core';
 
 export default decl({
-    block: 'Spin',
-    mods({size, progress}) {
-        return {size, progress};
+    block : 'Spin',
+    mods({ progress }) {
+        return { progress };
     }
 }, {
-    propTypes: {
-        progress: PropTypes.bool
+    propTypes : {
+        progress : PropTypes.bool
     }
 });

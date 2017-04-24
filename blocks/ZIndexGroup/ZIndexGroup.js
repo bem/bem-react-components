@@ -1,5 +1,5 @@
 import React from 'react';
-import {decl} from 'bem-react-core';
+import { decl } from 'bem-react-core';
 
 const ZINDEX_FACTOR = 1000;
 
@@ -8,7 +8,7 @@ export default decl({
 
     getChildContext() {
         return {
-            zIndexGroup: this.props.level,
+            zIndexGroup : this.props.level,
             zIndexGroupStyle : {
                 zIndex : (this.props.level || 1) * ZINDEX_FACTOR
             }
@@ -22,7 +22,7 @@ export default decl({
     }
 }, {
     childContextTypes : {
-        zIndexGroup: React.PropTypes.number,
-        zIndexGroupStyle: React.PropTypes.object
+        zIndexGroup : React.PropTypes.number,
+        zIndexGroupStyle : React.PropTypes.object
     }
 });

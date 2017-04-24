@@ -1,6 +1,5 @@
-import {declMod} from 'bem-react-core';
+import { declMod } from 'bem-react-core';
 import React from 'react';
-import ReactDom from 'react-dom';
 
 export default declMod(({ target }) => target === 'position', {
     block : 'Popup',
@@ -16,6 +15,6 @@ export default declMod(({ target }) => target === 'position', {
     }
 }, {
     propTypes : {
-        position : React.PropTypes.object, // TODO left, top
+        position : React.PropTypes.object // TODO left, top
     }
 });

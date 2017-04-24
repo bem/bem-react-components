@@ -13,18 +13,18 @@ module.exports = {
     }, {}),
     output : {
         path : `${__dirname}/tests/`,
-        publicPath : `/tests`,
-        filename : '[name]',
+        publicPath : '/tests',
+        filename : '[name]'
     },
     module : {
         loaders : [
             {
                 test : /\.html$/,
-                loader : 'file?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$',
+                loader : 'file?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$'
             },
             {
                 test : /\.js$/,
-                exclude: /node_modules\/react(-dom)?/,
+                exclude : /node_modules\/react(-dom)?/,
                 loaders : ['webpack-bem', 'babel']
             },
             {
@@ -33,8 +33,8 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        alias: {
+    resolve : {
+        alias : {
             'react' : require.resolve('react/dist/react'),
             'react-dom' : require.resolve('react-dom/dist/react-dom')
         }

@@ -1,5 +1,4 @@
-import {decl} from 'bem-react-core';
-import ReactDom from 'react-dom';
+import { decl } from 'bem-react-core';
 
 export default decl({
     block : 'TextInput',
@@ -28,6 +27,7 @@ export default decl({
 
     attrs({ id, name, maxLength, tabIndex, placeholder, autoComplete, type, value, disabled }) {
         let res = {
+            ref : ref => this._domNode = ref,
             id,
             name,
             maxLength,
@@ -60,12 +60,10 @@ export default decl({
     },
 
     _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
+        document.activeElement !== this._domNode && this._domNode.focus();
     },
 
     _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
+        document.activeElement === this._domNode && this._domNode.blur();
     }
 });

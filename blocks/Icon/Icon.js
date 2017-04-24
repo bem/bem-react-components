@@ -1,10 +1,9 @@
-import {decl} from 'bem-react-core';
-import React from 'react';
+import { decl } from 'bem-react-core';
 
 export default decl({
     block : 'Icon',
     tag : 'span',
     attrs({ url }) {
-        if(url) return { style : { backgroundImage: `url(${url})` } };
+        if(url) return { style : { backgroundImage : `url(${url})` } };
     }
 });

@@ -1,4 +1,4 @@
-import {declMod} from 'bem-react-core';
+import { declMod } from 'bem-react-core';
 import React from 'react';
 import Button from 'b:Button';
 import CheckBoxControl from 'e:Control';
@@ -28,16 +28,14 @@ export default declMod(({ type }) => type === 'button', {
                 icon={icon}
                 focused={this.state.focused}
                 onFocusChange={this._onControlFocusChange}
-                onCheckChange={this._onCheckChange}
-            />,
+                onCheckChange={this._onCheckChange}/>,
             <CheckBoxControl
                 key="control"
                 name={name}
                 value={value}
                 checked={checked}
-                disabled={disabled}
-            />
-         ];
+                disabled={disabled}/>
+        ];
     },
 
     _onCheckChange() {

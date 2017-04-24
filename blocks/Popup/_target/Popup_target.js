@@ -1,6 +1,4 @@
-import {declMod} from 'bem-react-core';
-import React from 'react';
-import ReactDom from 'react-dom';
+import { declMod } from 'bem-react-core';
 
 const VIEWPORT_ACCURACY_FACTOR = 0.99,
     DEFAULT_DIRECTIONS = [
@@ -30,7 +28,7 @@ export default declMod(({ target }) => target, {
     didUpdate(prevProps) {
         this.__base(...arguments);
         prevProps.visible !== this.props.visible && this.props.visible &&
-            this._redraw();     
+            this._redraw();
     },
 
     attrs() {
@@ -115,8 +113,8 @@ export default declMod(({ target }) => target, {
         return {
             top,
             left,
-            bottom: top + height,
-            right: left + width
+            bottom : top + height,
+            right : left + width
         };
     },
 
@@ -126,31 +124,31 @@ export default declMod(({ target }) => target, {
             mainOffset = this.props.mainOffset,
             secondaryOffset = this.props.secondaryOffset;
 
-        if(this._checkMainDirection(direction, 'bottom')) {
+        if(this._checkMainDirection(direction, 'bottom'))
             top = target.top + target.height + mainOffset;
-        } else if(this._checkMainDirection(direction, 'top')) {
+        else if(this._checkMainDirection(direction, 'top'))
             top = target.top - popup.height - mainOffset;
-        } else if(this._checkMainDirection(direction, 'left')) {
+        else if(this._checkMainDirection(direction, 'left'))
             left = target.left - popup.width - mainOffset;
-        } else if(this._checkMainDirection(direction, 'right')) {
+        else if(this._checkMainDirection(direction, 'right'))
             left = target.left + target.width + mainOffset;
-        }
 
-        if(this._checkSecondaryDirection(direction, 'right')) {
+
+        if(this._checkSecondaryDirection(direction, 'right'))
             left = target.left + target.width - popup.width - secondaryOffset;
-        } else if(this._checkSecondaryDirection(direction, 'left')) {
+        else if(this._checkSecondaryDirection(direction, 'left'))
             left = target.left + secondaryOffset;
-        } else if(this._checkSecondaryDirection(direction, 'bottom')) {
+        else if(this._checkSecondaryDirection(direction, 'bottom'))
             top = target.top + target.height - popup.height - secondaryOffset;
-        } else if(this._checkSecondaryDirection(direction, 'top')) {
+        else if(this._checkSecondaryDirection(direction, 'top'))
             top = target.top + secondaryOffset;
-        } else if(this._checkSecondaryDirection(direction, 'center')) {
+        else if(this._checkSecondaryDirection(direction, 'center'))
             if(this._checkMainDirection(direction, 'top', 'bottom')) {
                 left = target.left + target.width / 2 - popup.width / 2;
             } else if(this._checkMainDirection(direction, 'left', 'right')) {
                 top = target.top + target.height / 2 - popup.height / 2;
             }
-        }
+
 
         return { top, left };
     },
@@ -175,7 +173,7 @@ export default declMod(({ target }) => target, {
 
     _checkSecondaryDirection : function(direction, secondaryDirection) {
         return ~direction.indexOf('-' + secondaryDirection);
-    },
+    }
 
 }, {
     defaultProps : {

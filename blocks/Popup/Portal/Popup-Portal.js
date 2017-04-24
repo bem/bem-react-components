@@ -1,5 +1,4 @@
-import {decl} from 'bem-react-core';
-import React from 'react';
+import { decl } from 'bem-react-core';
 import ReactDom from 'react-dom';
 
 export default decl({
@@ -31,7 +30,7 @@ export default decl({
     _renderPortal() {
         this._rootNode ||
             (this._rootNode = document.body.appendChild(document.createElement('div')));
-        
+
         ReactDom.unstable_renderSubtreeIntoContainer(this, this.props.children, this._rootNode);
     }
 });

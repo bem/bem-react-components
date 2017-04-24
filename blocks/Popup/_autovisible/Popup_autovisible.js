@@ -1,8 +1,7 @@
-import {declMod} from 'bem-react-core';
-import React from 'react';
-import {throttle} from 'throttle-debounce';
+import { declMod } from 'bem-react-core';
+import { throttle } from 'throttle-debounce';
 
-export default declMod({ autovisible: true }, {
+export default declMod({ autovisible : true }, {
     block : 'Popup',
 
     willInit() {
@@ -43,15 +42,15 @@ export default declMod({ autovisible: true }, {
         const anchorIsVisible = this._calcIsAnchorVisible(),
             popupIsVisible = this.isVisible();
 
-        if (anchorIsVisible) {
-            if (this.state.hideRequestedByScroll) {
-                this.setState({ hideRequestedByScroll: false });
+        if(anchorIsVisible) {
+            if(this.state.hideRequestedByScroll) {
+                this.setState({ hideRequestedByScroll : false });
                 this.props.onShow && this.props.onShow();
             }
 
             popupIsVisible && this._redraw();
         } else {
-            popupIsVisible && this.setState({ hideRequestedByScroll: true });
+            popupIsVisible && this.setState({ hideRequestedByScroll : true });
             this.props.onHide && this.props.onHide();
         }
     },
@@ -71,15 +70,13 @@ export default declMod({ autovisible: true }, {
             );
 
         return !this.scrollParents.some(parent => {
-            if (parent === window) {
-                return false;
-            }
+            if(parent === window) return false;
 
             const { overflowX, overflowY } = window.getComputedStyle(parent),
                 checkOverflowY = overflowY === 'scroll' || overflowY === 'hidden' || overflowY === 'auto',
                 checkOverflowX = overflowX === 'scroll' || overflowX === 'hidden' || overflowX === 'auto';
 
-            if (checkOverflowY || checkOverflowX) {
+            if(checkOverflowY || checkOverflowX) {
                 const parentRect = parent.getBoundingClientRect(),
                     viewportRect = document.documentElement.getBoundingClientRect(),
                     left = Math.floor(parentRect.left - viewportRect.left),
@@ -104,11 +101,11 @@ export default declMod({ autovisible: true }, {
     },
 
     _unbindFromScroll() {
-        if (this.scrollParents) {
+        if(this.scrollParents)
             this.scrollParents.forEach(parent => {
                 parent.removeEventListener('scroll', this.onAnchorParentsScroll);
             });
-        }
+
     }
 
 });
@@ -122,31 +119,29 @@ function checkSecondaryDirection(direction, secondaryDirection) {
 }
 
 function getScrollParents(el) {
-    if (!(el instanceof Element)) {
-        return [window];
-    }
+    if(!(el instanceof Element)) return [window];
+
 
     const { position } = window.getComputedStyle(el) || {},
         parents = [];
 
-    if (position === 'fixed') {
-        return [el];
-    }
+    if(position === 'fixed') return [el];
+
 
     let parent = el;
-    while ((parent = parent.parentNode) && parent.nodeType === 1) {
+    while((parent = parent.parentNode) && parent.nodeType === 1) {
         const parentStyle = window.getComputedStyle(parent);
 
-        if (typeof parentStyle === 'undefined' || parentStyle === null) {
+        if(typeof parentStyle === 'undefined' || parentStyle === null) {
             parents.push(parent);
             return parents;
         }
 
-        if (/(auto|scroll)/.test(parentStyle.overflow + parentStyle.overflowY + parentStyle.overflowX)) {
-            if (position !== 'absolute' || ['relative', 'absolute', 'fixed'].indexOf(parentStyle.position) >= 0) {
-                parents.push(parent)
+        if(/(auto|scroll)/.test(parentStyle.overflow + parentStyle.overflowY + parentStyle.overflowX))
+            if(position !== 'absolute' || ['relative', 'absolute', 'fixed'].indexOf(parentStyle.position) >= 0) {
+                parents.push(parent);
             }
-        }
+
     }
 
     parents.push(window);

@@ -1,6 +1,5 @@
-import {decl} from 'bem-react-core';
+import { decl } from 'bem-react-core';
 import React from 'react';
-import ReactDom from 'react-dom';
 import warning from 'warning';
 import ButtonText from 'e:Text';
 
@@ -69,6 +68,7 @@ export default decl({
 
     attrs({ id, tabIndex, title, disabled, togglable, checked, role }) {
         let res = {
+            ref : ref => this._domNode = ref,
             role,
             'aria-disabled' : disabled,
             disabled,
@@ -89,13 +89,13 @@ export default decl({
                 onMouseUp : this._onMouseUp
             };
 
-            if(this.state.focused) {
+            if(this.state.focused)
                 res = {
                     ...res,
                     onKeyDown : this._onKeyDown,
                     onKeyUp : this._onKeyUp
                 };
-            }
+
         }
 
         togglable && (res[`aria-${role === 'checkbox'? 'checked' : 'pressed'}`] = String(!!checked));
@@ -149,26 +149,26 @@ export default decl({
     },
 
     _onMouseClick(e) {
-        if(this.props.disabled) {
+        if(this.props.disabled)
             e.preventDefault();
-        }
-        else {
+
+        else
             this._onClick(e);
-        }
+
     },
 
     _onKeyDown(e) {
-        if(e.key === ' ' || e.key === 'Enter') {
+        if(e.key === ' ' || e.key === 'Enter')
             this.setState({ pressed : true });
-        }
+
     },
 
     _onKeyUp() {
-        if(this.state.pressed) {
+        if(this.state.pressed)
             this.setState(
                 { pressed : false },
                 () => this._onCheck());
-        }
+
     },
 
     _onCheck() {
@@ -184,13 +184,11 @@ export default decl({
     },
 
     _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
+        document.activeElement !== this._domNode && this._domNode.focus();
     },
 
     _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
+        document.activeElement === this._domNode && this._domNode.blur();
     }
 }, {
     propTypes : {

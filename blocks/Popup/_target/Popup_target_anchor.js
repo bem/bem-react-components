@@ -1,4 +1,4 @@
-import {declMod} from 'bem-react-core';
+import { declMod } from 'bem-react-core';
 import React from 'react';
 import ReactDom from 'react-dom';
 
@@ -12,7 +12,7 @@ export default declMod(({ target }) => target === 'anchor', {
 
         return anchor instanceof Element?
             anchor :
-            ReactDom.findDOMNode(anchor);
+            ReactDom.findDOMNode(anchor); // eslint-disable-line react/no-find-dom-node
     },
 
     _calcTargetDimensions : function() {
@@ -29,7 +29,7 @@ export default declMod(({ target }) => target === 'anchor', {
 
 }, {
     propTypes : {
-        anchor : React.PropTypes.func,
+        anchor : React.PropTypes.func
     }
 });
 

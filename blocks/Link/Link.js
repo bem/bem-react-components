@@ -1,6 +1,5 @@
-import {decl} from 'bem-react-core';
+import { decl } from 'bem-react-core';
 import React from 'react';
-import ReactDom from 'react-dom';
 import warning from 'warning';
 
 export default decl({
@@ -55,19 +54,20 @@ export default decl({
 
     attrs({ tabIndex, title, url, target, disabled }) {
         let res = {
+            ref : ref => this._domNode = ref,
             role : 'link',
             title,
             target
         };
 
-        if(disabled) {
+        if(disabled)
             res['aria-disabled'] = 'true';
-        } else {
-            if(url) {
+        else {
+            if(url)
                 res.href = url;
-            } else {
+            else
                 tabIndex || (tabIndex = 0);
-            }
+
 
             res = {
                 ...res,
@@ -109,13 +109,11 @@ export default decl({
     },
 
     _focus() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement !== domNode && domNode.focus();
+        document.activeElement !== this._domNode && this._domNode.focus();
     },
 
     _blur() {
-        const domNode = ReactDom.findDOMNode(this);
-        document.activeElement === domNode && domNode.blur();
+        document.activeElement === this._domNode && this._domNode.blur();
     }
 }, {
     propTypes : {

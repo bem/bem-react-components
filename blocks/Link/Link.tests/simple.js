@@ -3,12 +3,33 @@ import ReactDom from 'react-dom';
 import Link from 'b:Link m:pseudo';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             linkFocused : true,
-            linkDisabled : false
+            linkDisabled : true
         };
+
+        this._onLinkFocusChange = this._onLinkFocusChange.bind(this);
+    }
+
+    componentDidMount() {
+        // setTimeout(() => {
+        //     this.setState({ linkDisabled : true })
+        // }, 3000);
+        //
+        // setTimeout(() => {
+        //     this.setState({ linkDisabled : false })
+        // }, 2000);
+    }
+
+    _onLinkFocusChange(linkFocused) {
+        this.setState({ linkFocused });
+        console.log('focusChange! ' + linkFocused);
+    }
+
+    _onLinkClick() {
     }
 
     render() {
@@ -16,33 +37,19 @@ class App extends React.Component {
             <div>
                 <Link
                     url="https://yandex.ru"
-                    focused={ this.state.linkFocused }
-                    onFocusChange={linkFocused => { this.setState({ linkFocused }); console.log('focusChange! ' + linkFocused); }}
-                    onClick={() => console.log('click!')}
-                >link</Link>
+                    focused={this.state.linkFocused}
+                    onFocusChange={this._onLinkFocusChange}
+                    onClick={function() { console.log('url click!'); }}>link</Link>
                 <br/>
                 <Link
-                    onFocusChange={linkFocused => { this.setState({ linkFocused }); console.log('focusChange! ' + linkFocused); }}
-                    onClick={() => console.log('click!')}
-                >link</Link>
+                    onFocusChange={this._onLinkFocusChange}
+                    onClick={function() { console.log('click!'); }}>link</Link>
                 <br/>
                 <Link disabled={this.state.linkDisabled} url="https://yandex.ru" target="_blank">link disabled</Link>
                 <br/>
-                <Link pseudo onClick={() => console.log('click!')}>
-                    pseudo link
-                </Link>
+                <Link pseudo onClick={function() { console.log('pseudo click!'); }}>pseudo link</Link>
             </div>
         );
-    }
-
-    componentDidMount() {
-        // setTimeout(() => {
-        //     this.setState({ buttonDisabled : true })
-        // }, 3000);
-        //
-        // setTimeout(() => {
-        //     this.setState({ buttonDisabled : false })
-        // }, 2000);
     }
 }
 

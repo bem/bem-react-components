@@ -1,5 +1,4 @@
-import {declMod} from 'bem-react-core';
-import React from 'react';
+import { declMod } from 'bem-react-core';
 
 export default declMod(({ type }) => type === 'link', {
     block : 'Button',

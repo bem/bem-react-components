@@ -1,6 +1,5 @@
-import {decl} from 'bem-react-core';
+import { decl } from 'bem-react-core';
 import React from 'react';
-import ReactDom from 'react-dom';
 import Portal from 'e:Portal';
 
 const ZINDEX_FACTOR = 1000,
@@ -18,8 +17,8 @@ export default decl({
 
     getChildContext() {
         return {
-            isParentLayerVisible: this.isVisible,
-            zIndexGroup: this.props.zIndexGroup
+            isParentLayerVisible : this.isVisible,
+            zIndexGroup : this.props.zIndexGroup
         };
     },
 
@@ -39,27 +38,27 @@ export default decl({
     },
 
     render() {
-        if (this.props.visible || this._wasVisible) {
+        if(this.props.visible || this._wasVisible) {
             this._wasVisible = true;
-            return <Portal>{this.__base()}</Portal>
-        } else {
+            return <Portal>{this.__base()}</Portal>;
+        } else
             return this.__base();
-        }
+
     },
 
     didUpdate() {
         const { isParentLayerVisible } = this.context;
 
-        if(this.isVisible()) {
+        if(this.isVisible())
             if(typeof isParentLayerVisible === 'function' && isParentLayerVisible() === false) {
                 this._releaseZIndex();
                 this.props.onHide();
             } else {
                 this._captureZIndex();
             }
-        } else {
+        else
             this._releaseZIndex();
-        }
+
     },
 
     isVisible() {
@@ -100,17 +99,17 @@ export default decl({
     propTypes : {
         visible : React.PropTypes.bool,
         onVisibleChange : React.PropTypes.func,
-        onHide: React.PropTypes.func
+        onHide : React.PropTypes.func
     },
 
-    childContextTypes: {
-        isParentLayerVisible: React.PropTypes.func,
-        zIndexGroup: React.PropTypes.number
+    childContextTypes : {
+        isParentLayerVisible : React.PropTypes.func,
+        zIndexGroup : React.PropTypes.number
     },
 
-    contextTypes: {
-        isParentLayerVisible: React.PropTypes.func,
-        zIndexGroup: React.PropTypes.number
+    contextTypes : {
+        isParentLayerVisible : React.PropTypes.func,
+        zIndexGroup : React.PropTypes.number
     },
 
     defaultProps : {

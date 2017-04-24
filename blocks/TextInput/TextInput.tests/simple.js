@@ -3,39 +3,17 @@ import ReactDom from 'react-dom';
 import TextInput from 'b:TextInput';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             inputValue : 'input value',
             inputFocused : true,
             inputDisabled : false
         };
-    }
 
-    render() {
-        return (
-            <div>
-                <TextInput
-                    focused={this.state.inputFocused}
-                    disabled={this.state.inputDisabled}
-                    value={this.state.inputValue}
-                    autoComplete={false}
-                    hasClear={true}
-                    onChange={inputValue => { this.setState({ inputValue }); }}
-                    onFocusChange={inputFocused => { this.setState({ inputFocused }); console.log('focusChange! ' + inputFocused); }}
-                />
-
-                <br/>
-
-                <TextInput
-                    type="password"
-                    disabled={this.state.inputDisabled}
-                    value={this.state.inputValue}
-                    hasClear={true}
-                    onChange={inputValue => { console.log('password change' + inputValue) }}
-                />
-            </div>
-        );
+        this._onTextInputChange = this._onTextInputChange.bind(this);
+        this._onTextInputFocusChange = this._onTextInputFocusChange.bind(this);
     }
 
     componentDidMount() {
@@ -50,6 +28,39 @@ class App extends React.Component {
         // setTimeout(() => {
         //     this.setState({ inputValue : 'disabled' });
         // }, 2000);
+    }
+
+    _onTextInputChange(inputValue) {
+        this.setState({ inputValue });
+    }
+
+    _onTextInputFocusChange(inputFocused) {
+        this.setState({ inputFocused });
+        console.log('focusChange! ' + inputFocused);
+    }
+
+    render() {
+        return (
+            <div>
+                <TextInput
+                    focused={this.state.inputFocused}
+                    disabled={this.state.inputDisabled}
+                    value={this.state.inputValue}
+                    autoComplete={false}
+                    hasClear
+                    onChange={this._onTextInputChange}
+                    onFocusChange={this._onTextInputFocusChange}/>
+
+                <br/>
+
+                <TextInput
+                    type="password"
+                    disabled={this.state.inputDisabled}
+                    value={this.state.inputValue}
+                    hasClear
+                    onChange={function(value) { console.log('password not change', value); }}/>
+            </div>
+        );
     }
 }
 

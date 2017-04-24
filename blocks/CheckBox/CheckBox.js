@@ -1,4 +1,4 @@
-import Bem, {decl} from 'bem-react-core';
+import Bem, { decl } from 'bem-react-core';
 import React from 'react';
 import warning from 'warning';
 import CheckBoxControl from 'e:Control';
@@ -39,15 +39,13 @@ export default decl({
                 <CheckBoxControl
                     {...props}
                     focused={this.state.focused}
-                    onFocusChange={this._onControlFocusChange}
-                />
+                    onFocusChange={this._onControlFocusChange}/>
                 { props.text &&
                     <Bem
                         block={this}
                         elem="Text"
                         tag="span"
-                        attrs={{ role : 'presentation' }}
-                    >
+                        attrs={{ role : 'presentation' }}>
                         {props.text}
                     </Bem>
                 }

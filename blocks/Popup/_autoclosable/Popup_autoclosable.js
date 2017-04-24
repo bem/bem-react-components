@@ -1,7 +1,6 @@
-import {declMod} from 'bem-react-core';
-import React from 'react';
+import { declMod } from 'bem-react-core';
 
-export default declMod({ autoclosable: true }, {
+export default declMod({ autoclosable : true }, {
     block : 'Popup',
 
     willInit() {
@@ -19,7 +18,7 @@ export default declMod({ autoclosable: true }, {
     },
 
     didUpdate({ visible }) {
-        if(visible !== this.props.visible) {
+        if(visible !== this.props.visible)
             if(visible) {
                 document.removeEventListener('click', this._onDocumentClick);
                 document.removeEventListener('keydown', this._onDocumentKeyDown);
@@ -27,19 +26,15 @@ export default declMod({ autoclosable: true }, {
                 document.addEventListener('click', this._onDocumentClick);
                 document.addEventListener('keydown', this._onDocumentKeyDown);
             }
-        }
+
         this.__base.apply(this, arguments);
     },
 
     attrs({ visible }) {
         const res = this.__base.apply(this, arguments);
 
-        if (visible) {
-            return {
-                ...res,
-                onClick: this._onClick,
-            }
-        }
+        if(visible) return { ...res, onClick : this._onClick };
+
         return res;
     },
 
@@ -53,7 +48,7 @@ export default declMod({ autoclosable: true }, {
     },
 
     _onDocumentKeyDown(e) {
-        if (e.key === 'Escape') {
+        if(e.key === 'Escape') {
             // NOTE: we call `preventDefault()` to prevent desktop Safari from exiting the full screen mode
             e.preventDefault();
             this.props.onVisibleChange(false);

@@ -3,8 +3,9 @@ import ReactDom from 'react-dom';
 import CheckBox from 'b:CheckBox m:type=button';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             checked : true,
             focused : true,
@@ -12,6 +13,31 @@ class App extends React.Component {
             buttonFocused : false,
             buttonChecked : false
         };
+
+        this._onCheckBoxChange = this._onCheckBoxChange.bind(this);
+        this._onCheckBoxFocusChange = this._onCheckBoxFocusChange.bind(this);
+        this._onCheckBoxButtonChange = this._onCheckBoxButtonChange.bind(this);
+        this._onCheckBoxButtonFocusChange = this._onCheckBoxButtonFocusChange.bind(this);
+    }
+
+    _onCheckBoxChange(checked) {
+        this.setState({ checked });
+        console.log('change! ' + checked);
+    }
+
+    _onCheckBoxFocusChange(focused) {
+        this.setState({ focused });
+        console.log('focusChange! ' + focused);
+    }
+
+    _onCheckBoxButtonChange(checked) {
+        this.setState({ buttonChecked : checked });
+        console.log('button change! ' + checked);
+    }
+
+    _onCheckBoxButtonFocusChange(buttonFocused) {
+        this.setState({ buttonFocused });
+        console.log('button focusChange! ' + buttonFocused);
     }
 
     render() {
@@ -24,9 +50,8 @@ class App extends React.Component {
                     checked={this.state.checked}
                     text="check me!"
                     title="DO IT!!"
-                    onChange={checked => { this.setState({ checked }); console.log('change! ' + checked); }}
-                    onFocusChange={focused => { this.setState({ focused }); console.log('focusChange! ' + focused); }}
-                />
+                    onChange={this._onCheckBoxChange}
+                    onFocusChange={this._onCheckBoxFocusChange}/>
                 <br/>
                 <CheckBox
                     type="button"
@@ -35,9 +60,8 @@ class App extends React.Component {
                     checked={this.state.buttonChecked}
                     text="no! check me!!"
                     title="DO IT!!"
-                    onChange={checked => { this.setState({ buttonChecked : checked }); console.log('button change! ' + checked); }}
-                    onFocusChange={focused => { this.setState({ buttonFocused : focused }); console.log('button focusChange! ' + focused); }}
-                />
+                    onChange={this._onCheckBoxButtonChange}
+                    onFocusChange={this._onCheckBoxButtonFocusChange}/>
             </div>
         );
     }

@@ -5,7 +5,7 @@ export default decl({
     block : 'ProgressBar',
     style({ value }) {
         return {
-            width: value <= 0 ?
+            width : value <= 0 ?
                 '0' :
                 value >= 1 ?
                     '100%' :

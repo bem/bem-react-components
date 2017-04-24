@@ -1,4 +1,4 @@
-import Bem, {decl} from 'bem-react-core';
+import Bem, { decl } from 'bem-react-core';
 import React from 'react';
 import warning from 'warning';
 import TextInputControl from 'e:Control';
@@ -37,16 +37,14 @@ export default decl({
                 <TextInputControl
                     {...props}
                     focused={this.state.focused}
-                    onFocusChange={this._onControlFocusChange}
-                />
+                    onFocusChange={this._onControlFocusChange}/>
                 { props.hasClear &&
                     <Bem
                         block={this}
                         elem="Clear"
                         tag="i"
                         mods={{ visible : !!String(props.value) }}
-                        attrs={props.disabled || { onClick : this._onClearClick }}
-                    />
+                        attrs={props.disabled || { onClick : this._onClearClick }}/>
                 }
             </Bem>
         );

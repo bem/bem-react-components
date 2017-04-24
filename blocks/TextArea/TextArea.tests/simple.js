@@ -3,28 +3,17 @@ import ReactDom from 'react-dom';
 import TextArea from 'b:TextArea';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             value : 'text value',
             focused : true,
             disabled : false
         };
-    }
 
-    render() {
-        return (
-            <div>
-                <TextArea
-                    focused={this.state.focused}
-                    disabled={this.state.disabled}
-                    value={this.state.value}
-                    autoComplete={false}
-                    onChange={value => { this.setState({ value }); }}
-                    onFocusChange={focused => { this.setState({ focused }); console.log('focusChange! ' + focused); }}
-                />
-            </div>
-        );
+        this._onTextAreaChange = this._onTextAreaChange.bind(this);
+        this._onTextAreaFocusChange = this._onTextAreaFocusChange.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +28,29 @@ class App extends React.Component {
         // setTimeout(() => {
         //     this.setState({ value : 'disabled' });
         // }, 2000);
+    }
+
+    _onTextAreaChange(value) {
+        this.setState({ value });
+    }
+
+    _onTextAreaFocusChange(focused) {
+        this.setState({ focused });
+        console.log('focusChange! ' + focused);
+    }
+
+    render() {
+        return (
+            <div>
+                <TextArea
+                    focused={this.state.focused}
+                    disabled={this.state.disabled}
+                    value={this.state.value}
+                    autoComplete={false}
+                    onChange={this._onTextAreaChange}
+                    onFocusChange={this._onTextAreaFocusChange}/>
+            </div>
+        );
     }
 }
 

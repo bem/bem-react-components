@@ -1,4 +1,4 @@
-import Bem, {decl} from 'bem-react-core';
+import { decl } from 'bem-react-core';
 import React from 'react';
 import TextInput from 'b:TextInput';
 import TextAreaControl from 'e:Control';
@@ -10,8 +10,7 @@ export default decl(TextInput, {
             <TextAreaControl
                 {...props}
                 focused={this.state.focused}
-                onFocusChange={this._onControlFocusChange}
-            />
+                onFocusChange={this._onControlFocusChange}/>
         );
     }
 }, {

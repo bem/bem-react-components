@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { decl } from 'bem-react-core';
 
@@ -22,7 +23,7 @@ export default decl({
     }
 }, {
     childContextTypes : {
-        zIndexGroup : React.PropTypes.number,
-        zIndexGroupStyle : React.PropTypes.object
+        zIndexGroup : PropTypes.number,
+        zIndexGroupStyle : PropTypes.object
     }
 });

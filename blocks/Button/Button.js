@@ -1,4 +1,5 @@
 import { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
 import ButtonText from 'e:Text';
@@ -192,13 +193,13 @@ export default decl({
     }
 }, {
     propTypes : {
-        type : React.PropTypes.oneOf(['link']),
-        role : React.PropTypes.oneOf(['button', 'checkbox']),
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onClick : React.PropTypes.func,
-        onFocusChange : React.PropTypes.func,
-        onCheckChange : React.PropTypes.func
+        type : PropTypes.oneOf(['link']),
+        role : PropTypes.oneOf(['button', 'checkbox']),
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onClick : PropTypes.func,
+        onFocusChange : PropTypes.func,
+        onCheckChange : PropTypes.func
     },
 
     defaultProps : {

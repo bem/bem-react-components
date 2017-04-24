@@ -1,4 +1,5 @@
 import { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Portal from 'e:Portal';
 
@@ -97,19 +98,19 @@ export default decl({
     }
 }, {
     propTypes : {
-        visible : React.PropTypes.bool,
-        onVisibleChange : React.PropTypes.func,
-        onHide : React.PropTypes.func
+        visible : PropTypes.bool,
+        onVisibleChange : PropTypes.func,
+        onHide : PropTypes.func
     },
 
     childContextTypes : {
-        isParentLayerVisible : React.PropTypes.func,
-        zIndexGroup : React.PropTypes.number
+        isParentLayerVisible : PropTypes.func,
+        zIndexGroup : PropTypes.number
     },
 
     contextTypes : {
-        isParentLayerVisible : React.PropTypes.func,
-        zIndexGroup : React.PropTypes.number
+        isParentLayerVisible : PropTypes.func,
+        zIndexGroup : PropTypes.number
     },
 
     defaultProps : {

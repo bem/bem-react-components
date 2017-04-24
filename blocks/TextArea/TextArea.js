@@ -1,4 +1,5 @@
 import { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 import TextInput from 'b:TextInput';
 import TextAreaControl from 'e:Control';
@@ -15,16 +16,16 @@ export default decl(TextInput, {
     }
 }, {
     propTypes : {
-        id : React.PropTypes.string,
-        name : React.PropTypes.string,
-        value : React.PropTypes.any,
-        tabIndex : React.PropTypes.number,
-        placeholder : React.PropTypes.string,
-        autoComplete : React.PropTypes.bool,
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onFocusChange : React.PropTypes.func,
-        onChange : React.PropTypes.func
+        id : PropTypes.string,
+        name : PropTypes.string,
+        value : PropTypes.any,
+        tabIndex : PropTypes.number,
+        placeholder : PropTypes.string,
+        autoComplete : PropTypes.bool,
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onFocusChange : PropTypes.func,
+        onChange : PropTypes.func
     },
 
     defaultProps : {

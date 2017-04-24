@@ -1,4 +1,5 @@
 import { declMod } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default declMod(({ target }) => target === 'position', {
@@ -15,6 +16,6 @@ export default declMod(({ target }) => target === 'position', {
     }
 }, {
     propTypes : {
-        position : React.PropTypes.object // TODO left, top
+        position : PropTypes.object // TODO left, top
     }
 });

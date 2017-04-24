@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import { decl } from 'bem-react-core';
 
 export default decl({

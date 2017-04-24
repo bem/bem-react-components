@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDom from 'react-dom';
 import Bem from 'bem-react-core';
@@ -23,7 +24,7 @@ class Example extends React.Component { // eslint-disable-line react/prefer-stat
 }
 
 Example.contextTypes = {
-    zIndexGroupStyle : React.PropTypes.object
+    zIndexGroupStyle : PropTypes.object
 };
 
 class App extends React.Component {

@@ -14,8 +14,9 @@
   "license": "MPL-2.0",
   "dependencies": {
     "bem-react-core": "0.3.1",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "prop-types": "15.5.7",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
     "throttle-debounce": "^1.0.1",
     "warning": "^3.0.0"
   },

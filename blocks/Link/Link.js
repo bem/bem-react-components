@@ -1,4 +1,5 @@
 import { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
 
@@ -117,10 +118,10 @@ export default decl({
     }
 }, {
     propTypes : {
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onClick : React.PropTypes.func,
-        onFocusChange : React.PropTypes.func
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onClick : PropTypes.func,
+        onFocusChange : PropTypes.func
     },
 
     defaultProps : {

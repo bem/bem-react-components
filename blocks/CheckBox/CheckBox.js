@@ -1,4 +1,5 @@
 import Bem, { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
 import CheckBoxControl from 'e:Control';
@@ -59,18 +60,18 @@ export default decl({
     }
 }, {
     propTypes : {
-        id : React.PropTypes.string,
-        name : React.PropTypes.string,
-        value : React.PropTypes.any,
-        checked : React.PropTypes.bool,
-        text : React.PropTypes.string,
-        title : React.PropTypes.string,
-        type : React.PropTypes.oneOf([undefined, 'button']),
-        tabIndex : React.PropTypes.number,
-        disabled : React.PropTypes.bool,
-        focused : React.PropTypes.bool,
-        onFocusChange : React.PropTypes.func,
-        onChange : React.PropTypes.func
+        id : PropTypes.string,
+        name : PropTypes.string,
+        value : PropTypes.any,
+        checked : PropTypes.bool,
+        text : PropTypes.string,
+        title : PropTypes.string,
+        type : PropTypes.oneOf([undefined, 'button']),
+        tabIndex : PropTypes.number,
+        disabled : PropTypes.bool,
+        focused : PropTypes.bool,
+        onFocusChange : PropTypes.func,
+        onChange : PropTypes.func
     },
 
     defaultProps : {

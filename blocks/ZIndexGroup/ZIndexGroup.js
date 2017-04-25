@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import { decl } from 'bem-react-core';
 
 const ZINDEX_FACTOR = 1000;

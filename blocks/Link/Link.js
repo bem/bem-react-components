@@ -1,6 +1,5 @@
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
-import React from 'react';
 import warning from 'warning';
 
 export default decl({

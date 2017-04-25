@@ -1,6 +1,5 @@
 import { declMod } from 'bem-react-core';
 import PropTypes from 'prop-types';
-import React from 'react';
 import ReactDom from 'react-dom';
 
 export default declMod(({ target }) => target === 'anchor', {

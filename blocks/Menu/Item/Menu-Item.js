@@ -1,11 +1,25 @@
-import {decl} from 'bem-react-core';
-import React from 'react';
+import { decl } from 'bem-react-core';
+import PropTypes from 'prop-types';
 
 export default decl({
     block : 'Menu',
     elem : 'Item',
+
+    willInit() {
+        this._onClick = this._onClick.bind(this);
+    },
+
     mods({ value }) {
-        return { checked : value === this.context.menuValue };
+        const values = [].concat(this.context.menuValue);
+        return { checked : Boolean(~values.indexOf(value)) };
+    },
+
+    attrs() {
+        return { onClick : this._onClick };
+    },
+
+    _onClick(e) {
+        this.context._onItemClick(e, this.props.value);
     }
 }, {
     propTypes : {
@@ -14,7 +28,8 @@ export default decl({
     defaultProps : {
     },
     contextTypes : {
-        menuValue : React.PropTypes.any
+        menuValue : PropTypes.any,
+        _onItemClick : PropTypes.func
     }
 });
 

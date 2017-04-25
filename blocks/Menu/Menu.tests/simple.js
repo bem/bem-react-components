@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Menu from 'b:Menu m:mode=radio|check|radio-check';
 import MenuItem from 'b:Menu e:Item';
+import MenuGroup from 'b:Menu e:Group';
 
 class App extends React.Component {
     constructor(props) {
@@ -40,8 +41,10 @@ class App extends React.Component {
                     mode="radio"
                     value={this.state.menuRadioValue}
                     onChange={this.onChangeRadio}>
-                    <MenuItem value={1}>one</MenuItem>
-                    <MenuItem value={2}>two</MenuItem>
+                    <MenuGroup>
+                        <MenuItem value={1}>one</MenuItem>
+                        <MenuItem value={2}>two</MenuItem>
+                    </MenuGroup>
                     <MenuItem value={3}>three</MenuItem>
                 </Menu>
                 <br/>

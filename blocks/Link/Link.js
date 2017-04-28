@@ -43,11 +43,7 @@ export default decl({
 
     mods({ disabled }) {
         const { focused, hovered } = this.state;
-        return {
-            disabled,
-            focused,
-            hovered
-        };
+        return { disabled, focused, hovered };
     },
 
     tag : 'a',

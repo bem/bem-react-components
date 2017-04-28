@@ -3,14 +3,15 @@ import ReactDom from 'react-dom';
 import Menu from 'b:Menu m:mode=radio|check|radio-check';
 import MenuItem from 'b:Menu e:Item';
 import MenuGroup from 'b:Menu e:Group';
+import Link from 'b:Link';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.onChangeRadio = this.onChangeRadio.bind(this);
-        this.onChangeCheck = this.onChangeCheck.bind(this);
-        this.onChangeRadioCheck = this.onChangeRadioCheck.bind(this);
+        this.onRadioChange = this.onRadioChange.bind(this);
+        this.onCheckChange = this.onCheckChange.bind(this);
+        this.onRadioCheckChange = this.onRadioCheckChange.bind(this);
 
         this.state = {
             menuRadioValue : 2,
@@ -19,17 +20,17 @@ class App extends React.Component {
         };
     }
 
-    onChangeRadio(value) {
+    onRadioChange(value) {
         console.log(value);
         this.setState({ menuRadioValue : value });
     }
 
-    onChangeCheck(value) {
+    onCheckChange(value) {
         console.log(value);
         this.setState({ menuCheckValue : value });
     }
 
-    onChangeRadioCheck(value) {
+    onRadioCheckChange(value) {
         console.log(value);
         this.setState({ menuRadioCheckValue : value });
     }
@@ -40,8 +41,8 @@ class App extends React.Component {
                 <Menu
                     mode="radio"
                     value={this.state.menuRadioValue}
-                    onChange={this.onChangeRadio}>
-                    <MenuGroup>
+                    onChange={this.onRadioChange}>
+                    <MenuGroup title="group">
                         <MenuItem value={1}>one</MenuItem>
                         <MenuItem value={2}>two</MenuItem>
                     </MenuGroup>
@@ -51,16 +52,28 @@ class App extends React.Component {
                 <Menu
                     mode="check"
                     value={this.state.menuCheckValue}
-                    onChange={this.onChangeCheck}>
+                    onChange={this.onCheckChange}>
                     <MenuItem value={1}>one</MenuItem>
-                    <MenuItem value={2}>two</MenuItem>
+                    <MenuItem value={2} disabled>two disabled</MenuItem>
                     <MenuItem value={3}>three</MenuItem>
                 </Menu>
                 <br/>
                 <Menu
                     mode="radio-check"
                     value={this.state.menuRadioCheckValue}
-                    onChange={this.onChangeRadioCheck}>
+                    onChange={this.onRadioCheckChange}>
+                    <MenuItem value={1}>one</MenuItem>
+                    <MenuItem value={2}>two</MenuItem>
+                    <MenuItem value={3}>three</MenuItem>
+                </Menu>
+                <br/>
+                <Menu>
+                    <MenuItem><Link url="#1">one</Link></MenuItem>
+                    <MenuItem><Link url="#2">two</Link></MenuItem>
+                    <MenuItem><Link url="#3">three</Link></MenuItem>
+                </Menu>
+                <br/>
+                <Menu disabled mode="radio" value={1}>
                     <MenuItem value={1}>one</MenuItem>
                     <MenuItem value={2}>two</MenuItem>
                     <MenuItem value={3}>three</MenuItem>

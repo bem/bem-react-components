@@ -1,18 +1,10 @@
 import { decl } from 'bem-react-core';
+import 'm:withTitle';
 
 export default decl({
     block : 'Menu',
-    elem : 'Group'
+    elem : 'Group',
 
-    // TODO: title
-    // attrs({title}) {
-    // },
-
-}, {
-    propTypes : {
-    },
-
-    defaultProps : {
-    }
+    attrs: { role : 'group' }
 });
 

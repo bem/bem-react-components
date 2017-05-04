@@ -1,16 +1,17 @@
-import { decl } from 'bem-react-core';
+import { decl, declMod } from 'bem-react-core';
 import PropTypes from 'prop-types';
+import 'm:withValue';
 import warning from 'warning';
 
 export default decl({
-    block : 'Link',
+    block : 'Menu',
+    elem : 'Item',
 
     willInit({ focused, disabled }) {
         warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
 
         this.state = { focused, hovered : false };
 
-        this._onClick = this._onClick.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onBlur = this._onBlur.bind(this);
         this._onMouseEnter = this._onMouseEnter.bind(this);
@@ -46,28 +47,23 @@ export default decl({
         return { disabled, focused, hovered };
     },
 
-    tag : 'a',
-
-    attrs({ tabIndex, title, url, target, disabled }) {
+    attrs({ tabIndex, disabled }) {
+        const menuMode = this.context._menuMode;
         let res = {
             ref : ref => this._domNode = ref,
-            role : 'link',
-            title,
-            target
+            role : (menuMode?
+                (menuMode === 'check'? 'menuitemcheckbox' : 'menuitemradio') :
+                'menuitem')
         };
 
         if(disabled)
             res['aria-disabled'] = 'true';
         else {
-            if(url)
-                res.href = url;
-            else
-                tabIndex || (tabIndex = 0);
+            tabIndex || (tabIndex = 0);
 
 
             res = {
                 ...res,
-                onClick : this._onClick,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
                 onMouseEnter : this._onMouseEnter,
@@ -78,10 +74,6 @@ export default decl({
         res.tabIndex = tabIndex;
 
         return res;
-    },
-
-    _onClick(e) {
-        this.props.onClick(e);
     },
 
     _onFocus() {
@@ -112,6 +104,10 @@ export default decl({
         document.activeElement === this._domNode && this._domNode.blur();
     }
 }, {
+    contextTypes : {
+        _menuMode : PropTypes.string
+    },
+
     propTypes : {
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
@@ -124,3 +120,4 @@ export default decl({
         onFocusChange() {}
     }
 });
+

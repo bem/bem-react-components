@@ -1,6 +1,5 @@
 import { declMod } from 'bem-react-core';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 export default declMod(({ target }) => target === 'position', {
     block : 'Popup',

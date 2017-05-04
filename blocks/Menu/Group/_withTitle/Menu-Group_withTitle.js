@@ -9,16 +9,15 @@ export default declMod(({ title }) => title, {
         return {
             ...this.__base(...arguments),
             'aria-label' : undefined,
-            'aria-labelledby' : '' // TODO: use generateId() https://github.com/bem/bem-react-core/issues/97
+            'aria-labelledby' : this.generateId()
         };
     },
 
     content({ title, children }) {
         return [
             <Bem
-                block={this} // TODO: fix
                 elem="GroupTitle"
-                attrs={{ role : 'presentation', id : '' }}
+                attrs={{ role : 'presentation', id : this.generateId() }}
                 key="group">
                     {title}
             </Bem>,

@@ -5,4 +5,4 @@ branches:
 script: 'npm run lint && npm test'
 
 node_js:
-  - '4'
+  - '6'

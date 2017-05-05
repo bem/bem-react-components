@@ -14,8 +14,10 @@ export default decl({
 
         this._onFocus = this._onFocus.bind(this);
         this._onBlur = this._onBlur.bind(this);
-        this._onMouseEnter = this._onMouseEnter.bind(this);
+        this._onMouseMove = this._onMouseMove.bind(this);
         this._onMouseLeave = this._onMouseLeave.bind(this);
+
+        this._idx = null;
     },
 
     willReceiveProps({ focused, disabled }) {
@@ -34,6 +36,8 @@ export default decl({
         this.state.focused?
             this._focus() :
             this._blur();
+
+        this._idx = this.context._menuRegisterItem(this);
     },
 
     didUpdate() {
@@ -44,12 +48,13 @@ export default decl({
 
     mods({ disabled }) {
         const { focused, hovered } = this.state;
-        return { disabled, focused, hovered };
+        return { disabled : disabled || this.context._menuDisabled, focused, hovered };
     },
 
-    attrs({ tabIndex, disabled }) {
+    attrs({ id, tabIndex, disabled }) {
         const menuMode = this.context._menuMode;
         let res = {
+            id,
             ref : ref => this._domNode = ref,
             role : (menuMode?
                 (menuMode === 'check'? 'menuitemcheckbox' : 'menuitemradio') :
@@ -61,12 +66,12 @@ export default decl({
         else {
             tabIndex || (tabIndex = 0);
 
-
             res = {
                 ...res,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
-                onMouseEnter : this._onMouseEnter,
+                // MouseMove because of combining mouse & keyboard hovering
+                onMouseMove : this._onMouseMove,
                 onMouseLeave : this._onMouseLeave
             };
         }
@@ -74,6 +79,14 @@ export default decl({
         res.tabIndex = tabIndex;
 
         return res;
+    },
+
+    setHovered(hovered) {
+        this.setState({ hovered });
+    },
+
+    getText() {
+        return this._domNode.innerText;
     },
 
     _onFocus() {
@@ -88,12 +101,12 @@ export default decl({
             () => this.props.onFocusChange(false));
     },
 
-    _onMouseEnter() {
-        this.setState({ hovered : true });
+    _onMouseMove() {
+        this.context._menuHoverItem(this._idx);
     },
 
     _onMouseLeave() {
-        this.setState({ hovered : false });
+        this.context._menuHoverItem();
     },
 
     _focus() {
@@ -105,7 +118,10 @@ export default decl({
     }
 }, {
     contextTypes : {
-        _menuMode : PropTypes.string
+        _menuDisabled : PropTypes.bool,
+        _menuMode : PropTypes.string,
+        _menuRegisterItem : PropTypes.func,
+        _menuHoverItem : PropTypes.func
     },
 
     propTypes : {

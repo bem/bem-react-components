@@ -20,7 +20,7 @@ export default declMod({ mode : '*' }, {
     _onMenuItemClick(e, val) {}
 }, {
     propTypes : {
-        value: PropTypes.any,
+        value : PropTypes.any,
         onChange : PropTypes.func
     },
 

@@ -2,6 +2,7 @@ import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Portal from 'e:Portal';
+import Content from 'e:Content';
 
 const ZINDEX_FACTOR = 1000,
     visibleLayersZIndexes = {};
@@ -45,6 +46,10 @@ export default decl({
         } else
             return this.__base();
 
+    },
+
+    content() {
+        return <Content>{this.__base(...arguments)}</Content>;
     },
 
     didUpdate() {

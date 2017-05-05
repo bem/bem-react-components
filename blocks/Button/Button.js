@@ -68,15 +68,18 @@ export default decl({
     tag : 'button',
 
     attrs({ id, tabIndex, title, disabled, togglable, checked, role }) {
+        const props = this.props;
         let res = {
             ref : ref => this._domNode = ref,
             role,
-            'aria-disabled' : disabled,
             disabled,
             tabIndex,
             id,
             title,
-            onClick : this._onMouseClick
+            onClick : this._onMouseClick,
+            'aria-owns' : props['aria-owns'],
+            'aria-multiselectable' : props['aria-multiselectable'],
+            'aria-labelledby' : props['aria-labelledby']
         };
 
         if(!disabled) {
@@ -194,7 +197,7 @@ export default decl({
 }, {
     propTypes : {
         type : PropTypes.oneOf(['link']),
-        role : PropTypes.oneOf(['button', 'checkbox']),
+        role : PropTypes.oneOf(['button', 'checkbox', 'listbox']),
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
         onClick : PropTypes.func,

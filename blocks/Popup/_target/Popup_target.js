@@ -1,4 +1,5 @@
 import { declMod } from 'bem-react-core';
+import PropTypes from 'prop-types';
 
 const VIEWPORT_ACCURACY_FACTOR = 0.99,
     DEFAULT_DIRECTIONS = [
@@ -31,6 +32,10 @@ export default declMod(({ target }) => target, {
             this._redraw();
     },
 
+    getChildContext() {
+        return { _popupInRedraw : this._inRedraw };
+    },
+
     attrs() {
         const { top, left } = this.state,
             base = this.__base(...arguments);
@@ -49,7 +54,10 @@ export default declMod(({ target }) => target, {
 
     _redraw() {
         const { top, left, direction } = this._calcBestDrawingParams();
-        this.setState({ top, left, direction });
+        this._inRedraw = true;
+        this.setState({ top, left, direction }, () => {
+            this._inRedraw = false;
+        });
     },
 
     _calcDrawingCss(drawingParams) {
@@ -181,5 +189,9 @@ export default declMod(({ target }) => target, {
         secondaryOffset : 0,
         viewportOffset : 0,
         directions : DEFAULT_DIRECTIONS
+    },
+
+    childContextTypes : {
+        _popupInRedraw : PropTypes.bool
     }
 });

@@ -11,6 +11,7 @@ export default declMod({ mode : '*' }, {
 
     getChildContext() {
         return {
+            ...this.__base(...arguments),
             _menuValue : this.props.value,
             _menuMode : this.props.mode,
             _onMenuItemClick : this._onMenuItemClick

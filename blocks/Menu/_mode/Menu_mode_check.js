@@ -14,4 +14,8 @@ export default declMod({ mode : 'check' }, {
             value.filter((_, i) => i !== index) :
             value.concat(val));
     }
+}, {
+    defaultProps : {
+        value : []
+    }
 });

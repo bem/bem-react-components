@@ -14,11 +14,13 @@
   "license": "MPL-2.0",
   "dependencies": {
     "bem-react-core": "0.4.2",
-    "prop-types": "15.5.7",
-    "react": "15.5.4",
-    "react-dom": "15.5.4",
     "throttle-debounce": "^1.0.1",
     "warning": "^3.0.0"
+  },
+  "peerDependencies": {
+    "prop-types": "15.5.7",
+    "react": "15.5.4",
+    "react-dom": "15.5.4"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -42,6 +44,7 @@
     "glob": "^7.1.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
+    "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
     "sinon": "^2.2.0",
     "stream-to-array": "^2.3.0",

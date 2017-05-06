@@ -19,10 +19,10 @@ export default declMod(({ title }) => title, {
                 elem="GroupTitle"
                 attrs={{ role : 'presentation', id : this.generateId() }}
                 key="group">
-                {title}
+                    {title}
             </Bem>,
             children
-        ];
+        ]
     }
 });
 

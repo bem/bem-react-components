@@ -1,8 +1,0 @@
-language: node_js
-branches:
-  only:
-    - master
-script: 'npm run lint && npm test'
-
-node_js:
-  - '6'

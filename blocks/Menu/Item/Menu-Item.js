@@ -1,4 +1,4 @@
-import { decl } from 'bem-react-core';
+import { decl, declMod } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import 'm:withValue';
 import warning from 'warning';

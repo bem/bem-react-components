@@ -8,7 +8,7 @@
   dependencies:
     "@bem/entity-name" "1.3.1"
 
-"@bem/cell@^0.2.1", "@bem/cell@^0.2.4", "@bem/cell@^0.2.5":
+"@bem/cell@^0.2.1", "@bem/cell@^0.2.5", "@bem/cell@^0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@bem/cell/-/cell-0.2.6.tgz#8d31d0bc5906ee7b96cb2bdd4443d5a027252114"
   dependencies:
@@ -27,7 +27,7 @@
   dependencies:
     "@bem/naming" "2.0.0-5"
 
-"@bem/entity-name@^1.3.0", "@bem/entity-name@^1.3.2":
+"@bem/entity-name@^1.3.2", "@bem/entity-name@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@bem/entity-name/-/entity-name-1.5.0.tgz#d7dc20180c303c0b7a8a802cfab70909c3519b0a"
   dependencies:
@@ -49,7 +49,7 @@
     "@bem/cell" "0.2.5"
     "@bem/naming" "2.0.0-6"
 
-"@bem/import-notation@^1.0.0":
+"@bem/import-notation@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@bem/import-notation/-/import-notation-1.1.2.tgz#56736c5214b994e0b72a9120bca7a0e77c2eea60"
 
@@ -59,7 +59,7 @@
   dependencies:
     "@bem/entity-name" "1.3.1"
 
-"@bem/naming@2.0.0-6", "@bem/naming@^2.0.0-3", "@bem/naming@^2.0.0-5":
+"@bem/naming@2.0.0-6", "@bem/naming@^2.0.0-5", "@bem/naming@^2.0.0-6":
   version "2.0.0-6"
   resolved "https://registry.yarnpkg.com/@bem/naming/-/naming-2.0.0-6.tgz#0c2c61d3bc8cd89fb5b8bc6dc0dbffc0aea0570e"
   dependencies:
@@ -101,10 +101,6 @@ acorn-jsx@^3.0.0:
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
   dependencies:
     acorn "^3.0.4"
-
-acorn@^1.0.3:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-1.2.2.tgz#c8ce27de0acc76d896d2b1fad3df588d9e82f014"
 
 acorn@^3.0.4:
   version "3.3.0"
@@ -500,16 +496,17 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-bem-import@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-bem-import/-/babel-plugin-bem-import-1.3.2.tgz#197207532871ff8d725cdbb8b82f0b5f9965e1c2"
+babel-plugin-bem-import@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-bem-import/-/babel-plugin-bem-import-1.4.2.tgz#5f6120cd7430bbb804a5f3b290887765741bd748"
   dependencies:
-    "@bem/cell" "^0.2.4"
-    "@bem/entity-name" "^1.3.0"
+    "@bem/cell" "^0.2.6"
+    "@bem/entity-name" "^1.5.0"
     "@bem/fs-scheme" "^2.1.0"
-    "@bem/import-notation" "^1.0.0"
-    "@bem/naming" "^2.0.0-3"
-    babel-template "^6.23.0"
+    "@bem/import-notation" "^1.1.2"
+    "@bem/naming" "^2.0.0-6"
+    babel-template "^6.24.0"
+    bem-config "^3.2.3"
     log-symbols "^1.0.2"
     required-path "^1.0.1"
 
@@ -905,7 +902,7 @@ babel-runtime@^6.18.0, babel-runtime@^6.22.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
-babel-template@^6.16.0, babel-template@^6.23.0, babel-template@^6.24.1:
+babel-template@^6.16.0, babel-template@^6.24.0, babel-template@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.24.1.tgz#04ae514f1f93b3a2537f2a0f60a5a45fb8308333"
   dependencies:
@@ -960,7 +957,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bem-config@^3.2.2:
+bem-config@^3.2.2, bem-config@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/bem-config/-/bem-config-3.2.3.tgz#ac8c6c817797536c86b69373e8dea35f126672dc"
   dependencies:
@@ -996,9 +993,9 @@ bem-tools-core@0.0.3:
     coa "^1.0.1"
     global-modules "^0.2.0"
 
-bem-tools-create@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bem-tools-create/-/bem-tools-create-2.1.0.tgz#501511104d6072a736aff1ffe0c4ce15f28a2add"
+bem-tools-create@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/bem-tools-create/-/bem-tools-create-2.2.0.tgz#b44295f85dd488c1b096c255c337f3975a0b1048"
   dependencies:
     "@bem/cell" "^0.2.5"
     "@bem/entity-name" "^1.3.2"
@@ -1778,16 +1775,9 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
-domutils@1.5.1:
+domutils@1.5.1, domutils@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
-  dependencies:
-    dom-serializer "0"
-    domelementtype "1"
-
-domutils@^1.5.1:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.0.tgz#853de07f013287f976b7fe0461740222ea14ecbb"
   dependencies:
     dom-serializer "0"
     domelementtype "1"
@@ -2213,11 +2203,11 @@ extsprintf@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550"
 
-falafel@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/falafel/-/falafel-1.2.0.tgz#c18d24ef5091174a497f318cd24b026a25cddab4"
+falafel@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/falafel/-/falafel-2.1.0.tgz#96bb17761daba94f46d001738b3cedf3a67fe06c"
   dependencies:
-    acorn "^1.0.3"
+    acorn "^5.0.0"
     foreach "^2.0.5"
     isarray "0.0.1"
     object-keys "^1.0.6"
@@ -3461,9 +3451,9 @@ loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
 
-loader-utils@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.0.2.tgz#a9f923c865a974623391a8602d031137fad74830"
+loader-utils@1.1.0, loader-utils@^1.0.2:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
     big.js "^3.1.3"
     emojis-list "^2.0.0"
@@ -3477,14 +3467,6 @@ loader-utils@^0.2.16:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
     object-assign "^4.0.1"
-
-loader-utils@^1.0.2:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
-  dependencies:
-    big.js "^3.1.3"
-    emojis-list "^2.0.0"
-    json5 "^0.5.0"
 
 locate-path@^2.0.0:
   version "2.0.0"
@@ -4398,13 +4380,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.7:
+prop-types@15.5.7, prop-types@~15.5.7:
   version "15.5.7"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.7.tgz#231c4f29cdd82e355011d4889386ca9059544dd1"
   dependencies:
     fbjs "^0.8.9"
 
-prop-types@15.5.8, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@15.5.8, prop-types@^15.5.4, prop-types@^15.5.7:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
@@ -5378,7 +5360,7 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vow-fs@^0.3.5, vow-fs@^0.3.6:
+vow-fs@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/vow-fs/-/vow-fs-0.3.6.tgz#2d4c59be22e2bf2618ddf597ab4baa923be7200d"
   dependencies:
@@ -5393,7 +5375,7 @@ vow-queue@^0.4.1:
   dependencies:
     vow "~0.4.0"
 
-vow@^0.4.12, vow@^0.4.15, vow@^0.4.7, vow@~0.4.0:
+vow@^0.4.15, vow@^0.4.7, vow@~0.4.0:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.15.tgz#0579163aff6ba0ae05c456b2c0e4ca6373f111b3"
 
@@ -5435,20 +5417,21 @@ webidl-conversions@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.1.tgz#8015a17ab83e7e1b311638486ace81da6ce206a0"
 
-webpack-bem-loader@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-bem-loader/-/webpack-bem-loader-0.3.0.tgz#9f8250ba04228ac5acf8afb4b9d7d94be82e44c1"
+webpack-bem-loader@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/webpack-bem-loader/-/webpack-bem-loader-0.4.0.tgz#df0738c5e8be971ffa40c3ab9daf974f61e3d81a"
   dependencies:
-    "@bem/cell" "^0.2.5"
-    "@bem/entity-name" "^1.3.0"
+    "@bem/cell" "^0.2.6"
+    "@bem/entity-name" "^1.5.0"
     "@bem/fs-scheme" "^2.1.0"
-    "@bem/import-notation" "^1.0.0"
-    "@bem/naming" "^2.0.0-3"
-    falafel "^1.2.0"
-    loader-utils "1.0.2"
+    "@bem/import-notation" "^1.1.2"
+    "@bem/naming" "^2.0.0-6"
+    bem-config "^3.2.3"
+    falafel "^2.1.0"
+    loader-utils "1.1.0"
     required-path "^1.0.1"
-    vow "^0.4.12"
-    vow-fs "^0.3.5"
+    vow "^0.4.15"
+    vow-fs "^0.3.6"
 
 webpack-dev-middleware@^1.10.2:
   version "1.10.2"
@@ -5489,8 +5472,8 @@ webpack-sources@^0.2.3:
     source-map "~0.5.3"
 
 webpack@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.5.0.tgz#5a17089f8d0e43442e606d6cf9b2a146c8ed9911"
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.5.1.tgz#61742f0cf8af555b87460a9cd8bba2f1e3ee2fce"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"

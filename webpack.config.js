@@ -1,4 +1,4 @@
-const path = require('path'),
+var path = require('path'),
     glob = require('glob');
 
 module.exports = {
@@ -12,34 +12,24 @@ module.exports = {
         return res;
     }, {}),
     output : {
-        pathinfo : true,
         path : `${__dirname}/tests/`,
         publicPath : '/tests',
         filename : '[name]'
     },
-    devtool : 'inline-source-map',
     module : {
-        rules : [
+        loaders : [
             {
                 test : /\.html$/,
-                use : [
-                    'file-loader?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$'
-                ]
+                loader : 'file?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$'
             },
             {
                 test : /\.js$/,
                 exclude : /node_modules\/react(-dom)?/,
-                use : [{
-                    loader : 'webpack-bem-loader',
-                    options : {
-                        levels : [`${__dirname}/blocks`],
-                        techs : ['js', 'css']
-                    }
-                }, 'babel-loader']
+                loaders : ['webpack-bem', 'babel']
             },
             {
                 test : /\.css$/,
-                use : ['style-loader', 'css-loader']
+                loaders : ['style', 'css']
             }
         ]
     },
@@ -48,5 +38,12 @@ module.exports = {
             'react' : require.resolve('react/dist/react'),
             'react-dom' : require.resolve('react-dom/dist/react-dom')
         }
+    },
+    devtool : 'inline-source-map',
+    bemLoader : {
+        techs : ['js', 'css'], // NOTE: order is very important! JS first!!
+        levels : [
+            `${__dirname}/blocks`
+        ]
     }
 };

@@ -17,7 +17,7 @@ export default declMod(props => props.hasOwnProperty('value'), {
             checked : Array.isArray(menuValue)?
                 menuValue.indexOf(value) > -1 :
                 menuValue === value
-        };
+        }
     },
 
     attrs({ disabled }) {

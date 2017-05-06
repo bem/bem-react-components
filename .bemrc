@@ -1,21 +1,19 @@
-module.exports = {
-    root : true,
-    levels : {
-        blocks : {
-            scheme : 'nested',
-            naming : 'react',
-            default : true
+{
+    "root" : true,
+    "levels" : {
+        "./blocks" : {
+            "scheme" : "nested",
+            "naming" : "react",
+            "default" : true
         }
     },
-    modules : {
-        'bem-tools' : {
-            plugins : {
-                create : {
-                    techs : ['js', 'spec.js', 'css', 'tests' ],
-                    templates : {
-                        js : '.bem/templates/js.js',
-                        'spec.js' : '.bem/templates/spec.js.js',
-                        'tests' : '.bem/templates/tests.js',
+    "modules" : {
+        "bem-tools" : {
+            "plugins" : {
+                "create" : {
+                    "techs" : ["js", "css"],
+                    "templates" : {
+                        "js" : ".bem/templates/js.js"
                     }
                 }
             }

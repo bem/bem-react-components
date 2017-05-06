@@ -32,7 +32,6 @@ module.exports = {
                 use : [{
                     loader : 'webpack-bem-loader',
                     options : {
-                        levels : [`${__dirname}/blocks`],
                         techs : ['js', 'css']
                     }
                 }, 'babel-loader']

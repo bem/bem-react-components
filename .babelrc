@@ -1,4 +1,16 @@
 {
+  "presets": [["es2015", { "loose":true }], "react"],
   "plugins": ["transform-object-rest-spread"],
-  "presets": ["es2015-loose", "react"]
+  "env": {
+    "test": {
+      "plugins": [
+        ["bem-import", {
+          "levels": [
+            "./blocks"
+          ],
+          "techs": ["js"]
+        }]
+      ]
+    }
+  }
 }

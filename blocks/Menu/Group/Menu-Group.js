@@ -5,6 +5,6 @@ export default decl({
     block : 'Menu',
     elem : 'Group',
 
-    attrs: { role : 'group' }
+    attrs : { role : 'group' }
 });
 

@@ -34,6 +34,7 @@ class App extends React.Component {
         this._refButton4 = this._refButton4.bind(this);
         this._refLink1 = this._refLink1.bind(this);
         this._refAll = this._refAll.bind(this);
+        this._requestPopup3Hide = this._requestPopup3Hide.bind(this);
     }
 
     _onButton1Click() {
@@ -79,6 +80,10 @@ class App extends React.Component {
     _refAll(all) {
         if(all) this._all = all;
         else return this._all;
+    }
+
+    _requestPopup3Hide() {
+        this.setState({ popup3Visible : false });
     }
 
     render() {
@@ -131,6 +136,7 @@ class App extends React.Component {
                     </Button>
                     <Popup
                         autoclosable
+                        onHide={this._requestPopup3Hide}
                         directions={['right-center']}
                         target="anchor"
                         visible={this.state.popup3Visible}

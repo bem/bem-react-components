@@ -43,7 +43,7 @@ export default declMod({ autoclosable : true }, {
     },
 
     _onDocumentClick() {
-        this._isClickInside || this.props.onVisibleChange(false);
+        this._isClickInside || this.props.onHide();
         this._isClickInside = false;
     },
 
@@ -51,7 +51,7 @@ export default declMod({ autoclosable : true }, {
         if(e.key === 'Escape') {
             // NOTE: we call `preventDefault()` to prevent desktop Safari from exiting the full screen mode
             e.preventDefault();
-            this.props.onVisibleChange(false);
+            this.props.onHide();
         }
     }
 });

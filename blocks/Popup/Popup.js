@@ -99,7 +99,6 @@ export default decl({
 }, {
     propTypes : {
         visible : PropTypes.bool,
-        onVisibleChange : PropTypes.func,
         onHide : PropTypes.func
     },
 
@@ -115,6 +114,8 @@ export default decl({
 
     defaultProps : {
         visible : false,
-        onVisibleChange() {}
+        onHide() {
+            throw Error('Popup: onHide prop must be defined');
+        }
     }
 });

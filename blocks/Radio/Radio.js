@@ -2,10 +2,10 @@ import Bem, { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
-import CheckBoxControl from 'e:Control';
+import RadioControl from 'e:Control';
 
 export default decl({
-    block : 'CheckBox',
+    block : 'Radio',
 
     willInit({ focused, disabled }) {
         warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
@@ -33,7 +33,7 @@ export default decl({
     content(props) {
         return (
             <Bem elem="Box" tag="span">
-                <CheckBoxControl
+                <RadioControl
                     {...props}
                     focused={this.state.focused}
                     onFocusChange={this._onControlFocusChange}/>
@@ -62,6 +62,7 @@ export default decl({
         text : PropTypes.string,
         title : PropTypes.string,
         type : PropTypes.oneOf([undefined, 'button']),
+        mode : PropTypes.oneOf([undefined, 'radio-check']),
         tabIndex : PropTypes.number,
         disabled : PropTypes.bool,
         focused : PropTypes.bool,

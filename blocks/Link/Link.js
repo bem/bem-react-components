@@ -49,11 +49,15 @@ export default decl({
     tag : 'a',
 
     attrs({ tabIndex, title, url, target, disabled }) {
+        const props = this.props;
         let res = {
             ref : ref => this._domNode = ref,
             role : 'link',
             title,
-            target
+            target,
+            'aria-haspopup' : props['aria-haspopup'],
+            'aria-controls' : props['aria-controls'],
+            'aria-expanded' : props['aria-expanded']
         };
 
         if(disabled)

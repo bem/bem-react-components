@@ -207,9 +207,13 @@ export default decl({
     }
 }, {
     propTypes : {
+        mode : PropTypes.oneOf(['radio', 'check', 'radio-check']),
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
-        onFocusChange : PropTypes.func
+        onFocusChange : PropTypes.func,
+        opened : PropTypes.bool.isRequired,
+        onOpen : PropTypes.func.isRequired,
+        onClose : PropTypes.func.isRequired
     },
 
     defaultProps : {

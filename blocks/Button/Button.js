@@ -79,7 +79,10 @@ export default decl({
             onClick : this._onMouseClick,
             'aria-owns' : props['aria-owns'],
             'aria-multiselectable' : props['aria-multiselectable'],
-            'aria-labelledby' : props['aria-labelledby']
+            'aria-labelledby' : props['aria-labelledby'],
+            'aria-haspopup' : props['aria-haspopup'],
+            'aria-controls' : props['aria-controls'],
+            'aria-expanded' : props['aria-expanded']
         };
 
         if(!disabled) {

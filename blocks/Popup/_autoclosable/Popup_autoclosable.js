@@ -4,7 +4,7 @@ export default declMod({ autoclosable : true }, {
     block : 'Popup',
 
     willInit() {
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
 
         this._isClickInside = false;
 
@@ -14,7 +14,7 @@ export default declMod({ autoclosable : true }, {
     },
 
     mods({ autoclosable }) {
-        return { ...this.__base.apply(this, arguments), autoclosable };
+        return { ...this.__base(...arguments), autoclosable };
     },
 
     didUpdate({ visible }) {
@@ -27,11 +27,11 @@ export default declMod({ autoclosable : true }, {
                 document.addEventListener('keydown', this._onDocumentKeyDown);
             }
 
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
     },
 
     attrs({ visible }) {
-        const res = this.__base.apply(this, arguments);
+        const res = this.__base(...arguments);
 
         if(visible) return { ...res, onClick : this._onClick };
 

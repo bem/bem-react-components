@@ -6,7 +6,7 @@ export default decl({
     block : 'Link',
 
     willInit({ focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         this.state = { focused, hovered : false };
 
@@ -18,7 +18,7 @@ export default decl({
     },
 
     willReceiveProps({ focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         const newState = {};
 

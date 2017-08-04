@@ -7,6 +7,10 @@ export default decl({
     block : 'CheckBoxGroup',
     elem : 'Option',
 
+    didMount() {
+        this.context._checkBoxGroupRegisterOption(this);
+    },
+
     render() {
         const {
                 _checkBoxGroupName : name,
@@ -18,10 +22,13 @@ export default decl({
 
         return (<CheckBox
             name={name}
-            type={type}
+            type={type === 'button'? type : undefined}
             text={text}
             title={title}
-            checked={groupValue.indexOf(value) > -1}
+            value={value}
+            onFocusChange={this.context._checkBoxGroupOnOptionFocusChange}
+            onChange={this.context._checkBoxGroupOnOptionChange}
+            checked={this._checked = groupValue.indexOf(value) > -1}
             disabled={disabled || groupDisabled}/>);
     }
 }, {
@@ -36,6 +43,9 @@ export default decl({
         _checkBoxGroupName : PropTypes.string,
         _checkBoxGroupType : PropTypes.string,
         _checkBoxGroupValue : PropTypes.array,
-        _checkBoxGroupDisabled : PropTypes.bool
+        _checkBoxGroupDisabled : PropTypes.bool,
+        _checkBoxGroupRegisterOption : PropTypes.func,
+        _checkBoxGroupOnOptionChange : PropTypes.func,
+        _checkBoxGroupOnOptionFocusChange : PropTypes.func
     }
 });

@@ -46,7 +46,7 @@ export default decl({
     },
 
     _onChange({ target }) {
-        this.props.onChange(target.checked);
+        this.props.onChange(target.checked, this.props.value);
     },
 
     _onFocus() {

@@ -8,14 +8,16 @@ export default decl({
     block : 'Radio',
 
     willInit({ focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         this.state = { focused };
 
         this._onControlFocusChange = this._onControlFocusChange.bind(this);
     },
 
-    willReceiveProps({ focused }) {
+    willReceiveProps({ focused, disabled }) {
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
+
         typeof focused !== 'undefined' && this.setState({ focused });
     },
 

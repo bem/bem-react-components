@@ -9,7 +9,7 @@ export default decl({
     block : 'TextInput',
 
     willInit({ type, focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         this.state = { focused };
 
@@ -17,7 +17,9 @@ export default decl({
         this._onControlFocusChange = this._onControlFocusChange.bind(this);
     },
 
-    willReceiveProps({ focused }) {
+    willReceiveProps({ focused, disabled }) {
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
+
         typeof focused !== 'undefined' && this.setState({ focused });
     },
 
@@ -74,13 +76,12 @@ export default decl({
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
         onFocusChange : PropTypes.func,
-        onChange : PropTypes.func
+        onChange : PropTypes.func.isRequired
     },
 
     defaultProps : {
         type : 'text',
         value : '',
-        onFocusChange() {},
-        onChange() {}
+        onFocusChange() {}
     }
 });

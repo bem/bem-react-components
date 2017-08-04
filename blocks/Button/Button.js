@@ -8,7 +8,7 @@ export default decl({
     block : 'Button',
 
     willInit({ focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         this.state = {
             focused : focused? 'hard' : false,
@@ -30,7 +30,7 @@ export default decl({
     },
 
     willReceiveProps({ focused, disabled }) {
-        warning(!(focused && disabled), 'Can\'t have both "focused" and "disabled" props.');
+        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
 
         const newState = {};
 

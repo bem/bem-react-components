@@ -39,7 +39,7 @@ export default declMod({ type : 'button' }, {
     },
 
     _onCheckChange() {
-        this.props.onChange(!this.props.checked);
+        this.props.onChange(!this.props.checked, this.props.value);
     },
 
     /**

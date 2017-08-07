@@ -69,12 +69,11 @@ export default decl({
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
         onFocusChange : PropTypes.func,
-        onChange : PropTypes.func
+        onChange : PropTypes.func.isRequired
     },
 
     defaultProps : {
         value : '',
-        onFocusChange() {},
-        onChange() {}
+        onFocusChange() {}
     }
 });

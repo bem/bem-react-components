@@ -4,7 +4,7 @@ import warning from 'warning';
 import { decl } from 'bem-react-core';
 
 export default decl({
-    block : 'CheckBoxGroup',
+    block : 'RadioGroup',
 
     willInit({ focused, disabled }) {
         warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
@@ -21,15 +21,16 @@ export default decl({
     },
 
     getChildContext() {
-        const { name, type, value, disabled } = this.props;
+        const { name, type, mode, value, disabled } = this.props;
         return {
-            _checkBoxGroupName : name,
-            _checkBoxGroupType : type,
-            _checkBoxGroupValue : value,
-            _checkBoxGroupDisabled : disabled,
-            _checkBoxGroupRegisterOption : this._registerOption.bind(this),
-            _checkBoxGroupOnOptionChange : this._onOptionChange.bind(this),
-            _checkBoxGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
+            _radioGroupName : name,
+            _radioGroupType : type,
+            _radioGroupMode : mode,
+            _radioGroupValue : value,
+            _radioGroupDisabled : disabled,
+            _radioGroupRegisterOption : this._registerOption.bind(this),
+            _radioGroupOnOptionChange : this._onOptionChange.bind(this),
+            _radioGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
         };
     },
 
@@ -54,11 +55,7 @@ export default decl({
     },
 
     _onOptionChange(checked, value) {
-        this.props.onChange(this._options.reduce((res, option) => {
-            (option.props.value === value? checked : option._checked) &&
-                res.push(option.props.value);
-            return res;
-        }, []));
+        this.props.onChange(value);
     },
 
     _onOptionFocusChange(focused) {
@@ -70,7 +67,8 @@ export default decl({
     propTypes : {
         name : PropTypes.string,
         type : PropTypes.oneOf([undefined, 'button', 'line']),
-        value : PropTypes.array,
+        mode : PropTypes.oneOf([undefined, 'radio-check']),
+        value : PropTypes.any,
         disabled : PropTypes.bool,
         onChange : PropTypes.func.isRequired,
         onFocusChange : PropTypes.func
@@ -82,12 +80,13 @@ export default decl({
     },
 
     childContextTypes : {
-        _checkBoxGroupName : PropTypes.string,
-        _checkBoxGroupType : PropTypes.string,
-        _checkBoxGroupValue : PropTypes.array,
-        _checkBoxGroupDisabled : PropTypes.bool,
-        _checkBoxGroupRegisterOption : PropTypes.func,
-        _checkBoxGroupOnOptionChange : PropTypes.func,
-        _checkBoxGroupOnOptionFocusChange : PropTypes.func
+        _radioGroupName : PropTypes.string,
+        _radioGroupType : PropTypes.oneOf([undefined, 'button', 'line']),
+        _radioGroupMode : PropTypes.oneOf([undefined, 'radio-check']),
+        _radioGroupValue : PropTypes.any,
+        _radioGroupDisabled : PropTypes.bool,
+        _radioGroupRegisterOption : PropTypes.func,
+        _radioGroupOnOptionChange : PropTypes.func,
+        _radioGroupOnOptionFocusChange : PropTypes.func
     }
 });

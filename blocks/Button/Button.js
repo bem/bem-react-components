@@ -201,6 +201,7 @@ export default decl({
     propTypes : {
         type : PropTypes.oneOf(['link']),
         role : PropTypes.oneOf(['button', 'checkbox', 'listbox']),
+        icon : PropTypes.element,
         disabled : PropTypes.bool,
         focused : PropTypes.bool,
         onClick : PropTypes.func,

@@ -33,7 +33,7 @@ export default declMod(({ target }) => target, {
     },
 
     getChildContext() {
-        return { _popupInRedraw : this._inRedraw };
+        return { ...this.__base(...arguments), _popupInRedraw : this._inRedraw };
     },
 
     attrs() {

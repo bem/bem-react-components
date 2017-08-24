@@ -3,7 +3,7 @@ module.exports = {
     levels : {
         blocks : {
             scheme : 'nested',
-            shemeOptions : 'react',
+            schemeOptions : 'react',
             naming : 'react'
         }
     },

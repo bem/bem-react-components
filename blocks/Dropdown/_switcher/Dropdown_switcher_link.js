@@ -5,7 +5,7 @@ import Link from 'b:Link m:pseudo';
 export default declMod({ switcher : 'link' }, {
     block : 'Dropdown',
 
-    content({ tabIndex, disabled, text, opened, focused, onFocusChange }) {
+    content({ tabIndex, disabled, text, opened, focused, theme, size, onFocusChange }) {
         return [
             <Link
                 pseudo
@@ -13,6 +13,8 @@ export default declMod({ switcher : 'link' }, {
                 mix={{ block : this.block, elem : 'switcher' }}
                 ref={this._anchorRef}
                 tabIndex={tabIndex}
+                theme={theme}
+                size={size}
                 disabled={disabled}
                 onClick={this._onSwitcherClick}
                 focused={focused}

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import './simple.css';
 import Button from 'b:Button m:type=link';
 import Icon from 'b:Icon';
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import './simple.css';
 import Menu from 'b:Menu m:mode=radio|check|radio-check';
 import MenuItem from 'b:Menu e:Item';
 import MenuGroup from 'b:Menu e:Group';

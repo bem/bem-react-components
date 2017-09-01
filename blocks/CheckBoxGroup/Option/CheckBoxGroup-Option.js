@@ -16,7 +16,9 @@ export default decl({
                 _checkBoxGroupName : name,
                 _checkBoxGroupType : type,
                 _checkBoxGroupValue : groupValue,
-                _checkBoxGroupDisabled : groupDisabled
+                _checkBoxGroupDisabled : groupDisabled,
+                _checkBoxGroupTheme : groupTheme,
+                _checkBoxGroupSize : groupSize
             } = this.context,
             { value, text, title, disabled } = this.props;
 
@@ -26,6 +28,8 @@ export default decl({
             text={text}
             title={title}
             value={value}
+            theme={groupTheme}
+            size={groupSize}
             onFocusChange={this.context._checkBoxGroupOnOptionFocusChange}
             onChange={this.context._checkBoxGroupOnOptionChange}
             checked={this._checked = groupValue.indexOf(value) > -1}
@@ -44,6 +48,8 @@ export default decl({
         _checkBoxGroupType : PropTypes.string,
         _checkBoxGroupValue : PropTypes.array,
         _checkBoxGroupDisabled : PropTypes.bool,
+        _checkBoxGroupTheme : PropTypes.string,
+        _checkBoxGroupSize : PropTypes.string,
         _checkBoxGroupRegisterOption : PropTypes.func,
         _checkBoxGroupOnOptionChange : PropTypes.func,
         _checkBoxGroupOnOptionFocusChange : PropTypes.func

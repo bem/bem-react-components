@@ -4,14 +4,14 @@ export default declMod(({ type }) => type === 'link', {
     block : 'Button',
 
     mods({ type }) {
-        return { ...this.__base.apply(this, arguments), type };
+        return { ...this.__base(...arguments), type };
     },
 
     tag : 'a',
 
     attrs({ target, disabled, url }) {
         const res = {
-            ...this.__base.apply(this, arguments),
+            ...this.__base(...arguments),
             target,
             role : 'link'
         };
@@ -24,7 +24,7 @@ export default declMod(({ type }) => type === 'link', {
     },
 
     _onKeyUp(e) {
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
         if(this.state.pressed && e.key === ' ') {
             this.props.onClick(e);
             e.isDefaultPrevented() || (document.location = this.props.url);

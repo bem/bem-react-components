@@ -1,11 +1,12 @@
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import KeyCodes from 'b:KeyCodes';
 
 const TIMEOUT_KEYBOARD_SEARCH = 1500;
 
-export default decl({
+export default decl([Stylable], {
     block : 'Menu',
 
     willInit({ focused, disabled }) {
@@ -59,7 +60,11 @@ export default decl({
     },
 
     mods({ disabled }) {
-        return { disabled, focused : this.state.focused };
+        return {
+            ...this.__base(...arguments),
+            disabled,
+            focused : this.state.focused
+        };
     },
 
     attrs({ tabIndex, disabled }) {

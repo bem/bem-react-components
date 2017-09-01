@@ -2,6 +2,7 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import { decl } from 'bem-react-core';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import KeyCodes from 'b:KeyCodes';
 import Button from 'b:Button';
 import Popup from 'b:Popup m:autoclosable m:target=anchor';
@@ -9,7 +10,7 @@ import Menu from 'b:Menu';
 import Option from 'e:Option';
 import Group from 'e:Group';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Select',
 
     willInit({ focused, disabled }) {
@@ -62,7 +63,11 @@ export default decl({
     },
 
     mods({ disabled }) {
-        return { disabled, focused : this.state.focused };
+        return {
+            ...this.__base(...arguments),
+            disabled,
+            focused : this.state.focused
+        };
     },
 
     attrs({ tabIndex, disabled, name }) {
@@ -89,7 +94,7 @@ export default decl({
         return { _optionIdsByValue : this._optionIdsByValue };
     },
 
-    content({ mode, text, opened, onClose, value, tabIndex, disabled, children }) {
+    content({ mode, text, opened, onClose, value, tabIndex, disabled, theme, size, children }) {
         const { block } = this;
 
         return [
@@ -101,6 +106,8 @@ export default decl({
                 ref={this._buttonRef}
                 tabIndex={tabIndex}
                 disabled={disabled}
+                theme={theme}
+                size={size}
                 onClick={this._onButtonClick}
                 checked={this.state.buttonChecked}
                 aria-owns={this._optionIds.join(' ')}
@@ -111,6 +118,8 @@ export default decl({
             <Popup
                 key="popup"
                 mix={{ block, elem : 'popup' }}
+                theme={theme}
+                size={size}
                 target="anchor"
                 anchor={this._buttonRef}
                 ref={this._popupRef}
@@ -119,6 +128,8 @@ export default decl({
                 visible={opened}>
                 <Menu
                     mix={{ block, elem : 'menu' }}
+                    theme={theme}
+                    size={size}
                     disabled={disabled}
                     tabIndex={undefined}
                     focused={opened}

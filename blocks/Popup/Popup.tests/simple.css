@@ -9,4 +9,7 @@
 .Popup
 {
      background: #fff;
+     border: 1px solid red;
+     width: 100px;
+     min-height: 50px;
 }

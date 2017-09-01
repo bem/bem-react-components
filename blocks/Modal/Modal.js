@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Bem, { decl } from 'bem-react-core';
+import Stylable from 'b:Stylable';
 import Popup from 'b:Popup';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Modal',
 
     willInit() {
@@ -34,7 +35,9 @@ export default decl({
             mix : { block : this.block, mods : this.mods(props) },
             zIndexGroup : props.zIndexGroup || 20,
             onHide : props.onClose,
-            visible : props.opened
+            visible : props.opened,
+            theme : props.theme,
+            size : props.size
         };
     }
 }, {

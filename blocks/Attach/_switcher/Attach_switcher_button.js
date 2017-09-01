@@ -7,10 +7,12 @@ import Switcher from 'e:Switcher';
 export default declMod({ switcher : 'button' }, {
     block : 'Attach',
 
-    content({ text, icon }) {
+    content({ text, icon, theme, size }) {
         return [
             <Switcher onChange={this._onChange} key="switcher">
                 <Button
+                    theme={theme}
+                    size={size}
                     key="button"
                     mix={{ block : this.block, elem : 'button' }}
                     icon={icon}>

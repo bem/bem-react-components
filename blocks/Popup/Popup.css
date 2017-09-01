@@ -1,14 +1,9 @@
 .Popup
 {
-    border: 1px solid red;
-    background-color: #fff;
     position: absolute;
 
     visibility: hidden;
     margin: -9999px 0 0 -9999px;
-
-    width: 100px;
-    min-height: 50px;
 }
 
 .Popup_visible

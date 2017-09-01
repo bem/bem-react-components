@@ -1,9 +1,10 @@
 import React, { Children } from 'React';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import { decl } from 'bem-react-core';
 
-export default decl({
+export default decl([Stylable], {
     block : 'CheckBoxGroup',
 
     willInit({ focused, disabled }) {
@@ -21,12 +22,14 @@ export default decl({
     },
 
     getChildContext() {
-        const { name, type, value, disabled } = this.props;
+        const { name, type, value, disabled, theme, size } = this.props;
         return {
             _checkBoxGroupName : name,
             _checkBoxGroupType : type,
             _checkBoxGroupValue : value,
             _checkBoxGroupDisabled : disabled,
+            _checkBoxGroupTheme : theme,
+            _checkBoxGroupSize : size,
             _checkBoxGroupRegisterOption : this._registerOption.bind(this),
             _checkBoxGroupOnOptionChange : this._onOptionChange.bind(this),
             _checkBoxGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
@@ -35,7 +38,7 @@ export default decl({
 
     mods({ type, disabled }) {
         const { focused } = this.state;
-        return { type, disabled, focused };
+        return { ...this.__base(...arguments), type, disabled, focused };
     },
 
     content({ children, type }) {
@@ -86,6 +89,8 @@ export default decl({
         _checkBoxGroupType : PropTypes.string,
         _checkBoxGroupValue : PropTypes.array,
         _checkBoxGroupDisabled : PropTypes.bool,
+        _checkBoxGroupTheme : PropTypes.string,
+        _checkBoxGroupSize : PropTypes.string,
         _checkBoxGroupRegisterOption : PropTypes.func,
         _checkBoxGroupOnOptionChange : PropTypes.func,
         _checkBoxGroupOnOptionFocusChange : PropTypes.func

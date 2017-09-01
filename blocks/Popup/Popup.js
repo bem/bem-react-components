@@ -1,13 +1,14 @@
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Stylable from 'b:Stylable';
 import Portal from 'e:Portal';
 import Content from 'e:Content';
 
 const ZINDEX_FACTOR = 1000,
     visibleLayersZIndexes = {};
 
-export default decl({
+export default decl([Stylable], {
     block : 'Popup',
 
     willInit() {
@@ -25,7 +26,7 @@ export default decl({
     },
 
     mods({ visible }) {
-        return { visible };
+        return { ...this.__base(...arguments), visible };
     },
 
     attrs({ visible }) {

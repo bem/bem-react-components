@@ -17,7 +17,9 @@ export default decl({
                 _radioGroupType : type,
                 _radioGroupMode : mode,
                 _radioGroupValue : groupValue,
-                _radioGroupDisabled : groupDisabled
+                _radioGroupDisabled : groupDisabled,
+                _radioGroupTheme : groupTheme,
+                _radioGroupSize : groupSize
             } = this.context,
             { value, text, title, disabled } = this.props;
 
@@ -28,6 +30,8 @@ export default decl({
             text={text}
             title={title}
             value={value}
+            theme={groupTheme}
+            size={groupSize}
             onFocusChange={this.context._radioGroupOnOptionFocusChange}
             onChange={this.context._radioGroupOnOptionChange}
             checked={this._checked = groupValue === value}
@@ -47,6 +51,8 @@ export default decl({
         _radioGroupMode : PropTypes.oneOf([undefined, 'radio-check']),
         _radioGroupValue : PropTypes.any,
         _radioGroupDisabled : PropTypes.bool,
+        _radioGroupTheme : PropTypes.string,
+        _radioGroupSize : PropTypes.string,
         _radioGroupRegisterOption : PropTypes.func,
         _radioGroupOnOptionChange : PropTypes.func,
         _radioGroupOnOptionFocusChange : PropTypes.func

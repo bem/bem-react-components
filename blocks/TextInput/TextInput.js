@@ -2,10 +2,11 @@ import Bem, { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import TextInputControl from 'e:Control';
-import 'e:Clear';
+import TextInputClear from 'e:Clear';
 
-export default decl({
+export default decl([Stylable], {
     block : 'TextInput',
 
     willInit({ type, focused, disabled }) {
@@ -28,6 +29,7 @@ export default decl({
     mods({ type, disabled }) {
         const { focused } = this.state;
         return {
+            ...this.__base(...arguments),
             type,
             disabled,
             focused
@@ -36,18 +38,15 @@ export default decl({
 
     content(props) {
         return (
-            <Bem block={this} elem="Box" tag="span">
+            <Bem elem="Box" tag="span">
                 <TextInputControl
                     {...props}
                     focused={this.state.focused}
                     onFocusChange={this._onControlFocusChange}/>
                 { props.hasClear &&
-                    <Bem
-                        block={this}
-                        elem="Clear"
-                        tag="i"
-                        mods={{ visible : !!String(props.value) }}
-                        attrs={props.disabled || { onClick : this._onClearClick }}/>
+                    <TextInputClear
+                        visible={!!String(props.value)}
+                        onClick={props.disabled || this._onClearClick}/>
                 }
             </Bem>
         );

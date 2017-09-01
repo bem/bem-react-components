@@ -1,6 +1,7 @@
 import { decl } from 'bem-react-core';
+import Stylable from 'b:Stylable';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Icon',
     tag : 'span',
     attrs({ url }) {

@@ -1,9 +1,10 @@
 import React, { Children } from 'React';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import { decl } from 'bem-react-core';
 
-export default decl({
+export default decl([Stylable], {
     block : 'RadioGroup',
 
     willInit({ focused, disabled }) {
@@ -21,13 +22,15 @@ export default decl({
     },
 
     getChildContext() {
-        const { name, type, mode, value, disabled } = this.props;
+        const { name, type, mode, value, disabled, theme, size } = this.props;
         return {
             _radioGroupName : name,
             _radioGroupType : type,
             _radioGroupMode : mode,
             _radioGroupValue : value,
             _radioGroupDisabled : disabled,
+            _radioGroupTheme : theme,
+            _radioGroupSize : size,
             _radioGroupRegisterOption : this._registerOption.bind(this),
             _radioGroupOnOptionChange : this._onOptionChange.bind(this),
             _radioGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
@@ -36,7 +39,7 @@ export default decl({
 
     mods({ type, disabled }) {
         const { focused } = this.state;
-        return { type, disabled, focused };
+        return { ...this.__base(...arguments), type, disabled, focused };
     },
 
     content({ children, type }) {
@@ -85,6 +88,8 @@ export default decl({
         _radioGroupMode : PropTypes.oneOf([undefined, 'radio-check']),
         _radioGroupValue : PropTypes.any,
         _radioGroupDisabled : PropTypes.bool,
+        _radioGroupTheme : PropTypes.string,
+        _radioGroupSize : PropTypes.string,
         _radioGroupRegisterOption : PropTypes.func,
         _radioGroupOnOptionChange : PropTypes.func,
         _radioGroupOnOptionFocusChange : PropTypes.func

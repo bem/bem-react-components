@@ -1,15 +1,11 @@
 import { declMod } from 'bem-react-core';
 
-export default declMod(({ pseudo }) => pseudo, {
+export default declMod({ pseudo : true }, {
     block : 'Link',
 
     willInit() {
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
         this._onKeyDown = this._onKeyDown.bind(this);
-    },
-
-    mods({ pseudo }) {
-        return { ...this.__base.apply(this, arguments), pseudo };
     },
 
     tag({ url }) {
@@ -17,7 +13,7 @@ export default declMod(({ pseudo }) => pseudo, {
     },
 
     attrs({ url }) {
-        const res = this.__base.apply(this, arguments);
+        const res = this.__base(...arguments);
 
         url || (res.role = 'button');
 
@@ -29,7 +25,7 @@ export default declMod(({ pseudo }) => pseudo, {
     _onClick(e) {
         e.preventDefault();
 
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
     },
 
     _onKeyDown : function(e) {

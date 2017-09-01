@@ -5,13 +5,15 @@ import Button from 'b:Button';
 export default declMod({ switcher : 'button' }, {
     block : 'Dropdown',
 
-    content({ tabIndex, disabled, text, opened, focused, onFocusChange }) {
+    content({ tabIndex, disabled, text, opened, focused, theme, size, onFocusChange }) {
         return [
             <Button
                 key="button"
                 mix={{ block : this.block, elem : 'switcher' }}
                 ref={this._anchorRef}
                 tabIndex={tabIndex}
+                theme={theme}
+                size={size}
                 disabled={disabled}
                 onClick={this._onSwitcherClick}
                 focused={focused}

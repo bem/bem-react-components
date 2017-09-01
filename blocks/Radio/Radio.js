@@ -2,9 +2,10 @@ import Bem, { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import RadioControl from 'e:Control';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Radio',
 
     willInit({ focused, disabled }) {
@@ -25,7 +26,7 @@ export default decl({
 
     mods({ type, disabled }) {
         const { focused } = this.state;
-        return { type, disabled, focused };
+        return { ...this.__base(...arguments), type, disabled, focused };
     },
 
     attrs({ title }) {

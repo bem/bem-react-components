@@ -2,9 +2,10 @@ import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 import ButtonText from 'e:Text';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Button',
 
     willInit({ focused, disabled }) {
@@ -57,6 +58,7 @@ export default decl({
     mods({ disabled, checked }) {
         const { focused, hovered, pressed } = this.state;
         return {
+            ...this.__base(...arguments),
             disabled,
             focused,
             hovered,

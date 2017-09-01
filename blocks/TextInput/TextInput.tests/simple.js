@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import './simple.css';
 import TextInput from 'b:TextInput';
 
 class App extends React.Component {

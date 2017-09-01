@@ -1,10 +1,11 @@
 import { decl } from 'bem-react-core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Stylable from 'b:Stylable';
 import File from 'e:File';
 import NoFile from 'e:NoFile';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Attach',
 
     willInit() {

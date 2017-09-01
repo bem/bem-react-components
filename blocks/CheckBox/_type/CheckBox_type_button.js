@@ -3,19 +3,19 @@ import React from 'react';
 import Button from 'b:Button';
 import CheckBoxControl from 'e:Control';
 
-export default declMod(({ type }) => type === 'button', {
+export default declMod({ type : 'button' }, {
     block : 'CheckBox',
 
     willInit() {
-        this.__base.apply(this, arguments);
+        this.__base(...arguments);
         this._onCheckChange = this._onCheckChange.bind(this);
     },
 
     mods({ type }) {
-        return { ...this.__base.apply(this, arguments), type };
+        return { ...this.__base(...arguments), type };
     },
 
-    content({ checked, disabled, name, value, title, text, icon }) {
+    content({ checked, disabled, name, value, title, text, icon, theme, size }) {
         return [
             <Button
                 key="button"
@@ -26,6 +26,8 @@ export default declMod(({ type }) => type === 'button', {
                 title={title}
                 text={text}
                 icon={icon}
+                theme={theme}
+                size={size}
                 focused={this.state.focused}
                 onFocusChange={this._onControlFocusChange}
                 onCheckChange={this._onCheckChange}/>,

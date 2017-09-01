@@ -1,8 +1,9 @@
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import Stylable from 'b:Stylable';
 
-export default decl({
+export default decl([Stylable], {
     block : 'Link',
 
     willInit({ focused, disabled }) {
@@ -43,7 +44,7 @@ export default decl({
 
     mods({ disabled }) {
         const { focused, hovered } = this.state;
-        return { disabled, focused, hovered };
+        return { ...this.__base(...arguments), disabled, focused, hovered };
     },
 
     tag : 'a',

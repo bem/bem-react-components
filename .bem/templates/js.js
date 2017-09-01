@@ -8,7 +8,7 @@ function toObjectValue(x) {
     return typeof x === 'boolean' ? x : `'${x}'`;
 }
 
-module.exports = function ({ block, elem, mod={} }, naming) {
+module.exports = function ({ block, elem, mod={} }) {
     const { name : modName, val : modVal } = mod;
     return `import { ${modName? 'declMod' : 'decl'} } from 'bem-react-core';
 

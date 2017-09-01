@@ -10,21 +10,17 @@ function toObjectValue(x) {
     return typeof x === 'boolean' ? x : "'" + x + "'";
 }
 
-module.exports = function (entity, naming) {
-    return [
-        "import {decl} from 'bem-react-core';",
-        "",
-        "export default " +
-        (entity.modName ?
-            "declMod({ " +
-                toObjectKey(entity.modName) + " : " +
-                toObjectValue(entity.modVal || true) +
-            " }, {" :
-            "decl({"),
-        "    block : '" + entity.block + "'" +
-        (entity.elem ?
-            "," + EOL + "    elem : '" + entity.elem + "'" :
-            ""),
-        "});"
-    ].join(EOL);
+module.exports = function ({ block, elem, mod={} }, naming) {
+    const { name : modName, val : modVal } = mod;
+
+    return `import React from 'react';
+import { block } from '../../.jest/helpers';
+import ${block} from 'b:${block}';
+
+const renderer = block('${block}');
+
+it('should be ...', () => {
+    renderer(<${block}/>);
+});
+`;
 };

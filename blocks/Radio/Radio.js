@@ -34,22 +34,23 @@ export default decl([Stylable], {
     },
 
     content(props) {
-        return (
-            <Bem elem="Box" tag="span">
+        return [
+            <Bem key="box" elem="Box" tag="span">
                 <RadioControl
                     {...props}
                     focused={this.state.focused}
                     onFocusChange={this._onControlFocusChange}/>
-                { props.text &&
-                    <Bem
-                        elem="Text"
-                        tag="span"
-                        attrs={{ role : 'presentation' }}>
-                        {props.text}
-                    </Bem>
-                }
-            </Bem>
-        );
+            </Bem>,
+            props.text && (
+                <Bem
+                    key="text"
+                    elem="Text"
+                    tag="span"
+                    attrs={{ role : 'presentation' }}>
+                    {props.text}
+                </Bem>
+                )
+        ];
     },
 
     _onControlFocusChange(focused) {

@@ -4,12 +4,16 @@ export default decl({
     block : 'Stylable',
 
     mods({ theme, size }) {
-        const { defaults } = this.__self;
+        console.log('Stylable mods');
+        const defaults = this.__self.getDefaults();
         return {
+            ...this.__base(...arguments),
             theme : theme || defaults.theme,
             size : size || defaults.size
         };
     }
 }, {
-    defaults : {}
+    getDefaults() {
+        return {};
+    }
 });

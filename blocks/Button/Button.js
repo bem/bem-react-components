@@ -1,26 +1,24 @@
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import warning from 'warning';
+import Focusable from 'b:Focusable';
 import Stylable from 'b:Stylable';
 import ButtonText from 'e:Text';
 
-export default decl([Stylable], {
+export default decl([Stylable, Focusable], {
     block : 'Button',
 
-    willInit({ focused, disabled }) {
-        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
+    willInit() {
+        this.__base(...arguments);
 
         this.state = {
-            focused : focused? 'hard' : false,
+            ...this.state,
             hovered : false,
             pressed : false
         };
 
         this._isMousePressed = false;
 
-        this._onFocus = this._onFocus.bind(this);
-        this._onBlur = this._onBlur.bind(this);
         this._onMouseEnter = this._onMouseEnter.bind(this);
         this._onMouseLeave = this._onMouseLeave.bind(this);
         this._onMouseDown = this._onMouseDown.bind(this);
@@ -30,37 +28,12 @@ export default decl([Stylable], {
         this._onKeyUp = this._onKeyUp.bind(this);
     },
 
-    willReceiveProps({ focused, disabled }) {
-        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
-
-        const newState = {};
-
-        disabled && (newState.hovered = newState.pressed = false);
-
-        typeof focused !== 'undefined' &&
-            (newState.focused = focused? this.state.focused || 'hard' : false);
-
-        this.setState(newState);
-    },
-
-    didMount() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
-    },
-
-    didUpdate() {
-        this.state.focused?
-            this._focus() :
-            this._blur();
-    },
-
     mods({ disabled, checked }) {
-        const { focused, hovered, pressed } = this.state;
+        console.log('Button mods', this.state);
+        const { hovered, pressed } = this.state;
         return {
             ...this.__base(...arguments),
             disabled,
-            focused,
             hovered,
             pressed,
             checked
@@ -121,18 +94,6 @@ export default decl([Stylable], {
         return content;
     },
 
-    _onFocus() {
-        this.state.focused || this.setState(
-            { focused : this._isMousePressed? true : 'hard' },
-            () => this.props.onFocusChange(true));
-    },
-
-    _onBlur() {
-        this.setState(
-            { focused : false },
-            () => this.props.onFocusChange(false));
-    },
-
     _onMouseEnter() {
         this.setState({ hovered : true });
     },
@@ -190,14 +151,6 @@ export default decl([Stylable], {
 
     _onClick(e) {
         this.props.onClick(e);
-    },
-
-    _focus() {
-        document.activeElement !== this._domNode && this._domNode.focus();
-    },
-
-    _blur() {
-        document.activeElement === this._domNode && this._domNode.blur();
     }
 }, {
     propTypes : {
@@ -205,16 +158,13 @@ export default decl([Stylable], {
         role : PropTypes.oneOf(['button', 'checkbox', 'listbox']),
         icon : PropTypes.element,
         disabled : PropTypes.bool,
-        focused : PropTypes.bool,
         onClick : PropTypes.func,
-        onFocusChange : PropTypes.func,
         onCheckChange : PropTypes.func
     },
 
     defaultProps : {
         role : 'button',
         onClick() {},
-        onFocusChange() {},
         onCheckChange() {}
     }
 });

@@ -1,32 +1,21 @@
 import Bem, { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import warning from 'warning';
+import Focusable from 'b:Focusable';
 import Stylable from 'b:Stylable';
 import CheckBoxControl from 'e:Control';
 
-export default decl([Stylable], {
+export default decl([Focusable, Stylable], {
     block : 'CheckBox',
 
     willInit({ focused, disabled }) {
-        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
-
-        this.state = { focused };
-
         this._onControlFocusChange = this._onControlFocusChange.bind(this);
-    },
-
-    willReceiveProps({ focused, disabled }) {
-        warning(!(focused && disabled), `${this.block}: Can't have both "focused" and "disabled" props.`);
-
-        typeof focused !== 'undefined' && this.setState({ focused });
     },
 
     tag : 'label',
 
     mods({ type, disabled }) {
-        const { focused } = this.state;
-        return { ...this.__base(...arguments), type, disabled, focused };
+        return { ...this.__base(...arguments), type, disabled };
     },
 
     attrs({ title }) {
@@ -39,7 +28,7 @@ export default decl([Stylable], {
                 <CheckBoxControl
                     {...props}
                     focused={this.state.focused}
-                    onFocusChange={this._onControlFocusChange}/>
+                    onFocusChange={this._onFocusChange}/>
                 { props.text &&
                     <Bem
                         elem="Text"
@@ -50,11 +39,6 @@ export default decl([Stylable], {
                 }
             </Bem>
         );
-    },
-
-    _onControlFocusChange(focused) {
-        this.setState({ focused },
-            () => this.props.onFocusChange(focused));
     }
 }, {
     propTypes : {
@@ -67,13 +51,10 @@ export default decl([Stylable], {
         type : PropTypes.oneOf([undefined, 'button']),
         tabIndex : PropTypes.number,
         disabled : PropTypes.bool,
-        focused : PropTypes.bool,
-        onFocusChange : PropTypes.func,
         onChange : PropTypes.func.isRequired
     },
 
     defaultProps : {
-        value : '',
-        onFocusChange() {}
+        value : ''
     }
 });

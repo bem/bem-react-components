@@ -1,4 +1,4 @@
-import React, { Children } from 'React';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import Stylable from 'b:Stylable';

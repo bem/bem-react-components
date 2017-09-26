@@ -36,6 +36,7 @@ class App extends React.Component {
                     Open simple modal
                 </Link>
                 <Modal
+                    mix={{ block : 'hey' }}
                     opened={this.state.opened}
                     onClose={this.onModalClose}>
                     Simple modal content
@@ -46,6 +47,7 @@ class App extends React.Component {
                 </Link>
                 <Modal
                     autoclosable
+                    mix={[{ block : 'hey' }, { elem : 'yo' }]}
                     opened={this.state.openedAutoclosable}
                     onClose={this.onModalClose}>
                     Autoclosable modal content

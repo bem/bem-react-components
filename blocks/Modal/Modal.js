@@ -32,7 +32,7 @@ export default decl([Stylable], {
 
     _popupProps(props) {
         return {
-            mix : { block : this.block, mods : this.mods(props) },
+            mix : [{ block : this.block, mods : this.mods(props) }, ...this.mix(props)],
             zIndexGroup : props.zIndexGroup || 20,
             onHide : props.onClose,
             visible : props.opened,

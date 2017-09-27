@@ -1,11 +1,11 @@
 # BEM React Components
 
-`bem-react-components` is an library that provides a set of visual components build with [bem-react-core].
-React Components are called blocks according to BEM methodology. Check [bem-info] for deeper dive.
+`bem-react-components` — это библиотека визуальных компонентов построенных с помощью [bem-react-core].
+React компоненты это блоки с точки зрения BEM методологии. Прочитать подробнее можно на [bem-info].
 
 :construction: Hard Work is in Progress :construction:
 
-## Blocks
+## Блоки
 
 * [Attach](blocks/Attach/)
 * [Button](blocks/Button)
@@ -27,20 +27,20 @@ React Components are called blocks according to BEM methodology. Check [bem-info
 * [TextArea](blocks/TextArea)
 * [TextInput](blocks/TextInput)
 
-## Build
+## Сборка
 
-Right now `bem-react-components` is heavily relying on assemble, so it's necessary to use one.
-There are several implementations:
+Сейчас `bem-react-components` сильно зависят от сборки.
+Можно использовать несколько готовых решений:
 
 * [webpack-bem-loader]
 * [babel-plugin-bem-import]
 
 
-For fast start you could use [create-bem-react-app].
+Для быстрого старта используйте [create-bem-react-app].
 
 ### Webpack
 
-Example of `webpack.conf.js`
+Пример конфига `webpack.conf.js`
 
 ```js
 module: {
@@ -69,13 +69,13 @@ module: {
 }
 ```
 
-To use more options of `bem-loader` check [docs].
+Больше опций `bem-loader` можно посмотреть в [документации](https://github.com/bem/webpack-bem-loader#options).
 
 ### Babel
 
-NB: Babel couldn't build css files, only js and js-like.
+NB: Babel не обрабатывает `css` файлы, только `js` и `js-like`.
 
-Example of `.babelrc`
+Пример конфига `.babelrc`
 
 ```json
 {
@@ -91,21 +91,20 @@ Example of `.babelrc`
 }
 ```
 
-To use more options of `bem-import` check [docs](https://github.com/bem/babel-plugin-bem-import#options).
+Больше опций `bem-import` можно посмотреть в [документации](https://github.com/bem/babel-plugin-bem-import#options).
 
-## Maintainers
+## Команда основной разработки
 
 * [veged](https://github.com/veged)
 * [awinogradov](https://github.com/awinogradov)
 * [Yeti-or](https://github.com/Yeti-or)
 
-## License
+## Лицензия
 
 Code and documentation © 2017 YANDEX LLC. Code released under the [Mozilla Public License 2.0](LICENSE.txt).
 
 [bem-react-core]: https://github.com/bem/bem-react-core
 [bem-info]: https://bem.info
 [webpack-bem-loader]: https://github.com/bem/webpack-bem-loader
-[docs]: https://github.com/bem/webpack-bem-loader#options
 [babel-plugin-bem-import]: https://github.com/bem/babel-plugin-bem-import
 [create-bem-react-app]: https://github.com/bem/create-bem-react-app

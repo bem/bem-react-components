@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { declMod } from 'bem-react-core';
 
 export default declMod({ autoclosable : true }, {
@@ -8,7 +9,6 @@ export default declMod({ autoclosable : true }, {
 
         this._isClickInside = false;
 
-        this._onClick = this._onClick.bind(this);
         this._onDocumentClick = this._onDocumentClick.bind(this);
         this._onDocumentKeyDown = this._onDocumentKeyDown.bind(this);
     },
@@ -30,18 +30,6 @@ export default declMod({ autoclosable : true }, {
         this.__base(...arguments);
     },
 
-    attrs({ visible }) {
-        const res = this.__base(...arguments);
-
-        if(visible) return { ...res, onClick : this._onClick };
-
-        return res;
-    },
-
-    _onClick() {
-        this._isClickInside = true;
-    },
-
     _onDocumentClick() {
         this._isClickInside || this.props.onHide();
         this._isClickInside = false;
@@ -53,5 +41,9 @@ export default declMod({ autoclosable : true }, {
             e.preventDefault();
             this.props.onHide();
         }
+    }
+}, {
+    propTypes : {
+        autoclosable : PropTypes.bool
     }
 });

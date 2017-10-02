@@ -88,6 +88,7 @@ class App extends React.Component {
                         </Button>
                         <Popup
                             target="anchor"
+                            autoclosable
                             visible={this.state.popup2Visible}
                             onHide={this.requestPopup2Hide}
                             directions={['bottom-right']}

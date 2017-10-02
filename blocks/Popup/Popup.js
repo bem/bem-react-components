@@ -12,14 +12,19 @@ export default decl([Stylable], {
     block : 'Popup',
 
     willInit() {
+        this.state = { zIndex : null };
+
+        this._isClickInside = false;
         this._wasVisible = false;
+
         this._onDomNodeRef = this._onDomNodeRef.bind(this);
         this.isVisible = this.isVisible.bind(this);
-        this.state = { zIndex : null };
+        this._setClickInside = this._setClickInside.bind(this);
     },
 
     getChildContext() {
         return {
+            _popupParentSetClickInside : this._setClickInside,
             isParentLayerVisible : this.isVisible,
             zIndexGroup : this.props.zIndexGroup
         };
@@ -36,7 +41,9 @@ export default decl([Stylable], {
             style : { zIndex : this.state.zIndex }
         };
 
-        visible || (attrs['aria-hidden'] = 'true');
+        visible ?
+            attrs.onClick = this._setClickInside :
+            attrs['aria-hidden'] = 'true';
 
         return attrs;
     },
@@ -102,6 +109,12 @@ export default decl([Stylable], {
             zIndexes.splice(idx, 1);
             this.setState({ zIndex : null });
         }
+    },
+
+    _setClickInside() {
+        this._isClickInside = true;
+        this.context._popupParentSetClickInside &&
+            this.context._popupParentSetClickInside();
     }
 }, {
     propTypes : {
@@ -110,11 +123,13 @@ export default decl([Stylable], {
     },
 
     childContextTypes : {
+        _popupParentSetClickInside : PropTypes.func,
         isParentLayerVisible : PropTypes.func,
         zIndexGroup : PropTypes.number
     },
 
     contextTypes : {
+        _popupParentSetClickInside : PropTypes.func,
         isParentLayerVisible : PropTypes.func,
         zIndexGroup : PropTypes.number
     },

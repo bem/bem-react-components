@@ -11,6 +11,10 @@ export default decl({
         this.context._radioGroupRegisterOption(this);
     },
 
+    willUnmount() {
+        this.context._radioGroupUnregisterOption(this);
+    },
+
     render() {
         const {
                 _radioGroupName : name,
@@ -54,6 +58,7 @@ export default decl({
         _radioGroupTheme : PropTypes.string,
         _radioGroupSize : PropTypes.string,
         _radioGroupRegisterOption : PropTypes.func,
+        _radioGroupUnregisterOption : PropTypes.func,
         _radioGroupOnOptionChange : PropTypes.func,
         _radioGroupOnOptionFocusChange : PropTypes.func
     }

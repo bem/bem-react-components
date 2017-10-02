@@ -22,6 +22,7 @@ export default decl([Stylable], {
 
         this._registeredItems = [];
         this._registerMenuItem = this._registerMenuItem.bind(this);
+        this._unregisterMenuItem = this._unregisterMenuItem.bind(this);
         this._hoverItem = this._hoverItem.bind(this);
 
         this._lastTyping = {
@@ -55,6 +56,7 @@ export default decl([Stylable], {
             _menuDisabled : this.props.disabled,
             _menuMode : this.props.mode,
             _menuRegisterItem : this._registerMenuItem,
+            _menuUnregisterItem : this._unregisterMenuItem,
             _menuHoverItem : this._hoverItem
         };
     },
@@ -202,6 +204,11 @@ export default decl([Stylable], {
         return (this._registeredItems.push(item) - 1);
     },
 
+    _unregisterMenuItem(item) {
+        this._hoveredItem === item && (this._hoveredItem = null);
+        return this._registeredItems.splice(this._registeredItems.indexOf(item), 1);
+    },
+
     _hoverItem(idx) {
         if(this._hoveredItem !== this._registeredItems[idx]) {
             this._hoveredItem && this._hoveredItem.setHovered(false);
@@ -227,6 +234,7 @@ export default decl([Stylable], {
         _menuItemsIndex : PropTypes.object,
         _menuMode : PropTypes.string,
         _menuRegisterItem : PropTypes.func,
+        _menuUnregisterItem : PropTypes.func,
         _menuHoverItem : PropTypes.func
     }
 });

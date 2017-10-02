@@ -11,6 +11,10 @@ export default decl({
         this.context._checkBoxGroupRegisterOption(this);
     },
 
+    willUnmount() {
+        this.context._checkBoxGroupUnregisterOption(this);
+    },
+
     render() {
         const {
                 _checkBoxGroupName : name,
@@ -51,6 +55,7 @@ export default decl({
         _checkBoxGroupTheme : PropTypes.string,
         _checkBoxGroupSize : PropTypes.string,
         _checkBoxGroupRegisterOption : PropTypes.func,
+        _checkBoxGroupUnregisterOption : PropTypes.func,
         _checkBoxGroupOnOptionChange : PropTypes.func,
         _checkBoxGroupOnOptionFocusChange : PropTypes.func
     }

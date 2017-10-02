@@ -40,6 +40,10 @@ export default decl({
         this._idx = this.context._menuRegisterItem(this);
     },
 
+    willUnmount() {
+        this.context._menuUnregisterItem(this);
+    },
+
     didUpdate() {
         this.state.focused?
             this._focus() :
@@ -121,6 +125,7 @@ export default decl({
         _menuDisabled : PropTypes.bool,
         _menuMode : PropTypes.string,
         _menuRegisterItem : PropTypes.func,
+        _menuUnregisterItem : PropTypes.func,
         _menuHoverItem : PropTypes.func
     },
 

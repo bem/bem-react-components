@@ -12,7 +12,15 @@ class App extends React.Component {
             value2 : 1,
             value3 : 1,
             value4 : 3,
-            value5 : 3
+            value5 : 3,
+            mutableOptions : [
+                { value : 1, text : 'one' },
+                { value : 2, text : 'two' },
+                { value : 3, text : 'three' },
+                { value : 4, text : 'four' },
+                { value : 5, text : 'five' },
+                { value : 6, text : 'six' }
+            ]
         };
 
         this.onChange1 = this.onChange1.bind(this);
@@ -20,6 +28,7 @@ class App extends React.Component {
         this.onChange3 = this.onChange3.bind(this);
         this.onChange4 = this.onChange4.bind(this);
         this.onChange5 = this.onChange5.bind(this);
+        this.onMutableChange = this.onMutableChange.bind(this);
     }
 
     onChange1(value1) {
@@ -40,6 +49,13 @@ class App extends React.Component {
 
     onChange5(value5) {
         this.setState({ value5 });
+    }
+
+    onMutableChange(value) {
+        this.setState({
+            mutableOptions : this.state.mutableOptions
+                .reduce((acc, item) => acc.concat(item.value === value ? [] : item), [])
+        });
     }
 
     render() {
@@ -90,6 +106,22 @@ class App extends React.Component {
                     <RadioGroupOption value={1} text="first"/>
                     <RadioGroupOption value={2} text="second"/>
                     <RadioGroupOption value={3} text="third"/>
+                </RadioGroup>
+                <br/>
+                <RadioGroup
+                    type="button"
+                    mode="radio-check"
+                    name="default4"
+                    onChange={this.onMutableChange}>
+                    {
+                        this.state.mutableOptions
+                            .map((item, i) =>
+                                <RadioGroupOption
+                                    key={`item-${i}`}
+                                    value={item.value}
+                                    text={item.text}/>
+                                )
+                    }
                 </RadioGroup>
             </div>
         );

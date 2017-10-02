@@ -11,8 +11,6 @@ export default decl([Stylable], {
         this._onClick = this._onClick.bind(this);
     },
 
-    attrs : { role : 'dialog', 'aria-hidden' : 'true' },
-
     render() {
         const { props, block } = this;
         return (
@@ -37,7 +35,8 @@ export default decl([Stylable], {
             onHide : props.onClose,
             visible : props.opened,
             theme : props.theme,
-            size : props.size
+            size : props.size,
+            role : 'dialog'
         };
     }
 }, {

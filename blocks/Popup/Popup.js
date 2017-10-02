@@ -29,9 +29,10 @@ export default decl([Stylable], {
         return { ...this.__base(...arguments), visible };
     },
 
-    attrs({ visible }) {
+    attrs({ visible, role }) {
         const attrs = {
             ref : this._onDomNodeRef,
+            role,
             style : { zIndex : this.state.zIndex }
         };
 

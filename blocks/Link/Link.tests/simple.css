@@ -1,22 +1,18 @@
-.Button
+.Link_type_button
 {
     border: 3px solid black;
     background: #ccc;
     -moz-user-focus: ignore;
     outline: none;
+    text-decoration: none;
 }
 
-.Button_focused
+.Link_type_button.Link_focused
 {
     border-color: yellow;
 }
 
-.Button_focused_hard
+.Link_type_button.Link_focused_hard
 {
     border-color: red;
-}
-
-.Button_checked
-{
-    background: orange;
 }

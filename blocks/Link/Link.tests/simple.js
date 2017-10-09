@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Link from 'b:Link m:pseudo';
+import './simple.css';
+import Link from 'b:Link m:pseudo m:type=button';
 
 class App extends React.Component {
     constructor(props) {
@@ -32,6 +33,10 @@ class App extends React.Component {
     _onLinkClick() {
     }
 
+    _onButtonClickPrevented(e) {
+        e.preventDefault();
+    }
+
     render() {
         return (
             <div>
@@ -48,6 +53,16 @@ class App extends React.Component {
                 <Link disabled={this.state.linkDisabled} url="https://yandex.ru" target="_blank">link disabled</Link>
                 <br/>
                 <Link pseudo onClick={function() { console.log('pseudo click!'); }}>pseudo link</Link>
+                <br/>
+                <Link
+                    type="button"
+                    url="https://yandex.ru"
+                    target="_blank">link type button</Link>
+                <br/>
+                <Link
+                    type="button"
+                    url="https://yandex.ru"
+                    onClick={this._onButtonClickPrevented}>button link with default prevented</Link>
             </div>
         );
     }

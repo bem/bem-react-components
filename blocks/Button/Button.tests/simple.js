@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import './simple.css';
-import Button from 'b:Button m:type=link';
+import Button from 'b:Button';
 import Icon from 'b:Icon';
 
 class App extends React.Component {
@@ -10,7 +10,6 @@ class App extends React.Component {
 
         this.state = {
             buttonFocused : true,
-            buttonDisabled : false,
             checkButtonChecked : false,
             radioButtonChecked : false
         };
@@ -18,16 +17,6 @@ class App extends React.Component {
         this._onButtonFocusChange = this._onButtonFocusChange.bind(this);
         this._onButtonCheckChange = this._onButtonCheckChange.bind(this);
         this._onRadioButtonCheckChange = this._onRadioButtonCheckChange.bind(this);
-    }
-
-    componentDidMount() {
-        // setTimeout(() => {
-        //     this.setState({ buttonDisabled : true })
-        // }, 3000);
-        //
-        // setTimeout(() => {
-        //     this.setState({ buttonDisabled : false })
-        // }, 2000);
     }
 
     _onButtonFocusChange(buttonFocused) {
@@ -43,10 +32,6 @@ class App extends React.Component {
         this.setState({ radioButtonChecked });
     }
 
-    _onButtonClickPrevented(e) {
-        e.preventDefault();
-    }
-
     render() {
         return (
             <div>
@@ -59,19 +44,6 @@ class App extends React.Component {
                 <Button
                     icon={<Icon url="https://yandex.st/lego/_/pDu9OWAQKB0s2J9IojKpiS_Eho.ico"/>}
                     text="button with icon"/>
-                <br/>
-                <Button
-                    disabled={this.state.buttonDisabled}
-                    type="link"
-                    text="button link"
-                    url="https://yandex.ru"
-                    target="_blank"/>
-                <br/>
-                <Button
-                    type="link"
-                    text="button link with default prevented"
-                    url="https://yandex.ru"
-                    onClick={this._onButtonClickPrevented}/>
                 <br/>
                 <Button
                     checked={this.state.checkButtonChecked}

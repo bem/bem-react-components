@@ -13,11 +13,20 @@ class App extends React.Component {
         this.onRadioChange = this.onRadioChange.bind(this);
         this.onCheckChange = this.onCheckChange.bind(this);
         this.onRadioCheckChange = this.onRadioCheckChange.bind(this);
+        this.onMutableMenuCheckChange = this.onMutableMenuCheckChange.bind(this);
 
         this.state = {
             menuRadioValue : 2,
             menuCheckValue : [2],
-            menuRadioCheckValue : 2
+            menuRadioCheckValue : 2,
+            mutableMenuItems : [
+                { value : 1, text : 'one' },
+                { value : 2, text : 'two' },
+                { value : 3, text : 'three' },
+                { value : 4, text : 'four' },
+                { value : 5, text : 'five' },
+                { value : 6, text : 'six' }
+            ]
         };
     }
 
@@ -34,6 +43,14 @@ class App extends React.Component {
     onRadioCheckChange(value) {
         console.log(value);
         this.setState({ menuRadioCheckValue : value });
+    }
+
+    onMutableMenuCheckChange([value]) {
+        console.log(value);
+        this.setState({
+            mutableMenuItems : this.state.mutableMenuItems
+                .reduce((acc, item) => acc.concat(item.value === value ? [] : item), [])
+        });
     }
 
     render() {
@@ -78,6 +95,20 @@ class App extends React.Component {
                     <MenuItem value={1}>one</MenuItem>
                     <MenuItem value={2}>two</MenuItem>
                     <MenuItem value={3}>three</MenuItem>
+                </Menu>
+                <br/>
+                <Menu
+                    mode="check"
+                    onChange={this.onMutableMenuCheckChange}>
+                    {
+                        this.state.mutableMenuItems
+                            .map((item, i) =>
+                                <MenuItem
+                                    key={`item-${i}`}
+                                    value={item.value}>
+                                    {item.text}
+                                </MenuItem>)
+                    }
                 </Menu>
             </div>
         );

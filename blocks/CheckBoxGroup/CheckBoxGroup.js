@@ -13,6 +13,11 @@ export default decl([Stylable], {
         this.state = { focused };
 
         this._options = [];
+
+        this._registerOption = this._registerOption.bind(this);
+        this._unregisterOption = this._unregisterOption.bind(this);
+        this._onOptionChange = this._onOptionChange.bind(this);
+        this._onOptionFocusChange = this._onOptionFocusChange.bind(this);
     },
 
     willReceiveProps({ focused, disabled }) {
@@ -30,9 +35,10 @@ export default decl([Stylable], {
             _checkBoxGroupDisabled : disabled,
             _checkBoxGroupTheme : theme,
             _checkBoxGroupSize : size,
-            _checkBoxGroupRegisterOption : this._registerOption.bind(this),
-            _checkBoxGroupOnOptionChange : this._onOptionChange.bind(this),
-            _checkBoxGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
+            _checkBoxGroupRegisterOption : this._registerOption,
+            _checkBoxGroupUnregisterOption : this._unregisterOption,
+            _checkBoxGroupOnOptionChange : this._onOptionChange,
+            _checkBoxGroupOnOptionFocusChange : this._onOptionFocusChange
         };
     },
 
@@ -54,6 +60,10 @@ export default decl([Stylable], {
 
     _registerOption(option) {
         this._options.push(option);
+    },
+
+    _unregisterOption(option) {
+        this._options.splice(this._options.indexOf(option), 1);
     },
 
     _onOptionChange(checked, value) {
@@ -92,6 +102,7 @@ export default decl([Stylable], {
         _checkBoxGroupTheme : PropTypes.string,
         _checkBoxGroupSize : PropTypes.string,
         _checkBoxGroupRegisterOption : PropTypes.func,
+        _checkBoxGroupUnregisterOption : PropTypes.func,
         _checkBoxGroupOnOptionChange : PropTypes.func,
         _checkBoxGroupOnOptionFocusChange : PropTypes.func
     }

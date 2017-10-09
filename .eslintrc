@@ -52,6 +52,7 @@
         "react/jsx-indent" : ["error", 4],
         "react/jsx-sort-props" : "off",
         "react/require-optimization" : "off",
+        "react/no-array-index-key" : "off",
         "react/no-set-state" : "off",
         "react/no-multi-comp" : "off",
         "react/sort-prop-types" : "off",

@@ -13,6 +13,10 @@ export default decl([Stylable], {
         this.state = { focused };
 
         this._options = [];
+        this._registerOption = this._registerOption.bind(this);
+        this._unregisterOption = this._unregisterOption.bind(this);
+        this._onOptionChange = this._onOptionChange.bind(this);
+        this._onOptionFocusChange = this._onOptionFocusChange.bind(this);
     },
 
     willReceiveProps({ focused, disabled }) {
@@ -31,9 +35,10 @@ export default decl([Stylable], {
             _radioGroupDisabled : disabled,
             _radioGroupTheme : theme,
             _radioGroupSize : size,
-            _radioGroupRegisterOption : this._registerOption.bind(this),
-            _radioGroupOnOptionChange : this._onOptionChange.bind(this),
-            _radioGroupOnOptionFocusChange : this._onOptionFocusChange.bind(this)
+            _radioGroupRegisterOption : this._registerOption,
+            _radioGroupUnregisterOption : this._unregisterOption,
+            _radioGroupOnOptionChange : this._onOptionChange,
+            _radioGroupOnOptionFocusChange : this._onOptionFocusChange
         };
     },
 
@@ -55,6 +60,10 @@ export default decl([Stylable], {
 
     _registerOption(option) {
         this._options.push(option);
+    },
+
+    _unregisterOption(option) {
+        this._options.slice(this._options.indexOf(option), 1);
     },
 
     _onOptionChange(checked, value) {
@@ -91,6 +100,7 @@ export default decl([Stylable], {
         _radioGroupTheme : PropTypes.string,
         _radioGroupSize : PropTypes.string,
         _radioGroupRegisterOption : PropTypes.func,
+        _radioGroupUnregisterOption : PropTypes.func,
         _radioGroupOnOptionChange : PropTypes.func,
         _radioGroupOnOptionFocusChange : PropTypes.func
     }

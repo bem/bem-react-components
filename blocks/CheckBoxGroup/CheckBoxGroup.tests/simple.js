@@ -11,13 +11,22 @@ class App extends React.Component {
             value1 : [2],
             value2 : [1, 2],
             value3 : [1],
-            value4 : [1, 3]
+            value4 : [1, 3],
+            mutableOptions : [
+                { value : 1, text : 'one' },
+                { value : 2, text : 'two' },
+                { value : 3, text : 'three' },
+                { value : 4, text : 'four' },
+                { value : 5, text : 'five' },
+                { value : 6, text : 'six' }
+            ]
         };
 
         this.onChange1 = this.onChange1.bind(this);
         this.onChange2 = this.onChange2.bind(this);
         this.onChange3 = this.onChange3.bind(this);
         this.onChange4 = this.onChange4.bind(this);
+        this.onMutableChange = this.onMutableChange.bind(this);
     }
 
     onChange1(value1) {
@@ -34,6 +43,13 @@ class App extends React.Component {
 
     onChange4(value4) {
         this.setState({ value4 });
+    }
+
+    onMutableChange([value]) {
+        this.setState({
+            mutableOptions : this.state.mutableOptions
+                .reduce((acc, item) => acc.concat(item.value === value ? [] : item), [])
+        });
     }
 
     render() {
@@ -73,6 +89,21 @@ class App extends React.Component {
                     <CheckBoxGroupOption value={2} text="second"/>
                     <CheckBoxGroupOption value={3} text="third" disabled/>
                     <CheckBoxGroupOption value={4} text="fourth" disabled/>
+                </CheckBoxGroup>
+                <br/>
+                <CheckBoxGroup
+                    type="button"
+                    name="default4"
+                    onChange={this.onMutableChange}>
+                    {
+                        this.state.mutableOptions
+                            .map((item, i) =>
+                                <CheckBoxGroupOption
+                                    key={`item-${i}`}
+                                    value={item.value}
+                                    text={item.text}/>
+                                )
+                    }
                 </CheckBoxGroup>
             </div>
         );

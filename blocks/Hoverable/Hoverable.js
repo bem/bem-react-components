@@ -37,6 +37,9 @@ export default decl({
 }, {
     connect(target) {
         const Hoverable = this;
-        return props => <Hoverable {...props} target={target}/>;
+        this.displayName = `Hoverable(${target.displayName})`;
+        const func = props => <Hoverable {...props} target={target}/>;
+        func.displayName = `_Hoverable(${target.displayName})`;
+        return func;
     }
 });

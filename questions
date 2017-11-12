@@ -1,0 +1,92 @@
+Маппинг islands в bem-components
+    _view_default -> _theme_default
+    _view_classic -> _theme_islands
+
+## Вопросы
+1. Разделение по платформам
+2. _theme из _islands назвать _kind, чтобы в _theme выражать именно тему
+2. Разные темы в одном рантайме
+    _kind_* в отдельных файлах в рамках уровня темы, но заврапированные селекторами темы
+3. Дропнуть лишние стили из _islands
+4. Опциональный __inner, __icon зависит от _theme и _kind парента
+5. post-bem для кастомной схемы нейминга
+
+6. нужна возможность выражать на ФС сджоинные модификаторы
+7. нужна возможность выражать на ФС зависимость элементов от значений модификаторов
+    => import из модификатора должен уметь ОПЦИОНАЛЬНО (!!!) подключать вложенные элементы и модификаторы
+
+8. а точно ли нужны 6 и 7, если длина селектора в среднем будет больше, чем необходимые опциональные правила
+    (не всегда, см. button, но см. popup)
+
+husky проверяет все файлы, а не только то, что коммитится
+
+Link_theme_default
+  1. Переменные для цветов ссылок, сейчас хардкод
+  2. У pseudo сейчас нет элемента Inner, нужно сделать
+  3. Не делать по одному файлу в папке _kind_XXX, а класть Link_kind_XXX.css в _theme_default
+
+Spin
+  1. Нужен ли модификатор position_center
+
+
+/
+    blocks/
+    desktop.blocks
+    touch.blocks
+
+    themes/
+        default/
+            blocks/
+            desktop.blocks
+            touch.blocks
+
+
+blocks/
+    common
+    common-desktop
+    common-touch
+    themes-default-common
+    themes-default-desktop
+    themes-default-touch
+
+
+blocks/
+    b1
+        _theme/
+            _default
+
+desktop.blocks
+touch.blocks
+
+
+-------
+
+blocks/
+    link/
+        link.default.theme/
+            _tone/
+                _red/
+                    link_tone_red@common.css
+                    _kind/
+                        _outer/[???]@common.css
+            _kind/
+                _outer/ # чтобы можно было выразить зависимость элемента от значения модификатора
+                    __icon/
+                        link__icon@common.css
+                    link_kind_outer@desktop.css
+
+desktop.blocks
+touch.blocks
+
+
+
+link.hovered.css
+
+
+({
+    shoulDeps: [
+        {
+            block: 'link'
+        }
+    ]
+})

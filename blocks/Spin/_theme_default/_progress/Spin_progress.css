@@ -1,0 +1,16 @@
+.Spin_theme_default.Spin_progress {
+    border-top-color: #fc0;
+    border-left-color: #fc0;
+
+    animation: Spin_theme_default 1s infinite linear;
+    backface-visibility: hidden;  /* For faster animaton */
+}
+
+@keyframes Spin_theme_default {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

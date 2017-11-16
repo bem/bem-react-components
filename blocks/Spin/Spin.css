@@ -1,0 +1,10 @@
+.Spin {
+    display: none;
+}
+
+/* For correct block position relative to text baseline */
+.Spin:after {
+    visibility: hidden;
+
+    content: '\00a0'; /* &nbsp; */
+}

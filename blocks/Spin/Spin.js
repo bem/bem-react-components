@@ -4,11 +4,12 @@ import Stylable from 'b:Stylable';
 
 export default decl([Stylable], {
     block : 'Spin',
-    mods({ progress }) {
-        return { ...this.__base(...arguments), progress };
+    mods({ progress, size }) {
+        return { ...this.__base(...arguments), progress, size };
     }
 }, {
     propTypes : {
-        progress : PropTypes.bool
+        progress : PropTypes.bool,
+        size : PropTypes.oneOf(['xxs', 'xs', 's', 'm', 'l'])
     }
 });

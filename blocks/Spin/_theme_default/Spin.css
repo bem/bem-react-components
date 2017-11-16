@@ -1,0 +1,6 @@
+.Spin {
+    box-sizing: border-box;
+
+    border: 2px solid transparent;
+    border-radius: 100px; /* Android 2.3 doesn't support border-radius in % */
+}

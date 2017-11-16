@@ -53,7 +53,7 @@ export default decl([Stylable], {
         const props = this.props;
         let res = {
             ref : ref => this._domNode = ref,
-            role : 'link',
+            role : !url && 'button',
             title,
             target,
             'aria-haspopup' : props['aria-haspopup'],
@@ -68,7 +68,6 @@ export default decl([Stylable], {
                 res.href = url;
             else
                 tabIndex || (tabIndex = 0);
-
 
             res = {
                 ...res,

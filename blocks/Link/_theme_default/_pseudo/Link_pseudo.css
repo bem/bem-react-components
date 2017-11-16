@@ -1,0 +1,10 @@
+/*
+    Inner is non optional element for pseudo.
+
+    Set dotted border to inner element instead of block itself
+    because icon element can be nested inside block and we
+    doesn't want to draw border under it.
+*/
+.Link_theme_default.Link_pseudo .Link-Inner {
+    border-bottom: 1px dotted;
+}

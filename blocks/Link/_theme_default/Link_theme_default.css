@@ -1,0 +1,6 @@
+.Link_theme_default {
+    text-decoration: none;
+
+    color: #04b;
+    /* outline: 0; */ /* TODO: is it really needed? */
+}

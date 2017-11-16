@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import './simple.css';
 import Link from 'b:Link m:pseudo m:type=button';
 
 class App extends React.Component {

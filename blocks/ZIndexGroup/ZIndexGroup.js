@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import { decl } from 'bem-react-core';
 
-const ZINDEX_FACTOR = 1000;
-
 export default decl({
     block : 'ZIndexGroup',
+
+    attrs({ level }) {
+        return { style : { zIndex : (level || 1) * 1000 } };
+    },
 
     getChildContext() {
         return {
             zIndexGroup : this.props.level,
             zIndexGroupStyle : {
-                zIndex : (this.props.level || 1) * ZINDEX_FACTOR
+                zIndex : (this.props.level || 1) * 1000
             }
         };
     },

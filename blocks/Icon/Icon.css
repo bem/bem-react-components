@@ -1,0 +1,15 @@
+.Icon {
+    display: inline-block;
+
+    background: no-repeat 50%;
+}
+
+/*
+    For correct block position relative to text baseline.
+    And block height is equal to inherited line-height.
+*/
+.Icon:after {
+    visibility: hidden;
+
+    content: '\00a0'; /* &nbsp; */
+}

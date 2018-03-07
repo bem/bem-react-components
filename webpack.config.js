@@ -23,7 +23,7 @@ module.exports = {
             {
                 test : /\.html$/,
                 use : [
-                    'file-loader?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests/.*\.html$'
+                    'file-loader?name=[1]/[name].[ext]&regExp=([a-zA-Z]+)\.tests[\\\\/](.*)\.html$'
                 ]
             },
             {

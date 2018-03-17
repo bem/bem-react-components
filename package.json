@@ -25,6 +25,7 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-bem-import": "^1.4.2",
     "babel-plugin-transform-object-assign": "^6.22.0",
@@ -44,9 +45,9 @@
     "glob": "^7.1.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
-    "react-test-renderer": "^15.5.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
     "sinon": "^2.2.0",
     "stream-to-array": "^2.3.0",
     "style-loader": "^0.17.0",

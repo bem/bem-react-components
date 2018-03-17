@@ -59,8 +59,8 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "blocks/**/*.js",
-      "!blocks/**/*.tests/*.js",
+      "common.blocks/**/*.js",
+      "!common.blocks/**/*.tests/*.js",
       "!**/node_modules/**"
     ]
   },

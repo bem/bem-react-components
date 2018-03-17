@@ -1,7 +1,7 @@
 module.exports = {
     root : true,
     levels : {
-        blocks : {
+        'common.blocks' : {
             scheme : 'nested',
             schemeOptions : 'react',
             naming : 'react'
@@ -12,7 +12,7 @@ module.exports = {
             plugins : {
                 create : {
                     levels : {
-                        blocks : {
+                        'common.blocks' : {
                             default : true
                         }
                     },

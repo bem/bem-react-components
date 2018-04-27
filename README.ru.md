@@ -7,25 +7,25 @@ React компоненты это блоки с точки зрения BEM ме
 
 ## Блоки
 
-* [Attach](blocks/Attach/)
-* [Button](blocks/Button)
-* [CheckBox](blocks/CheckBox)
-* [CheckBoxGroup](blocks/CheckBoxGroup)
-* [Dropdown](blocks/Dropdown)
-* [Icon](blocks/Icon)
-* [Image](blocks/Image)
-* [KeyCodes](blocks/KeyCodes)
-* [Link](blocks/Link)
-* [Menu](blocks/Menu)
-* [Modal](blocks/Modal)
-* [Popup](blocks/Popup)
-* [ProgressBar](blocks/ProgressBar)
-* [Radio](blocks/Radio)
-* [RadioGroup](blocks/RadioGroup)
-* [Select](blocks/Select)
-* [Spin](blocks/Spin)
-* [TextArea](blocks/TextArea)
-* [TextInput](blocks/TextInput)
+* [Attach](common.blocks/Attach/)
+* [Button](common.blocks/Button)
+* [CheckBox](common.blocks/CheckBox)
+* [CheckBoxGroup](common.blocks/CheckBoxGroup)
+* [Dropdown](common.blocks/Dropdown)
+* [Icon](common.blocks/Icon)
+* [Image](common.blocks/Image)
+* [KeyCodes](common.blocks/KeyCodes)
+* [Link](common.blocks/Link)
+* [Menu](common.blocks/Menu)
+* [Modal](common.blocks/Modal)
+* [Popup](common.blocks/Popup)
+* [ProgressBar](common.blocks/ProgressBar)
+* [Radio](common.blocks/Radio)
+* [RadioGroup](common.blocks/RadioGroup)
+* [Select](common.blocks/Select)
+* [Spin](common.blocks/Spin)
+* [TextArea](common.blocks/TextArea)
+* [TextInput](common.blocks/TextInput)
 
 ## Сборка
 
@@ -53,7 +53,7 @@ module: {
           loader: 'webpack-bem-loader',
           options: {
             levels: [
-              './node_modules/bem-react-components/blocks',
+              './node_modules/bem-react-components/common.blocks',
               './src/my-awesome-blocks'
             ],
             techs: ['js', 'css']
@@ -83,7 +83,7 @@ NB: Babel не обрабатывает `css` файлы, только `js` и `
   "plugins": [
     ["bem-import", {
       "levels": [
-        "./node_modules/bem-react-components/blocks",
+        "./node_modules/bem-react-components/common.blocks",
         "./src/my-awesome-blocks"
       ]
     }]

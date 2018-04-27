@@ -2,7 +2,7 @@ const path = require('path'),
     glob = require('glob');
 
 module.exports = {
-    entry : glob.sync('blocks/**/*.tests/*.html').reduce((res, file) => {
+    entry : glob.sync('common.blocks/**/*.tests/*.html').reduce((res, file) => {
         const basename = path.basename(file, '.html'),
             entity = path.basename(path.dirname(file), '.tests');
         res[`${entity}/${basename}.js`] = [

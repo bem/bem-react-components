@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
 import Stylable from 'b:Stylable';
+import Hoverable from 'b:Hoverable';
 import ButtonText from 'e:Text';
 
 export default decl([Stylable], {
@@ -13,7 +14,6 @@ export default decl([Stylable], {
 
         this.state = {
             focused : focused? 'hard' : false,
-            hovered : false,
             pressed : false
         };
 
@@ -21,7 +21,6 @@ export default decl([Stylable], {
 
         this._onFocus = this._onFocus.bind(this);
         this._onBlur = this._onBlur.bind(this);
-        this._onMouseEnter = this._onMouseEnter.bind(this);
         this._onMouseLeave = this._onMouseLeave.bind(this);
         this._onMouseDown = this._onMouseDown.bind(this);
         this._onMouseUp = this._onMouseUp.bind(this);
@@ -56,12 +55,11 @@ export default decl([Stylable], {
     },
 
     mods({ disabled, checked }) {
-        const { focused, hovered, pressed } = this.state;
+        const { focused, pressed } = this.state;
         return {
             ...this.__base(...arguments),
             disabled,
             focused,
-            hovered,
             pressed,
             checked
         };
@@ -92,7 +90,6 @@ export default decl([Stylable], {
                 ...res,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
-                onMouseEnter : this._onMouseEnter,
                 onMouseLeave : this._onMouseLeave,
                 onMouseDown : this._onMouseDown,
                 onMouseUp : this._onMouseUp
@@ -133,13 +130,8 @@ export default decl([Stylable], {
             () => this.props.onFocusChange(false));
     },
 
-    _onMouseEnter() {
-        this.setState({ hovered : true });
-    },
-
     _onMouseLeave() {
         this._isMousePressed = false;
-        this.setState({ hovered : false, pressed : false });
     },
 
     _onMouseDown(e) {
@@ -218,3 +210,23 @@ export default decl([Stylable], {
         onCheckChange() {}
     }
 });
+
+decl({
+    block : 'Button',
+
+    mods({ hovered }) {
+        return {
+            ...this.__base(...arguments),
+            hovered
+        };
+    },
+
+    attrs({ onMouseEnter, onMouseLeave }) {
+        return {
+            ...this.__base(...arguments),
+            onMouseEnter,
+            onMouseLeave
+        };
+    }
+
+}, Button => Hoverable.connect(Button));
